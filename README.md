@@ -5,8 +5,10 @@ Web application allowing to manage products such as intraocular lenses. This web
 ## Main targets
 
 * Use Laravel/Lumen for this application's developpment
-* Show different stocks (on hands, remote and sales)
-* Update products status
+* Show different inventories (on hands, remote and sold)
+* Update products status:
+** Moving newly created products into the on hands inventory
+** Moving products to remote/sold inventory
 
 More functionnalities will be added depending on how much time left we have.
 
