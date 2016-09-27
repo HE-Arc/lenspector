@@ -10,7 +10,7 @@ Web application allowing to manage products such as intraocular lenses. This web
 
 More functionnalities will be added depending on how much time left we have.
 
-# Technologies that might be used
+## Technologies that might be used
 
 * Laravel/Lumen (lesson constraint)
 * Angular2 (if needed for the frontend)
