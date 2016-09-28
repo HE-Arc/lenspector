@@ -17,3 +17,23 @@ More functionnalities will be added depending on how much time left we have.
 
 * Laravel/Lumen (lesson constraint)
 * Angular2 (if needed for the frontend)
+
+## Installation
+
+From this point, we assume you have a working Web server with PHP and a http server (nginx, apache, etc.) installed and configured.
+
+### Windows
+
+* Run `git clone <project_url>`
+* Run `composer install` at the project root
+* Copy the `.env.example` file to `.env`
+* Run `php artisan key:generate`
+
+### GNU/Linux
+
+* Run `git clone <project_url>`
+* Run `composer install` at the project root
+* Copy the `.env.example` file to `.env`
+* Run `php artisan key:generate`
+
+Do not forget to give access to the project to the http user so that it can access project cache directory. You can use `setfacl` to achieve this task.
