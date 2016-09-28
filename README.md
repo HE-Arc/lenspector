@@ -36,4 +36,4 @@ From this point, we assume you have a working Web server with PHP and a http ser
 * Copy the `.env.example` file to `.env`
 * Run `php artisan key:generate`
 
-Do not forget to give access to the project to the http user so that it can access project cache directory. You can use `setfacl` to achieve this task.
+Do not forget to give access to the project to the http user so that it can access project `bootstrap/cache` and `storage` directories. You can use `setfacl` to achieve this task.
