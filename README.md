@@ -9,6 +9,7 @@ Web application allowing to manage products such as intraocular lenses. This web
 * Update products status:
     * Moving newly created products into the on hands inventory
     * Moving products to remote/sold inventory
+* Create a new order
 
 More functionnalities will be added depending on how much time left we have.
 
