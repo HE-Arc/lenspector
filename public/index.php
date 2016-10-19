@@ -57,4 +57,3 @@ $response->send();
 
 $kernel->terminate($request, $response);
 ?>
-<h1>Coucou</h1>
