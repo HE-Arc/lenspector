@@ -1,0 +1,23 @@
+{% extends "base.twig" %}
+{% block body %}
+<div class="row">
+    <div class="jumbotron">
+        <h1>{{ title }}</h1>
+        <p>
+            {{ jumbotronMessage }}
+        </p>
+    </div>
+</div>
+<div class="row">
+    {% for tile in links %}
+        <div class="col-sm-6">
+            <a href="{{ tile['link'] | url_encode }}">
+                <div class="thumbnail">
+                    <i class="glyphicon menu-glyphicon {{ tile['glyphicon'] }}"></i>
+                    <h2>{{ tile['title'] }}</h2>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
