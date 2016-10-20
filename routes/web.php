@@ -13,5 +13,25 @@
 
 Route::get('/', function () {
     //return view('welcome');
-    return View::make('hello');
+    $title = "Homepage";
+    $jumbotronMessage = "Please choose an action in the above menu.";
+    $links = array(
+       array(
+            'title' => 'Inventory',
+            'link' => '',
+            'glyphicon' => 'glyphicon-inbox'
+        ),
+        array(
+            'title' => 'Orders',
+            'link' => '',
+            'glyphicon' => 'glyphicon-briefcase'
+        ),
+        array(
+            'title' => 'Customers',
+            'link' => '',
+            'glyphicon' => 'glyphicon-user'
+        )
+    );
+
+    return View::make("home", compact("title", "jumbotronMessage", "links"));
 });
