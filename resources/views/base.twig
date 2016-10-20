@@ -6,37 +6,40 @@
     <link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <!-- <a class="navbar-brand" href="#">Project name</a> -->
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="index.php"><i class="glyphicon glyphicon-home"></i></a></li>
-                        <li role="presentation" class="dropdown">
-                            <a class="dropdown-toggle disabled" data-toggle="dropdown" href="index.php?mode=inventory" role="button" aria-haspopup="true" aria-expanded="false">
-                                Inventory <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="update_product_status.php">Move to Packship</a></li>
-                                <li><a href="show_inventory.php?stock=internal">On Hands Inventory</a></li>
-                                <li><a href="show_inventory.php?stock=remote">Consignment Inventory</a></li>
-                                <li><a href="show_inventory.php?stock=sales">Sales</a></li>
+    <div class="container" id="main-container">
+        <header>
+                <nav class="navbar navbar-default navbar-fixed-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <!-- <a class="navbar-brand" href="#">Project name</a> -->
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="index.php"><i class="glyphicon glyphicon-home"></i></a></li>
+                                <li role="presentation" class="dropdown">
+                                    <a class="dropdown-toggle disabled" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">
+                                        Inventory <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="">Move to Packship</a></li>
+                                        <li><a href="">On Hands Inventory</a></li>
+                                        <li><a href="">Consignment Inventory</a></li>
+                                        <li><a href="">Sales</a></li>
+                                    </ul>
+                                </li>
                             </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    {% block body %}{% endblock %}
+                        </div>
+                    </div>
+                </nav>
+        </header>
+        {% block body %}{% endblock %}
+    </div>
+    <script src="js/app.js"></script>
 </body>
 </html>
