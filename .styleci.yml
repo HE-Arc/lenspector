@@ -1,0 +1,11 @@
+preset: recommended
+
+risky: false
+
+finder:
+  exclude: 
+    - "tests"
+  name:
+    - "*.php"
+    - "*.html"
+    - "*.twig"
