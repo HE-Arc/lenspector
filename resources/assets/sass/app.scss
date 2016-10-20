@@ -7,3 +7,20 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+#main-container {
+    margin-top: 65px;
+}
+.thumbnail {
+    text-align: center;
+}
+.menu-glyphicon {
+    font-size: 5em;
+    margin-top: 0.2em;
+}
+@media (min-width: 772px) {
+    ul.nav li.dropdown:hover > ul.dropdown-menu {
+        display: block;
+    }
+}
+
