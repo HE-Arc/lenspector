@@ -39,6 +39,5 @@ Route::get('/home', function () {
     return View::make('home', compact('title', 'jumbotronMessage', 'links'));
 })->name('home');
 
-Route::get('/login', function () {
-    return View::make('login');
-})->name('login');
+Route::get('/login', 'LoginController@index')->name('login');
+Route::post('/login', 'LoginController@login');
