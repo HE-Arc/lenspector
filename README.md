@@ -27,4 +27,4 @@ $ setfacl -Rm u:http:wrx storage
 $ setfacl -Rm u:http:wrx bootstrap/cache
 ```
 
-The http server user might not be called `http` depending on your distribution. Use process monitoring tools like `top` or `ps` to find what is its name.
+The http server user might not be called `http` depending on your distribution. Use process monitoring tools like `top` or `ps aux | grep 'nginx\|php\|apache'` to find what is its name.
