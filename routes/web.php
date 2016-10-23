@@ -12,7 +12,10 @@
 */
 
 Route::get('/', function () {
-    //return view('welcome');
+    return redirect()->route('home');
+});
+
+Route::get('/home', function () {
     $title = 'Homepage';
     $jumbotronMessage = 'Please choose an action in the above menu.';
     $links = [
@@ -34,4 +37,4 @@ Route::get('/', function () {
     ];
 
     return View::make('home', compact('title', 'jumbotronMessage', 'links'));
-});
+})->name('home');
