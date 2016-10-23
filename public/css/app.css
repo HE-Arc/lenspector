@@ -5766,9 +5766,11 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
+/* Main container used in every view */
 #main-container {
   margin-top: 65px; }
 
+/* Home view */
 .thumbnail {
   text-align: center; }
 
@@ -5776,6 +5778,18 @@ button.close {
   font-size: 5em;
   margin-top: 0.2em; }
 
+/* Login view form */
+.form-signin {
+  max-width: 300px;
+  margin: 0 auto 0 auto;
+  margin-top: 180px; }
+
+.form-signin .form-control {
+  margin-bottom: 15px;
+  height: 45px;
+  font-size: 16px; }
+
+/* For small screens */
 @media (min-width: 772px) {
   ul.nav li.dropdown:hover > ul.dropdown-menu {
     display: block; } }
