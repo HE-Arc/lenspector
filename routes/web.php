@@ -15,30 +15,7 @@ Route::get('/', function () {
     return redirect()->route('home');
 });
 
-Route::get('/home', function () {
-    $title = 'Homepage';
-    $jumbotronMessage = 'Please choose an action in the above menu.';
-    $links = [
-       [
-            'title' => 'Inventory',
-            'link' => '',
-            'glyphicon' => 'glyphicon-inbox',
-        ],
-        [
-            'title' => 'Orders',
-            'link' => '',
-            'glyphicon' => 'glyphicon-briefcase',
-        ],
-        [
-            'title' => 'Customers',
-            'link' => '',
-            'glyphicon' => 'glyphicon-user',
-        ],
-    ];
+Auth::routes();
 
-    return View::make('home', compact('title', 'jumbotronMessage', 'links'));
-})->name('home');
-
-Route::get('/login', function () {
-    return View::make('login');
-})->name('login');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/logout', 'Auth\LoginController@logout');
