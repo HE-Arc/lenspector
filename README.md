@@ -23,8 +23,8 @@ From this point, we assume you have a working Web server with PHP and a http ser
 Do not forget to give access to the project to the http user so that it can access project `bootstrap/cache` and `storage` directories. You can use `setfacl` to achieve this task:
 
 ```bash
-$ setfacl -Rm u:http:wrx storage
-$ setfacl -Rm u:http:wrx bootstrap/cache
+$ setfacl -Rdm u:http:wrx storage
+$ setfacl -Rdm u:http:wrx bootstrap/cache
 ```
 
 The http server user might not be called `http` depending on your distribution. Use process monitoring tools like `top` or `ps aux | grep 'nginx\|php\|apache'` to find what is its name.
