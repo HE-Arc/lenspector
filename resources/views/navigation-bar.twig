@@ -28,7 +28,12 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/logout">Logout</a></li>
+                    <li>
+                        <form class="form-inline" method="POST" action="/logout">
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-primary">Logout</button>
+                        </form>
+                    </li>
                 </ul>
             </div>
         </div>
