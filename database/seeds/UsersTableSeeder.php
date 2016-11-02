@@ -17,7 +17,9 @@ class UsersTableSeeder extends Seeder
             'id' => 1,
             'name' => 'test',
             'email' => 'test@example.com',
-            'password' => bcrypt('test')
+            'password' => bcrypt('test'),
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
         ]);
     }
 }
