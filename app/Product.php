@@ -20,11 +20,12 @@ class Product extends Model
     {
         return $this->hasOne('App\ProductType', 'productId');
     }
+
     /*
      * Get the status associated with the product.
      */
     public function status()
     {
-        return $this->hasOne('App\InventoryStatus', 'status');    
+        return $this->hasOne('App\InventoryStatus', 'status');
     }
 }
