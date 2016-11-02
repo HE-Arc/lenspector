@@ -18,6 +18,7 @@ class ProductTableSeeder extends Seeder
                 'exclude' => random_int(0, 1),
                 'productId' => 1,
                 'sphCorrected' => random_int(10, 60) * 0.5,
+                'status' => random_int(1, 4),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ]);
