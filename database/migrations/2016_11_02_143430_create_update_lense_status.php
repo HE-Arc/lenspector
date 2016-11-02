@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductsType extends Migration
+class CreateUpdateLenseStatus extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateProductsType extends Migration
      */
     public function up()
     {
-        Schema::create('product', function (Blueprint $table) {
+        Schema::create('inventory_status', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->integer('monthValidity');
-            $table->timestamps();
+            $table->string('status');
         });
 
         Schema::table('lense', function ($table) {
-            $table->foreign('productId')->references('id')->on('product');
+            $table->foreign('id')->references('id')->on('inventory_status');
+            $table->integer('status');
         });
     }
 
@@ -33,7 +32,6 @@ class CreateProductsType extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('product');
         Schema::dropIfExists('inventory_status');
     }
 }
