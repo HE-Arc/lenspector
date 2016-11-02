@@ -19,7 +19,7 @@ class CreateProductTable extends Migration
             $table->date('dateExpiration');
             $table->tinyInteger('exclude')->default(0);
             $table->integer('productId')->unsigned()->nullable();
-            $table->integer('SphCorrected')->unsigned();
+            $table->double('SphCorrected')->unsigned();
             $table->timestamps();
         });
     }
