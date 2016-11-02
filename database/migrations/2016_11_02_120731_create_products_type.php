@@ -32,7 +32,7 @@ class CreateProductsType extends Migration
      */
     public function down()
     {
-		Schema::disableForeignKeyConstraints();
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('product');
     }
 }
