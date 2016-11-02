@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 
 class UsersTableSeeder extends Seeder
 {
@@ -19,7 +18,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'test@example.com',
             'password' => bcrypt('test'),
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => date('Y-m-d H:i:s'),
         ]);
     }
 }
