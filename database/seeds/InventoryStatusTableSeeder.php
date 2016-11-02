@@ -11,13 +11,13 @@ class InventoryStatusTableSeeder extends Seeder
      */
     public function run()
     {
-        $status = [
+        $statuses = [
             'In stock',
             'In external stock',
             'Sold',
             'Inventory return',
         ];
-        foreach ($status as $s) {
+        foreach ($statuses as $s) {
             DB::table('inventory_status')->insert([
                 'status' => $s,
             ]);

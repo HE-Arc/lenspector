@@ -11,11 +11,24 @@ class ProductTypesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('product')->insert([
-            'name' => 'InFo',
-            'monthValidity' => 12,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
-        ]);
+        $types = [
+            [
+                'name' => 'InFo',
+                'monthValidity' => 12,
+            ],
+            [
+                'name' => 'Illuminate',
+                'monthValidity' => 15,
+            ],
+        ];
+
+        foreach ($types as $t) {
+            DB::table('product')->insert([
+                'name' => $t['name'],
+                'monthValidity' =>$t['monthValidity'],
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ]);
+        }
     }
 }
