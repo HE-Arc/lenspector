@@ -25,7 +25,7 @@ class ProductTypesTableSeeder extends Seeder
         foreach ($types as $t) {
             DB::table('product')->insert([
                 'name' => $t['name'],
-                'monthValidity' =>$t['monthValidity'],
+                'monthValidity' => $t['monthValidity'],
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ]);
