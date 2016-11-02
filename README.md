@@ -28,3 +28,22 @@ $ setfacl -Rdm u:http:wrx bootstrap/cache
 ```
 
 The http server user might not be called `http` depending on your distribution. Use process monitoring tools like `top` or `ps aux | grep 'nginx\|php\|apache'` to find what is its name.
+
+### General
+
+After installing and generating your key with `artisan`, it is time to create the database:
+
+1. Modify the following lines according to your database server configuration in your `.env` file:
+
+    ```
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1       
+    DB_PORT=3306
+    DB_DATABASE=your_db_name
+    DB_USERNAME=your_db_username
+    DB_PASSWORD=your_db_password
+    ```
+2. Connect to your database server and create a database with a command like `CREATE DATABASE my_database;`
+3. Create the database's tables with `php artisan migrate`.
+
+You can run `php artisan rollback` if you want to drop the tables for some reason. *As for the database is concerned, you have to drop the schema manually.* 
