@@ -19,8 +19,8 @@ class InventoryStatusTableSeeder extends Seeder
         ];
         foreach ($status as $s) {
             DB::table('inventory_status')->insert([
-                'status'=> $s,
+                'status' => $s,
             ]);
-        }   
+        }
     }
 }
