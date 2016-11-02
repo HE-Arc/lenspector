@@ -31,7 +31,9 @@
                     <li>
                         <form class="form-inline" method="POST" action="/logout">
                             {{ csrf_field() }}
-                            <button type="submit" class="btn btn-primary">Logout</button>
+                            <div class="navbar-btn">
+                                <button type="submit" class="btn btn-primary">Logout</button>
+                            </div>
                         </form>
                     </li>
                 </ul>
