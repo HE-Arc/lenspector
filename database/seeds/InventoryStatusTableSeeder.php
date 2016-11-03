@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\InventoryStatus;
 
 class InventoryStatusTableSeeder extends Seeder
 {
@@ -18,7 +19,7 @@ class InventoryStatusTableSeeder extends Seeder
             'Inventory return',
         ];
         foreach ($statuses as $s) {
-            DB::table('inventory_status')->insert([
+            InventoryStatus::create([
                 'status' => $s,
             ]);
         }

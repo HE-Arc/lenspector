@@ -12,4 +12,9 @@ class InventoryStatus extends Model
      * @var string
      */
     protected $table = 'inventory_status';
+    /**
+     * Timestamps field activition.
+     * @var bool
+     */
+    public $timestamps = false;
 }
