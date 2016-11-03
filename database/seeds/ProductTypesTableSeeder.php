@@ -26,7 +26,7 @@ class ProductTypesTableSeeder extends Seeder
         foreach ($types as $t) {
             ProductType::create([
                 'name' => $t['name'],
-                'monthValidity' =>$t['monthValidity'],
+                'monthValidity' => $t['monthValidity'],
             ]);
         }
     }
