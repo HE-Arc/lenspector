@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\ProductType;
 
 class ProductTypesTableSeeder extends Seeder
 {
@@ -11,11 +12,22 @@ class ProductTypesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('product')->insert([
-            'name' => 'InFo',
-            'monthValidity' => 12,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
-        ]);
+        $types = [
+            [
+                'name' => 'InFo',
+                'monthValidity' => 12,
+            ],
+            [
+                'name' => 'Illuminate',
+                'monthValidity' => 15,
+            ],
+        ];
+
+        foreach ($types as $t) {
+            ProductType::create([
+                'name' => $t['name'],
+                'monthValidity' => $t['monthValidity'],
+            ]);
+        }
     }
 }

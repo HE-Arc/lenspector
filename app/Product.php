@@ -12,4 +12,20 @@ class Product extends Model
      * @var string
      */
     protected $table = 'lense';
+
+    /*
+     * Get the product type associated with the product.
+     */
+    public function productType()
+    {
+        return $this->hasOne('App\ProductType', 'productId');
+    }
+
+    /*
+     * Get the status associated with the product.
+     */
+    public function status()
+    {
+        return $this->hasOne('App\InventoryStatus', 'status');
+    }
 }
