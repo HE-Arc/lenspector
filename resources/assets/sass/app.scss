@@ -8,9 +8,68 @@
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+/* graphic charter colors */
+$primary-color-dark:   #1976D2;
+$primary-color:        #2196F3;
+$primary-color-light:  #BBDEFB;
+$primary-color-text:   #FFFFFF;
+$accent-color:         #7C4DFF;
+$primary-text-color:   #212121;
+$secondary-text-color: #757575;
+$divider-color:        #BDBDBD;
+
 /* Main container used in every view */
 #main-container {
     margin-top: 65px;
+}
+
+.navbar-default, .dropdown-menu,
+.thumbnail {
+    background-color: $primary-color-dark;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus,
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.jumbotron,
+.thumbnail:hover,
+.panel,
+.panel-default > .panel-heading,
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: $primary-color;
+}
+
+.menu-tile a {
+    text-decoration-line: none;
+}
+
+body,
+h1, h2, h3, h4, h5, h6,
+.jumbotron,
+.navbar-default .navbar-brand,
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus,
+.glyphicon, .navbar-default .navbar-nav > li > a,
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-menu > li > a,
+.btn-danger,
+.panel-default > .panel-heading,
+.navbar-default .navbar-toggle .icon-bar {
+    color: $primary-color-text;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: $primary-color-text;
+}
+
+.navbar-default,
+.navbar-default .navbar-collapse {
+    border-color: $primary-color-dark;
 }
 
 /* Home view */
@@ -34,10 +93,20 @@
     font-size: 16px;
 }
 
+.btn-danger:hover, btn-danger:focus {
+    color: #fff;
+    background-color: #D32F2F;
+    border-color: #ac2925;
+}
+
+.btn-danger {
+    background-color: #D32F2F;
+    border-color: #d43f3a;
+}
+
 /* For small screens */
 @media (min-width: 772px) {
     ul.nav li.dropdown:hover > ul.dropdown-menu {
         display: block;
     }
 }
-

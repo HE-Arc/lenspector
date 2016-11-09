@@ -5766,9 +5766,54 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
+/* graphic charter colors */
 /* Main container used in every view */
 #main-container {
   margin-top: 65px; }
+
+.navbar-default, .dropdown-menu,
+.thumbnail {
+  background-color: #1976D2; }
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus,
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.jumbotron,
+.thumbnail:hover,
+.panel,
+.panel-default > .panel-heading,
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #2196F3; }
+
+.menu-tile a {
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none; }
+
+body,
+h1, h2, h3, h4, h5, h6,
+.jumbotron,
+.navbar-default .navbar-brand,
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus,
+.glyphicon, .navbar-default .navbar-nav > li > a,
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-menu > li > a,
+.btn-danger,
+.panel-default > .panel-heading,
+.navbar-default .navbar-toggle .icon-bar {
+  color: #FFFFFF; }
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #FFFFFF; }
+
+.navbar-default,
+.navbar-default .navbar-collapse {
+  border-color: #1976D2; }
 
 /* Home view */
 .thumbnail {
@@ -5788,6 +5833,15 @@ button.close {
   margin-bottom: 15px;
   height: 45px;
   font-size: 16px; }
+
+.btn-danger:hover, btn-danger:focus {
+  color: #fff;
+  background-color: #D32F2F;
+  border-color: #ac2925; }
+
+.btn-danger {
+  background-color: #D32F2F;
+  border-color: #d43f3a; }
 
 /* For small screens */
 @media (min-width: 772px) {
