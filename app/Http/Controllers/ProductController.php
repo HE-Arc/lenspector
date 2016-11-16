@@ -14,7 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(15);
+        $products = Product::with('type')->get();
+        //dd($products);
         return view('inventory', compact('products'));
     }
 
