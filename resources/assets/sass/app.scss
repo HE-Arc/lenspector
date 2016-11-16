@@ -5,10 +5,7 @@
 // Variables
 @import "variables";
 
-// Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-
-/* graphic charter colors */
+// Graphic charter colors
 $primary-color-dark:   #1976D2;
 $primary-color:        #2196F3;
 $primary-color-light:  #BBDEFB;
@@ -18,67 +15,53 @@ $primary-text-color:   #212121;
 $secondary-text-color: #757575;
 $divider-color:        #BDBDBD;
 
+//
+// Overrides
+// --------------------------------------------------
+/* Text */
+$text-color: $primary-color-text;
+
+/* Navbar */
+$navbar-default-bg: $primary-color-dark;
+$navbar-default-link-color: $primary-color-text;
+$navbar-default-color: $primary-color-text;
+
+/* Dropdown */
+$dropdown-bg: $primary-color-dark;
+$dropdown-link-hover-bg: $primary-color;
+$dropdown-link-color: $primary-color-text;
+
+/* Jukbotron */
+// $jumbotron-bg: $primary-color-dark;
+$jumbotron-bg: $primary-color;
+
+/* Tumbnail */
+$thumbnail-bg: $primary-color;
+
+/* Buttons */
+$btn-danger-bg: #D32F2F;
+
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
 /* Main container used in every view */
 #main-container {
     margin-top: 65px;
 }
 
-.navbar-default, .dropdown-menu,
-.thumbnail {
-    background-color: $primary-color-dark;
-}
-
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus,
-.dropdown-menu > li > a:hover,
-.dropdown-menu > li > a:focus,
-.jumbotron,
-.thumbnail:hover,
-.panel,
-.panel-default > .panel-heading,
-.navbar-default .navbar-toggle:hover,
-.navbar-default .navbar-toggle:focus {
-    background-color: $primary-color;
-}
-
-.menu-tile a {
+/* Home view */
+.thumbnail, .thumbnail:hover {
+    text-align: center;
     text-decoration-line: none;
-}
-
-body,
-h1, h2, h3, h4, h5, h6,
-.jumbotron,
-.navbar-default .navbar-brand,
-.navbar-default .navbar-brand:hover,
-.navbar-default .navbar-brand:focus,
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus,
-.glyphicon, .navbar-default .navbar-nav > li > a,
-.dropdown-menu > li > a:hover,
-.dropdown-menu > li > a:focus,
-.dropdown-menu > li > a,
-.btn-danger,
-.panel-default > .panel-heading,
-.navbar-default .navbar-toggle .icon-bar {
     color: $primary-color-text;
 }
-
-.navbar-default .navbar-toggle .icon-bar {
-    background-color: $primary-color-text;
-}
-
-.navbar-default,
-.navbar-default .navbar-collapse {
-    border-color: $primary-color-dark;
-}
-
-/* Home view */
-.thumbnail {
-    text-align: center;
+.thumbnail:hover {
+    background-color: $primary-color-dark;
 }
 .menu-glyphicon {
     font-size: 5em;
     margin-top: 0.2em;
+    color: $primary-color-text;
 }
 
 /* Login view form */
@@ -91,17 +74,6 @@ h1, h2, h3, h4, h5, h6,
     margin-bottom: 15px;
     height: 45px;
     font-size: 16px;
-}
-
-.btn-danger:hover, btn-danger:focus {
-    color: #fff;
-    background-color: #D32F2F;
-    border-color: #ac2925;
-}
-
-.btn-danger {
-    background-color: #D32F2F;
-    border-color: #d43f3a;
 }
 
 /* For small screens */
