@@ -1,1 +1,11 @@
 {% extends "private-content.twig" %}
+
+{% block content %}
+<ul class="list-group">
+    {% for p in products %}
+        <li>{{ p.id }}</li>
+    {% endfor %}
+</ul>
+{{ products.links() | raw }}
+
+{% endblock %}
