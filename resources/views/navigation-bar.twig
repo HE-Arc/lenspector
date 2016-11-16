@@ -13,7 +13,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="/home"><i class="glyphicon glyphicon-home"></i></a></li>
+                    <li><a href="{{ route('home') }}"><i class="glyphicon glyphicon-home"></i></a></li>
                     <li role="presentation" class="dropdown">
                         <a class="dropdown-toggle disabled" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">
                             Inventory <span class="caret"></span>
@@ -29,10 +29,11 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <form class="form-inline" method="POST" action="/logout">
+                        <a href="#" class="visible-xs" onclick="$('#logout-form').submit();">Logout</a>
+                        <form class="form-inline" method="POST" id="logout-form" action="{{ route('logout') }}">
                             {{ csrf_field() }}
-                            <div class="navbar-btn">
-                                <button type="submit" class="btn btn-primary">Logout</button>
+                            <div class="navbar-btn visible-sm visible-md visible-lg">
+                                <button type="submit" class="btn btn-danger">Logout</button>
                             </div>
                         </form>
                     </li>

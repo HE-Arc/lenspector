@@ -12,11 +12,9 @@
 <div class="row">
     {% for tile in links %}
         <div class="col-sm-6">
-            <a href="{{ tile['link'] | url_encode }}">
-                <div class="thumbnail">
-                    <i class="glyphicon menu-glyphicon {{ tile['glyphicon'] }}"></i>
-                    <h2>{{ tile['title'] }}</h2>
-                </div>
+            <a href="{{ tile['link'] | url_encode }}" class="thumbnail">
+                <i class="glyphicon menu-glyphicon {{ tile['glyphicon'] }}"></i>
+                <h2>{{ tile['title'] }}</h2>
             </a>
         </div>
     {% endfor %}

@@ -5,6 +5,42 @@
 // Variables
 @import "variables";
 
+// Graphic charter colors
+$primary-color-dark:   #1976D2;
+$primary-color:        #2196F3;
+$primary-color-light:  #BBDEFB;
+$primary-color-text:   #FFFFFF;
+$accent-color:         #7C4DFF;
+$primary-text-color:   #212121;
+$secondary-text-color: #757575;
+$divider-color:        #BDBDBD;
+
+//
+// Overrides
+// --------------------------------------------------
+/* Text */
+$text-color: $primary-color-text;
+
+/* Navbar */
+$navbar-default-bg: $primary-color-dark;
+$navbar-default-link-color: $primary-color-text;
+$navbar-default-color: $primary-color-text;
+
+/* Dropdown */
+$dropdown-bg: $primary-color-dark;
+$dropdown-link-hover-bg: $primary-color;
+$dropdown-link-color: $primary-color-text;
+
+/* Jukbotron */
+// $jumbotron-bg: $primary-color-dark;
+$jumbotron-bg: $primary-color;
+
+/* Tumbnail */
+$thumbnail-bg: $primary-color;
+
+/* Buttons */
+$btn-danger-bg: #D32F2F;
+
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
@@ -14,12 +50,18 @@
 }
 
 /* Home view */
-.thumbnail {
+.thumbnail, .thumbnail:hover {
     text-align: center;
+    text-decoration-line: none;
+    color: $primary-color-text;
+}
+.thumbnail:hover {
+    background-color: $primary-color-dark;
 }
 .menu-glyphicon {
     font-size: 5em;
     margin-top: 0.2em;
+    color: $primary-color-text;
 }
 
 /* Login view form */
@@ -40,4 +82,3 @@
         display: block;
     }
 }
-
