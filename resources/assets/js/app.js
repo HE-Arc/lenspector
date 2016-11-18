@@ -18,3 +18,23 @@ Vue.component('example', require('./components/Example.vue'));
 const app = new Vue({
     el: 'body'
 });
+
+$( document ).ready(function () {
+    $('#serial_number').on('blur change input', function() {
+        fetchSerialNumber($( this ));
+    });
+});
+
+/**
+ * Fonction permettant de rechercher un numéro de série dans une balise
+ * input.
+ *
+ * @param DocumentNode input_field Noeud HTML de type input.
+ */
+function fetchSerialNumber(input_field) {
+        var patt = /F[0-9]{8}/;
+        var serial_number = patt.exec("" + input_field.val());
+        if (serial_number != null) {
+            input_field.val(serial_number);
+        }
+}
