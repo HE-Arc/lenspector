@@ -46,4 +46,6 @@ After installing and generating your key with `artisan`, it is time to create th
 2. Connect to your database server and create a database with a command like `CREATE DATABASE my_database;`
 3. Create the database's tables with `php artisan migrate`.
 
-You can run `php artisan rollback` if you want to drop the tables for some reason. *As for the database is concerned, you have to drop the schema manually.* 
+You can run `php artisan migrate:rollback` if you want to drop the tables for some reason. *As for the database is concerned, you have to drop the schema manually.*
+
+If you want to rollback the database and fill it with fake datas for development, just run `php artisan migrate:refresh --seed`. Then you are ready to test and develop features on the application.
