@@ -1,6 +1,6 @@
-{% extends "private-content.twig" %}
+{% extends "base.twig" %}
 
-{% block content %}
+{% block body %}
 <ul class="list-group">
     {% for p in products %}
         <li>{{ p.sn }} {{ p.type.name }}
