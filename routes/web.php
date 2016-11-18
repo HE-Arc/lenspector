@@ -21,4 +21,9 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('product', 'ProductController');
+Route::resource('product', 'ProductController',
+    ['only' => ['index', 'show', 'update']]);
+
+Route::get('inventory/update', function() {
+    return View('inventory/inventory-update');
+})->name('inventory.update');

@@ -1,0 +1,13 @@
+{% extends 'base.twig' %}
+{% block body %}
+    <form action="{{ route('product.update') }}" method="post">
+        <input name="_method" type="hidden" value="put">
+        <div class="form-group row">
+            <label for="serial_number" class="col-xs-2 col-form-label">Serial Number</label>
+            <div class="col-xs-10">
+                <input class="form-control" type="text" value="" id="serial_number"
+                    placeholder="F12345678" pattern="F[0-9]{8}" required>
+            </div>
+        </div>
+    </form>
+{% endblock %}
