@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 </head>
 <body>
     <div class="container" id="main-container">
@@ -12,6 +12,6 @@
         {% endif %}
         {% block body %}{% endblock %}
     </div>
-    <script src="js/app.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
