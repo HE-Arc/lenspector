@@ -16,9 +16,9 @@ class Product extends Model
     /*
      * Get the product type associated with the product.
      */
-    public function productType()
+    public function type()
     {
-        return $this->hasOne('App\ProductType', 'productId');
+        return $this->belongsTo('App\ProductType', 'productId');
     }
 
     /*
