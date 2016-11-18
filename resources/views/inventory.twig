@@ -1,0 +1,12 @@
+{% extends "base.twig" %}
+
+{% block body %}
+<ul class="list-group">
+    {% for p in products %}
+        <li>{{ p.sn }} {{ p.type.name }}
+        </li>
+    {% endfor %}
+</ul>
+{{ products.links() | raw }}
+
+{% endblock %}
