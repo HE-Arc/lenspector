@@ -10,6 +10,13 @@
         {% if auth_user() %}
             {% include 'navigation-bar.twig' %}
         {% endif %}
+        {% if errors.all %}
+            <p class="alert alert-danger">
+                {% for error in errors.all %}
+                    {{ error }}
+                {% endfor %}
+            </p>
+        {% endif %}
         {% block body %}{% endblock %}
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
