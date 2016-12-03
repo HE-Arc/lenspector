@@ -13,6 +13,13 @@ class Product extends Model
      */
     protected $table = 'lense';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['status'];
+
     /*
      * Get the product type associated with the product.
      */

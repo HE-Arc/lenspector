@@ -71,7 +71,27 @@ class ProductController extends Controller
      */
     public function update(Request $request)
     {
-        dd('Implement Me!');
+        $this->validate($request, [
+            'inventory_status' => 'required|in:1,4|exists:inventory_status,id',
+            'serial_number' => array(
+                'required',
+                'regex:/F[0-9]{8}/',
+                'exists:lense,sn'
+            ),
+        ]);
+
+        $lens = Product::where('sn','=', $request->serial_number)
+            ->where('exclude', '=', 0)
+            ->first();
+        if ($lens == null) {
+            return redirect()->back()
+                ->withErrors('The specified lens does not exist or is excluded');
+        }
+        $lens->update([
+            'status' => $request->inventory_status,
+        ]);
+        return redirect()->back()
+            ->with('status', 'Lens successfully updated');
     }
 
     /**
