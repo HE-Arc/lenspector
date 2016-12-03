@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\InventoryStatus;
 
 class ProductController extends Controller
 {
@@ -58,7 +59,8 @@ class ProductController extends Controller
      */
     public function edit()
     {
-        return View('inventory/inventory-update');
+        $statuses = InventoryStatus::findOrFail([1,4]);
+        return View('inventory/inventory-update', compact('statuses'));
     }
 
     /**

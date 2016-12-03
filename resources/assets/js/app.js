@@ -23,6 +23,7 @@ $( document ).ready(function () {
     $('#serial_number').on('blur change input', function() {
         fetchSerialNumber($( this ));
     });
+    $("input[name='inventory_status']").first().attr('checked', true);
 });
 
 /**
