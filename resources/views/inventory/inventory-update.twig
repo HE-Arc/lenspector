@@ -1,0 +1,30 @@
+{% extends 'base.twig' %}
+{% block body %}
+    <h1>On Hands Invenory Entry or Return</h1>
+    <p class="lead">
+        Insert a valid serial number to put the concerned lense into
+        the on hands inventory.
+    </p>
+    <form action="{{ route('product.update')}}" method="post">
+        {{ csrf_field() }}
+        <input name="_method" type="hidden" value="put">
+        <div class="form-group row">
+            <label for="serial_number" class="col-xs-6 col-sm-4">Serial Number</label>
+            <div class="col-xs-6 col-sm-2">
+                <input class="form-control" type="text" value="" id="serial_number"
+                    name="serial_number" placeholder="F12345678" pattern="F[0-9]{8}" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            {% for s in statuses %}
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="inventory_status" value="{{ s.id }}">
+                        {{ s.status }}
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
+        <button class="btn btn-primary" type="submit" name="submit">Insert</button>
+    </form>
+{% endblock %}

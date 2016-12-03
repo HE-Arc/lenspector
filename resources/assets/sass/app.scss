@@ -19,7 +19,8 @@ $divider-color:        #BDBDBD;
 // Overrides
 // --------------------------------------------------
 /* Text */
-$text-color: $primary-color-text;
+// $text-color: $primary-color-text;
+$text-color: $secondary-text-color;
 
 /* Navbar */
 $navbar-default-bg: $primary-color-dark;
@@ -32,8 +33,8 @@ $dropdown-link-hover-bg: $primary-color;
 $dropdown-link-color: $primary-color-text;
 
 /* Jukbotron */
-// $jumbotron-bg: $primary-color-dark;
 $jumbotron-bg: $primary-color;
+$jumbotron-bg: $primary-color-light;
 
 /* Tumbnail */
 $thumbnail-bg: $primary-color;

@@ -3,15 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 </head>
 <body>
     <div class="container" id="main-container">
         {% if auth_user() %}
             {% include 'navigation-bar.twig' %}
         {% endif %}
+        {% if errors.all %}
+            <p class="alert alert-danger">
+                {% for error in errors.all %}
+                    {{ error }}
+                {% endfor %}
+            </p>
+        {% endif %}
+        {% if session('status') %}
+            <p class="alert alert-success">
+                {{ session('status') }}
+            </p>
+        {% endif %}
         {% block body %}{% endblock %}
     </div>
-    <script src="js/app.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
