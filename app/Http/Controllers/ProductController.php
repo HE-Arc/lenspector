@@ -59,7 +59,8 @@ class ProductController extends Controller
      */
     public function edit()
     {
-        $statuses = InventoryStatus::findOrFail([1,4]);
+        $statuses = InventoryStatus::findOrFail([1, 4]);
+
         return View('inventory/inventory-update', compact('statuses'));
     }
 
@@ -73,14 +74,14 @@ class ProductController extends Controller
     {
         $this->validate($request, [
             'inventory_status' => 'required|in:1,4|exists:inventory_status,id',
-            'serial_number' => array(
+            'serial_number' => [
                 'required',
                 'regex:/F[0-9]{8}/',
-                'exists:lense,sn'
-            ),
+                'exists:lense,sn',
+            ],
         ]);
 
-        $lens = Product::where('sn','=', $request->serial_number)
+        $lens = Product::where('sn', '=', $request->serial_number)
             ->where('exclude', '=', 0)
             ->first();
         if ($lens == null) {
@@ -90,6 +91,7 @@ class ProductController extends Controller
         $lens->update([
             'status' => $request->inventory_status,
         ]);
+
         return redirect()->back()
             ->with('status', 'Lens successfully updated');
     }
