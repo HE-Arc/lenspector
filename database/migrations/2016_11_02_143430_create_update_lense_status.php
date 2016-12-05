@@ -19,8 +19,8 @@ class CreateUpdateLenseStatus extends Migration
         });
 
         Schema::table('lense', function ($table) {
-            $table->foreign('id')->references('id')->on('inventory_status');
-            $table->integer('status');
+            $table->integer('status')->unsigned()->nullable();
+            $table->foreign('status')->references('id')->on('inventory_status');
         });
     }
 
