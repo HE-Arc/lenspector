@@ -1,12 +1,21 @@
 {% extends "base.twig" %}
 
 {% block body %}
-<ul class="list-group">
-    {% for p in products %}
-        <li>{{ p.sn }} {{ p.type.name }}
-        </li>
+    <h1> On hands inventory </h1>
+    {% for t in types %}
+        {% set type = t[0] %}
+        <h2>{{ type.name }} Total : {{ type.product_count }}</h2>
+        <table class ="table table-striped" >
+        <tr>
+            <th>Diopter</th> <th>Count</th>
+        </tr>
+        {% for p in t.products %}
+            <tr>
+                <td>{{ p.SphCorrected }}</td> <td>{{ p.total }}</td>
+            </tr>
+        {% endfor %}
+        </table>
     {% endfor %}
-</ul>
 {{ products.links() | raw }}
 
 {% endblock %}

@@ -17,30 +17,18 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $types = ProductType::withCount('product')->get()->groupBy('id');
         $products = Product::select(DB::raw('*, count(*) as total'))
-            ->groupBy('sphCorrected', 'productId')
-            ->orderBy('sphCorrected')
+            ->groupBy('productId', 'sphCorrected')
+            ->orderBy('productId', 'sphCorrected')
             ->get();
-        dd($products);
 
-        /*ProductType::withCount()
-        Product::groupBy()
-*/
-        // $products = Product::with('type')->paginate(30);
-        /*$productTypes = ProductType::withCount(['product' => function($query) {
-                $query->where('status', '1')
-                    ->groupBy('sphCorrected')
-                    ->orderBy('sphCorrected');
-            }])->get();
-            */
-        /*(['product' => function($query) {
-                $query->where('status', '1')
-                    ->orderBy('sphCorrected')
-                    ->groupBy('sphCorrected');
-            }])
-            ->get();*/
-        //dd($productTypes);
-        return view('inventory', compact('products'));
+        foreach($products as $product) {
+            $types[$product->productId]->products[] = $product;
+        }
+        //dd($types);
+
+        return view('inventory', compact('types'));
     }
 
     /**
