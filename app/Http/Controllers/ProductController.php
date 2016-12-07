@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\InventoryStatus;
 use App\ProductType;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -16,14 +17,29 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $products = Product::select(DB::raw('*, count(*) as total'))
+            ->groupBy('sphCorrected', 'productId')
+            ->orderBy('sphCorrected')
+            ->get();
+        dd($products);
+
+        /*ProductType::withCount()
+        Product::groupBy()
+*/
         // $products = Product::with('type')->paginate(30);
-        $productTypes = ProductType::with(['product' => function($query) {
+        /*$productTypes = ProductType::withCount(['product' => function($query) {
+                $query->where('status', '1')
+                    ->groupBy('sphCorrected')
+                    ->orderBy('sphCorrected');
+            }])->get();
+            */
+        /*(['product' => function($query) {
                 $query->where('status', '1')
                     ->orderBy('sphCorrected')
                     ->groupBy('sphCorrected');
             }])
-            ->get();
-        dd($productTypes);
+            ->get();*/
+        //dd($productTypes);
         return view('inventory', compact('products'));
     }
 
