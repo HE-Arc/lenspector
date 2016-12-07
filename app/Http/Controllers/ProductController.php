@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\InventoryStatus;
+use App\ProductType;
 
 class ProductController extends Controller
 {
@@ -15,8 +16,14 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('type')->paginate(30);
-        //dd($products);
+        // $products = Product::with('type')->paginate(30);
+        $productTypes = ProductType::with(['product' => function($query) {
+                $query->where('status', '1')
+                    ->orderBy('sphCorrected')
+                    ->groupBy('sphCorrected');
+            }])
+            ->get();
+        dd($productTypes);
         return view('inventory', compact('products'));
     }
 
