@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use App\InventoryStatus;
-use App\ProductType;
 use App\Product;
+use App\ProductType;
+use App\InventoryStatus;
+use Illuminate\Database\Seeder;
 
 class ProductTableSeeder extends Seeder
 {

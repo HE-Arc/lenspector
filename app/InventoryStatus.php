@@ -19,6 +19,7 @@ class InventoryStatus extends Model
      * @var bool
      */
     public $timestamps = false;
+
     /**
      * Return the sluggable configuration array for this model.
      *
@@ -34,5 +35,4 @@ class InventoryStatus extends Model
                 ],
         ];
     }
-
 }
