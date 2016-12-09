@@ -82,8 +82,6 @@ class ProductController extends Controller
      */
     public function edit()
     {
-        $statuses = InventoryStatus::findOrFail([1, 4]);
-
         return View('inventory/inventory-update', compact('statuses'));
     }
 
