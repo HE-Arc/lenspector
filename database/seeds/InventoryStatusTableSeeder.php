@@ -13,15 +13,14 @@ class InventoryStatusTableSeeder extends Seeder
     public function run()
     {
         $statuses = [
-            'In stock',
-            'In external stock',
-            'Sold',
-            'Inventory return',
+            'on hands',
+            'remote',
+            'sales',
+            'return',
         ];
         foreach ($statuses as $s) {
-            InventoryStatus::create([
-                'status' => $s,
-            ]);
+            $status = new InventoryStatus(['name' => $s]);
+            $status->saveOrFail();
         }
     }
 }

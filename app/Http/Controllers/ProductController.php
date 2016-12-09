@@ -15,7 +15,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($inventorySlug)
     {
         $types = ProductType::withCount('product')->get()->groupBy('id');
         $products = Product::select(DB::raw('*, count(*) as total'))
