@@ -5,8 +5,8 @@
     {% for t in types %}
         {% set type = t[0] %}
         <h2>
-            {{ type.name }}: <span class="tag tag-pill tag-default">
-            {{ type.product_count }}</span> unit(s)
+            {{ type.name }} <span class="badge">
+            {{ type.product_count }}</span>
         </h2>
         <table class ="table table-striped" >
         <tr>
