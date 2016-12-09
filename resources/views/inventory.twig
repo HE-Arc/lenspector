@@ -1,10 +1,13 @@
 {% extends "base.twig" %}
 
 {% block body %}
-    <h1> On hands inventory </h1>
+    <h1>{{ inventoryStatus.name | capitalize }} inventory</h1>
     {% for t in types %}
         {% set type = t[0] %}
-        <h2>{{ type.name }} Total : {{ type.product_count }}</h2>
+        <h2>
+            {{ type.name }}: <span class="tag tag-pill tag-default">
+            {{ type.product_count }}</span> unit(s)
+        </h2>
         <table class ="table table-striped" >
         <tr>
             <th>Diopter</th> <th>Count</th>

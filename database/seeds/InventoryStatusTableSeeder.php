@@ -14,9 +14,9 @@ class InventoryStatusTableSeeder extends Seeder
     {
         $statuses = [
             'on hands',
-            'remote',
+            'consignment',
             'sales',
-            'return',
+            // 'return',
         ];
         foreach ($statuses as $s) {
             $status = new InventoryStatus(['name' => $s]);

@@ -17,8 +17,20 @@ class ProductController extends Controller
      */
     public function index($inventorySlug)
     {
-        $types = ProductType::withCount('product')->get()->groupBy('id');
-        $products = Product::select(DB::raw('*, count(*) as total'))
+        $inventoryStatus = InventoryStatus::where('slug', $inventorySlug)
+            ->first();
+        if ($inventoryStatus == null) {
+            return redirect()
+                ->back()
+                ->withErrors('Please choose an existing inventory');
+        }
+        $types = ProductType::withCount(['product' => function ($query) use ($inventoryStatus){
+                $query->where('status', $inventoryStatus->id);
+            }])
+            ->get()
+            ->groupBy('id');
+        $products = Product::where('status', $inventoryStatus->id)
+            ->select(DB::raw('*, count(*) as total'))
             ->groupBy('productId', 'sphCorrected')
             ->orderBy('productId', 'sphCorrected')
             ->get();
@@ -28,7 +40,7 @@ class ProductController extends Controller
         }
         //dd($types);
 
-        return view('inventory', compact('types'));
+        return view('inventory', compact('types', 'inventoryStatus'));
     }
 
     /**
