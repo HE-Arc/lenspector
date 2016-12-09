@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\InventoryStatus;
+use Illuminate\Database\Seeder;
 
 class InventoryStatusTableSeeder extends Seeder
 {
