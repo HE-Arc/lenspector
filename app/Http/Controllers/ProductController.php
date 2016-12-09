@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Product;
+use App\ProductType;
 use App\InventoryStatus;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -13,11 +15,32 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($inventorySlug)
     {
-        $products = Product::with('type')->paginate(30);
-        //dd($products);
-        return view('inventory', compact('products'));
+        $inventoryStatus = InventoryStatus::where('slug', $inventorySlug)
+            ->first();
+        if ($inventoryStatus == null) {
+            return redirect()
+                ->back()
+                ->withErrors('Please choose an existing inventory');
+        }
+        $types = ProductType::withCount(['product' => function ($query) use ($inventoryStatus) {
+            $query->where('status', $inventoryStatus->id);
+        }])
+            ->get()
+            ->groupBy('id');
+        $products = Product::where('status', $inventoryStatus->id)
+            ->select(DB::raw('*, count(*) as total'))
+            ->groupBy('productId', 'sphCorrected')
+            ->orderBy('productId', 'sphCorrected')
+            ->get();
+
+        foreach ($products as $product) {
+            $types[$product->productId]->products[] = $product;
+        }
+        //dd($types);
+
+        return view('inventory', compact('types', 'inventoryStatus'));
     }
 
     /**

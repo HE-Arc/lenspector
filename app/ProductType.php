@@ -12,4 +12,12 @@ class ProductType extends Model
      * @var string
      */
     protected $table = 'product';
+
+    /*
+     * Get the products associated with the product type.
+     */
+    public function product()
+    {
+        return $this->hasMany('App\Product', 'productId');
+    }
 }

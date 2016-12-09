@@ -179,6 +179,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         TwigBridge\ServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        Cviebrock\EloquentSluggable\ServiceProvider::class,
     ],
 
     /*

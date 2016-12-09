@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\InventoryStatus;
+use Illuminate\Database\Seeder;
 
 class InventoryStatusTableSeeder extends Seeder
 {
@@ -13,15 +13,14 @@ class InventoryStatusTableSeeder extends Seeder
     public function run()
     {
         $statuses = [
-            'In stock',
-            'In external stock',
-            'Sold',
-            'Inventory return',
+            'on hands',
+            'consignment',
+            'sales',
+            // 'return',
         ];
         foreach ($statuses as $s) {
-            InventoryStatus::create([
-                'status' => $s,
-            ]);
+            $status = new InventoryStatus(['name' => $s]);
+            $status->saveOrFail();
         }
     }
 }

@@ -15,12 +15,13 @@ class CreateUpdateLenseStatus extends Migration
     {
         Schema::create('inventory_status', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('status');
+            $table->string('name');
+            $table->string('slug');
         });
 
         Schema::table('lense', function ($table) {
-            $table->foreign('id')->references('id')->on('inventory_status');
-            $table->integer('status');
+            $table->integer('status')->unsigned()->nullable();
+            $table->foreign('status')->references('id')->on('inventory_status');
         });
     }
 
