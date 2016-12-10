@@ -43,6 +43,7 @@ class HomeController extends Controller
 
         return view('home', compact('title', 'jumbotronMessage', 'links'));
     }
+
     /**
      * Show the inventory dashboard.
      *
@@ -56,21 +57,21 @@ class HomeController extends Controller
            [
                 'title' => 'On hands inventory',
                 'link' => route('product.index', [
-                    'inventorySlug' => 'on-hands'
+                    'inventorySlug' => 'on-hands',
                 ]),
                 'glyphicon' => 'glyphicon-inbox',
             ],
             [
                 'title' => 'Consignment inventory',
                 'link' => route('product.index', [
-                    'inventorySlug' => 'consignment'
+                    'inventorySlug' => 'consignment',
                 ]),
                 'glyphicon' => 'glyphicon-inbox',
             ],
             [
                 'title' => 'Sales',
                 'link' => route('product.index', [
-                    'inventorySlug' => 'sales'
+                    'inventorySlug' => 'sales',
                 ]),
                 'glyphicon' => 'glyphicon-inbox',
             ],
