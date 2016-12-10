@@ -84,18 +84,17 @@ class ProductController extends Controller
     {
         if ($inventory === 'remote') {
             $inventoryStatuses = InventoryStatus::whereIn('name', [
-                'consignment', 'sales'
+                'consignment', 'sales',
             ])
             ->get();
-        }
-        elseif ($inventory === 'internal') {
+        } elseif ($inventory === 'internal') {
             $inventoryStatuses = InventoryStatus::where('name', 'on hands')
                 ->firstOrFail();
-        }
-        else {
+        } else {
             return redirect()->back()
                 ->withErrors('Please choose an existing inventory.');
         }
+
         return View('inventory/inventory-update', compact('inventory', 'inventoryStatuses'));
     }
 
@@ -118,13 +117,12 @@ class ProductController extends Controller
             $inventoryStatus = InventoryStatus::where('name', 'on hands')
                 ->firstOrFail();
             $request->inventory_status = $inventoryStatus->id;
-        }
-        elseif ($inventory === 'remote') {
-            $func = function($status) {
+        } elseif ($inventory === 'remote') {
+            $func = function ($status) {
                 return $status['id'];
             };
             $inventoryStatuses = InventoryStatus::whereIn('name', [
-                'consignment', 'sales'
+                'consignment', 'sales',
             ])
             ->get();
             $legalStatuses = implode(',', array_map($func, $inventoryStatuses->toArray()));
@@ -132,7 +130,7 @@ class ProductController extends Controller
                 'inventory_status' => [
                     'required',
                     'exists:inventory_status,id',
-                    'in:' . $legalStatuses
+                    'in:'.$legalStatuses,
                 ],
                 'serial_number' => [
                     'required',
@@ -140,8 +138,7 @@ class ProductController extends Controller
                     'exists:lense,sn',
                 ],
             ]);
-        }
-        else {
+        } else {
             return redirect()->back()
                 ->withErrors('Please choose an existing inventory.');
         }
