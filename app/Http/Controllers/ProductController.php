@@ -83,11 +83,15 @@ class ProductController extends Controller
     public function edit($inventory)
     {
         if ($inventory === 'remote') {
-            $inventoryStatuses = InventoryStatus::findOrFail([2, 3]);
+            $inventoryStatuses = InventoryStatus::whereIn('name', [
+                'consignment', 'sales'
+            ])
+            ->get();
             dd('remote inventory update');
         }
         elseif ($inventory === 'internal') {
-            $inventoryStatuses = InventoryStatus::findOrFail(1);
+            $inventoryStatuses = InventoryStatus::where('name', 'on hands')
+                ->firstOrFail();
             return View('inventory/inventory-update', compact('inventory', 'inventoryStatuses'));
         }
         else {
@@ -114,12 +118,14 @@ class ProductController extends Controller
             ]);
             $lens = Product::where('sn', '=', $request->serial_number)
                 ->where('exclude', '=', 0)
-                ->first();
+                ->firstOrFail();
             if ($lens == null) {
                 return redirect()->back()
                     ->withErrors('The specified lens does not exist or is excluded.');
             }
-            $request->inventory_status = 1;
+            $inventoryStatus = InventoryStatus::where('name', 'on hands')
+                ->firstOrFail();
+            $request->inventory_status = $inventoryStatus->id;
         }
         elseif ($inventory === 'remote') {
             dd('remote inventory update');
