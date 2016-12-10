@@ -87,7 +87,6 @@ class ProductController extends Controller
                 'consignment', 'sales'
             ])
             ->get();
-            // dd('remote inventory update');
         }
         elseif ($inventory === 'internal') {
             $inventoryStatuses = InventoryStatus::where('name', 'on hands')
@@ -116,25 +115,44 @@ class ProductController extends Controller
                     'exists:lense,sn',
                 ],
             ]);
-            $lens = Product::where('sn', '=', $request->serial_number)
-                ->where('exclude', '=', 0)
-                ->firstOrFail();
-            if ($lens == null) {
-                return redirect()->back()
-                    ->withErrors('The specified lens does not exist or is excluded.');
-            }
             $inventoryStatus = InventoryStatus::where('name', 'on hands')
                 ->firstOrFail();
             $request->inventory_status = $inventoryStatus->id;
         }
         elseif ($inventory === 'remote') {
-            dd('remote inventory update');
+            $func = function($status) {
+                return $status['id'];
+            };
+            $inventoryStatuses = InventoryStatus::whereIn('name', [
+                'consignment', 'sales'
+            ])
+            ->get();
+            $legalStatuses = implode(',', array_map($func, $inventoryStatuses->toArray()));
+            $this->validate($request, [
+                'inventory_status' => [
+                    'required',
+                    'exists:inventory_status,id',
+                    'in:' . $legalStatuses
+                ],
+                'serial_number' => [
+                    'required',
+                    'regex:/F[0-9]{8}/',
+                    'exists:lense,sn',
+                ],
+            ]);
         }
         else {
             return redirect()->back()
                 ->withErrors('Please choose an existing inventory.');
         }
 
+        $lens = Product::where('sn', '=', $request->serial_number)
+            ->where('exclude', '=', 0)
+            ->first();
+        if ($lens == null) {
+            return redirect()->back()
+                ->withErrors('The specified lens does not exist or is excluded.');
+        }
         $lens->update([
             'status' => $request->inventory_status,
         ]);
