@@ -10,7 +10,8 @@
         "rcrowe/twigbridge": "^0.9.3",
         "barryvdh/laravel-debugbar": "^2.3",
         "cviebrock/eloquent-sluggable": "^4.1",
-        "fzaninotto/faker": "^1.6"
+        "fzaninotto/faker": "^1.6",
+        "webpatser/laravel-countries": "^1.4"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",
