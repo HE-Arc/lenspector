@@ -4,19 +4,21 @@
     <h1>{{ inventoryStatus.name | capitalize }} inventory</h1>
     {% for t in types %}
         {% set type = t[0] %}
-        <h2>
-            {{ type.name }} <span class="badge">
-            {{ type.product_count }}</span>
-        </h2>
         <table class ="table table-striped" >
-        <tr>
-            <th>Diopter</th> <th>Count</th>
-        </tr>
-        {% for p in t.products %}
+            <caption>
+                <h2>
+                    {{ type.name }} <span class="badge">
+                    {{ type.product_count }}</span>
+                </h2>
+            </caption>
             <tr>
-                <td>{{ p.SphCorrected }}</td> <td>{{ p.total }}</td>
+                <th>Diopter</th> <th>Count</th>
             </tr>
-        {% endfor %}
+            {% for p in t.products %}
+                <tr>
+                    <td>{{ p.SphCorrected | number_format(1, '.', ',') }}</td> <td>{{ p.total }}</td>
+                </tr>
+            {% endfor %}
         </table>
     {% endfor %}
 {{ products.links() | raw }}
