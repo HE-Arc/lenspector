@@ -34,6 +34,7 @@ class Customer extends Model
         'email',
         'vat',
     ];
+
     /**
      * Return the sluggable configuration array for this model.
      *
