@@ -16,7 +16,16 @@
             </div>
         </div>
         {% if inventory == 'remote' and inventoryStatuses is defined %}
-            Remote inventory update
+            {% for status in inventoryStatuses %}
+                <div class="radio">
+                        <label>
+                            <input type="radio" name="inventory_status"
+                                value="{{ status.id }}"
+                            >
+                            {{ status.name | capitalize }}
+                        </label>
+                </div>
+            {% endfor %}
         {% endif %}
         <button class="btn btn-primary" type="submit" name="submit">Insert</button>
     </form>

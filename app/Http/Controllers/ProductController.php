@@ -87,17 +87,17 @@ class ProductController extends Controller
                 'consignment', 'sales'
             ])
             ->get();
-            dd('remote inventory update');
+            // dd('remote inventory update');
         }
         elseif ($inventory === 'internal') {
             $inventoryStatuses = InventoryStatus::where('name', 'on hands')
                 ->firstOrFail();
-            return View('inventory/inventory-update', compact('inventory', 'inventoryStatuses'));
         }
         else {
             return redirect()->back()
                 ->withErrors('Please choose an existing inventory.');
         }
+        return View('inventory/inventory-update', compact('inventory', 'inventoryStatuses'));
     }
 
     /**
