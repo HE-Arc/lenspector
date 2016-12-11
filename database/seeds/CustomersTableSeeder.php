@@ -2,6 +2,8 @@
 
 use App\Customer;
 use Illuminate\Database\Seeder;
+use Faker\Factory;
+use Faker\Provider\fr_BE\Payment;
 
 class CustomersTableSeeder extends Seeder
 {
@@ -12,8 +14,8 @@ class CustomersTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create();
-        $faker->addProvider(new Faker\Provider\fr_BE\Payment($faker));
+        $faker = Factory::create();
+        $faker->addProvider(new Payment($faker));
         $departments = [
             'surgery',
             'urology',
