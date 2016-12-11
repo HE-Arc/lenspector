@@ -20,6 +20,7 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/inventory', 'HomeController@inventoryIndex')->name('inventory');
 
 Route::get('product/{inventorySlug}', 'ProductController@index')->name('product.index');
 Route::get('inventory/update', 'ProductController@edit')->name('product.edit');
