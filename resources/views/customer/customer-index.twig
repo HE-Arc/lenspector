@@ -18,7 +18,7 @@
             </tr>
             {% for c in customers %}
                 <tr class="clickable-row"
-                    data-href="{{ route('customer.show', { customerSlug: c.slug }) }}"
+                    data-href="{{ route('customer.show', [c]) }}"
                 >
                     <td>{{ c.id }}</td>
                     <td>{{ c.company_name }}</td>

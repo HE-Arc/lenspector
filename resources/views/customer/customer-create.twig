@@ -2,7 +2,7 @@
 
 {% block body %}
 <h1>{{ customer is defined ? customer.company_name : "New customer"}}</h1>
-<form id="customer-form" action="{{ customer is defined ? route('customer.update', {customer : customer.slug}) : route('customer.store') }}" method="post">
+<form id="customer-form" action="{{ customer is defined ? route('customer.update', [customer]) : route('customer.store') }}" method="post">
     {{ csrf_field() }}
     {% if customer  is defined %}
         {{ method_field('PUT') }}

@@ -91,7 +91,7 @@
             </div>
         </div>
     </fieldset>
-    <a href="{{ route('customer.edit', {customer: customer.slug}) }}" class="btn btn-default">Edit</a>
+    <a href="{{ route('customer.edit', [customer]) }}" class="btn btn-default">Edit</a>
     {# <a href="{{ route('customer.destroy', {customer: customer.slug}) }}" class="btn btn-danger">Delete</a> #}
     <a href="{{ url_previous() }}" class="btn btn-default">Back</a>
 </form>

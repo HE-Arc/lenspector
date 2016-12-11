@@ -35,4 +35,14 @@ class InventoryStatus extends Model
                 ],
         ];
     }
+
+    /**
+     * Get the value of the model's route key.
+     *
+     * @return mixed
+     */
+    public function getRouteKey()
+    {
+        return $this->slug;
+    }
 }
