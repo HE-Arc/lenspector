@@ -49,8 +49,8 @@ class CustomerController extends Controller
             'first_name' => 'string',
             'last_name' => 'string',
             'department' => 'string',
-            'phone_number' => 'required|numeric',
-            'fax_number' => 'numeric',
+            'phone_number' => 'required|string',
+            'fax_number' => 'string',
             'email' => 'email',
             'post_code' => 'numeric',
             'street_name' => 'required|string',
@@ -129,8 +129,8 @@ class CustomerController extends Controller
             'first_name' => 'string',
             'last_name' => 'string',
             'department' => 'string',
-            'phone_number' => 'required|numeric',
-            'fax_number' => 'numeric',
+            'phone_number' => 'required|string',
+            'fax_number' => 'string',
             'email' => 'email',
             'post_code' => 'numeric',
             'street_name' => 'required|string',
@@ -156,8 +156,8 @@ class CustomerController extends Controller
             'fax_number', 'email', 'vat')
         );
 
-        return redirect()->back()
-            ->with('status', 'Customer updated successfully.');
+        return redirect()->route('customer.index')
+            ->with('status', 'Customer successfully updated');
     }
 
     /**

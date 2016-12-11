@@ -5,7 +5,7 @@
 <form id="customer-form" action="{{ customer is defined ? route('customer.update', {customer : customer.slug}) : route('customer.store') }}" method="post">
     {{ csrf_field() }}
     {% if customer  is defined %}
-        <input name="_method" type="hidden" value="put">
+        {{ method_field('PUT') }}
     {% endif %}
     <div class="form-group row">
         <label class="col-form-label col-xs-5 col-sm-2" for="company_name">Company name</label>
