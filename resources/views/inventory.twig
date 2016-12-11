@@ -8,7 +8,9 @@
             <caption>
                 <h2>
                     {{ type.name }}
-                    <span class="badge">
+                    <span class="badge"
+                        aria-label="Quantity of products of type {{ type.name }}"
+                    >
                         {{ type.product_count }}
                     </span>
                 </h2>
