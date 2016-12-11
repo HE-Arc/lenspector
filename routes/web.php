@@ -23,5 +23,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/inventory', 'HomeController@inventoryIndex')->name('inventory');
 
 Route::get('product/{inventorySlug}', 'ProductController@index')->name('product.index');
-Route::get('inventory/update', 'ProductController@edit')->name('product.edit');
-Route::put('inventory/update', 'ProductController@update')->name('product.update');
+Route::get('inventory/{inventory}/update', 'ProductController@edit')->name('product.edit');
+Route::put('inventory/{inventory}/update', 'ProductController@update')->name('product.update');

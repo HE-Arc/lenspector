@@ -80,9 +80,22 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($inventory)
     {
-        return View('inventory/inventory-update', compact('statuses'));
+        if ($inventory === 'remote') {
+            $inventoryStatuses = InventoryStatus::whereIn('name', [
+                'consignment', 'sales',
+            ])
+            ->get();
+        } elseif ($inventory === 'internal') {
+            $inventoryStatuses = InventoryStatus::where('name', 'on hands')
+                ->firstOrFail();
+        } else {
+            return redirect()->back()
+                ->withErrors('Please choose an existing inventory.');
+        }
+
+        return View('inventory/inventory-update', compact('inventory', 'inventoryStatuses'));
     }
 
     /**
@@ -91,30 +104,58 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $inventory)
     {
-        $this->validate($request, [
-            'inventory_status' => 'required|in:1,4|exists:inventory_status,id',
-            'serial_number' => [
-                'required',
-                'regex:/F[0-9]{8}/',
-                'exists:lense,sn',
-            ],
-        ]);
+        if ($inventory === 'internal') {
+            $this->validate($request, [
+                'serial_number' => [
+                    'required',
+                    'regex:/F[0-9]{8}/',
+                    'exists:lense,sn',
+                ],
+            ]);
+            $inventoryStatus = InventoryStatus::where('name', 'on hands')
+                ->firstOrFail();
+            $request->inventory_status = $inventoryStatus->id;
+        } elseif ($inventory === 'remote') {
+            $func = function ($status) {
+                return $status['id'];
+            };
+            $inventoryStatuses = InventoryStatus::whereIn('name', [
+                'consignment', 'sales',
+            ])
+            ->get();
+            $legalStatuses = implode(',', array_map($func, $inventoryStatuses->toArray()));
+            $this->validate($request, [
+                'inventory_status' => [
+                    'required',
+                    'exists:inventory_status,id',
+                    'in:'.$legalStatuses,
+                ],
+                'serial_number' => [
+                    'required',
+                    'regex:/F[0-9]{8}/',
+                    'exists:lense,sn',
+                ],
+            ]);
+        } else {
+            return redirect()->back()
+                ->withErrors('Please choose an existing inventory.');
+        }
 
         $lens = Product::where('sn', '=', $request->serial_number)
             ->where('exclude', '=', 0)
             ->first();
         if ($lens == null) {
             return redirect()->back()
-                ->withErrors('The specified lens does not exist or is excluded');
+                ->withErrors('The specified lens does not exist or is excluded.');
         }
         $lens->update([
             'status' => $request->inventory_status,
         ]);
 
         return redirect()->back()
-            ->with('status', 'Lens successfully updated');
+            ->with('status', 'Lens\' status successfully updated');
     }
 
     /**
