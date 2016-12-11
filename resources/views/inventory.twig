@@ -18,7 +18,8 @@
                 <th scope=col>Count</th>
             </tr>
             {% for p in t.products %}
-                <tr>
+                <tr class="clickable-row"
+                    data-href="{{ route('product.show',{ inventorySlug: inventoryStatus.slug, type: p.productId, diopter: p.SphCorrected | number_format(1, '.', ',') }) }}">
                     <td>{{ p.SphCorrected | number_format(1, '.', ',') }}</td> <td>{{ p.total }}</td>
                 </tr>
             {% endfor %}
