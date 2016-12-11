@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Customer;
 use App\Country;
+use App\Customer;
+use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
@@ -20,6 +18,7 @@ class CustomerController extends Controller
         $customersTotal = Customer::count();
         $customers = Customer::orderBy('company_name')
             ->paginate(15);
+
         return view('customer/customer-index', compact(
             'customers', 'customersTotal')
         );
@@ -33,6 +32,7 @@ class CustomerController extends Controller
     public function create()
     {
         $countries = Country::all();
+
         return view('customer/customer-create', compact('countries'));
     }
 
@@ -57,7 +57,7 @@ class CustomerController extends Controller
             'building_number' => 'required|numeric',
             'city' => 'required|string',
             'country_id' => 'required|exists:countries,id',
-            'vat' => 'string'
+            'vat' => 'string',
         ]);
 
         $customer = new Customer($request->only('first_name',
@@ -73,6 +73,7 @@ class CustomerController extends Controller
             return redirect()->back()
                 ->withErrors('Customer could not be created.');
         }
+
         return redirect()->back()
             ->with('status', 'Customer created successfully.');
     }
@@ -110,6 +111,7 @@ class CustomerController extends Controller
             ->get()
             ->first();
         $countries = Country::all();
+
         return view('customer/customer-create', compact('customer', 'countries'));
     }
 
@@ -135,7 +137,7 @@ class CustomerController extends Controller
             'building_number' => 'required|numeric',
             'city' => 'required|string',
             'country_id' => 'required|exists:countries,id',
-            'vat' => 'string'
+            'vat' => 'string',
         ]);
 
         $customer = Customer::where('slug', $customerSlug)
