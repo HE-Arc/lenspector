@@ -1,19 +1,15 @@
 {% extends "base.twig" %}
 
 {% block body %}
-    <h1>
-        Customers
-    </h1>
     {% if customers is defined and (customers|length > 0) %}
         <table class ="table table-striped" >
             <caption>
                 <h2>
-                    Customers list
+                    Customers
                     <span class="badge">
-                        {{ customers | length }}
+                        {{ customersTotal }}
                     </span>
                 </h2>
-
             </caption>
             <tr>
                 <th scope=col>#</th>
@@ -28,7 +24,11 @@
                 </tr>
             {% endfor %}
         </table>
+        <div class="text-center">
+            {{ customers.links | raw }}
+        </div>
     {% else %}
+        <h1>Customers</h1>
         <p class="alert alert-info">
             No customers in the database.
         </p>

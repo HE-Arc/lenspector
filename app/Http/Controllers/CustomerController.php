@@ -16,9 +16,12 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::all();
-        // dd($customers);
-        return view('customer/customer-index', compact('customers'));
+        $customersTotal = Customer::count();
+        $customers = Customer::orderBy('company_name')
+            ->paginate(15);
+        return view('customer/customer-index', compact(
+            'customers', 'customersTotal')
+        );
     }
 
     /**

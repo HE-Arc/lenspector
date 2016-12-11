@@ -19,7 +19,7 @@
                             href="{{ route('inventory') }}" role="button"
                             aria-haspopup="true" aria-expanded="false"
                         >
-                            Inventory <span class="caret"></span>
+                            Inventory<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ route('product.index', {inventorySlug: 'on-hands'}) }}">On Hands Inventory</a></li>
@@ -27,6 +27,17 @@
                             <li><a href="{{ route('product.index', {inventorySlug: 'sales'}) }}">Sales</a></li>
                             <li><a href="{{ route('product.edit', {inventory: 'internal'}) }}">Move to Packship</a></li>
                             <li><a href="{{ route('product.edit', {inventory: 'remote'}) }}">Update a product's status</a></li>
+                        </ul>
+                    </li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle disabled" data-toggle="dropdown"
+                            href="{{ route('customer.index') }}" role="button"
+                            aria-haspopup="true" aria-expanded="false"
+                        >
+                            Customers<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ route('customer.index')}}">Show customers</a></li>
                         </ul>
                     </li>
                 </ul>
