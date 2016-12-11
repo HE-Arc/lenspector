@@ -20,7 +20,11 @@
                 <tr class="clickable-row"
                     data-href="{{ route('customer.show', [c]) }}"
                 >
-                    <td>{{ c.id }}</td>
+                    <td>
+                        <a href="{{ route('customer.show', [c]) }}">
+                            {{ c.id }}
+                        </a>
+                    </td>
                     <td>{{ c.company_name }}</td>
                     <td>{{ c.last_name }} {{ c.first_name }}</td>
                 </tr>
