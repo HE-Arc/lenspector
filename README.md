@@ -2,6 +2,8 @@
 
 Web application allowing to manage products such as intraocular lenses. This web app is a fork from a previous project which was not using a PHP famework.
 
+![Master branch StyleCI status](https://styleci.io/repos/69327879/shield?style=flat&branch=master)
+
 ## Installation
 
 From this point, we assume you have a working Web server with PHP and a http server (nginx, apache, etc.) installed and configured.
