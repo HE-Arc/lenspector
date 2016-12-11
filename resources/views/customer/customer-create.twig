@@ -1,6 +1,7 @@
 {% extends "base.twig" %}
 
 {% block body %}
+<h1>{{ customer is defined ? customer.company_name : "New customer"}}</h1>
 <form id="customer-form" action="{{ customer is defined ? route('customer.update', {customer : customer.slug}) : route('customer.store') }}" method="post">
     {{ csrf_field() }}
     {% if customer  is defined %}
@@ -11,6 +12,13 @@
         <div class="col-xs-6 col-sm-4">
             <input id="company_name" name="company_name" class="form-control" type="text"
             value ="{{ customer is defined ? customer.company_name : input_old('company_name') }}" required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-form-label col-xs-5 col-sm-2" for="vat">VAT number</label>
+        <div class="col-xs-6 col-sm-2">
+            <input id="vat" name="vat" class="form-control" type="text"
+            value ="{{ customer is defined ? customer.vat : input_old('vat') }}">
         </div>
     </div>
     <legend>Adress</legend>
@@ -39,9 +47,9 @@
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-form-label col-xs-2" for="country">Country</label>
+        <label class="col-form-label col-xs-2" for="country_id">Country</label>
         <div class="col-xs-5 col-sm-4">
-            <select id="country" class="col-sm-7" name="country">
+            <select id="country_id" class="col-sm-7" name="country_id">
                 {% for country in countries %}
                     {% if country.id == customer.country_id %}
                         <option value="{{ country.id }}" selected>{{ country.name }}</option>
@@ -78,6 +86,11 @@
         </div>
     </div>
     <div class="form-group row">
+        <label class="col-form-label col-xs-2" for="department">Department</label>
+        <div class="col-xs-3">
+            <input id="department" name="department" class="form-control" type="text"
+            value ="{{ customer is defined ? customer.first_name : input_old('department') }}">
+        </div>
         <label class="col-form-label col-xs-2" for="fax_number">Fax number</label>
         <div class="col-xs-3">
             <input id="fax_number" name="fax_number" class="form-control" type="tel"

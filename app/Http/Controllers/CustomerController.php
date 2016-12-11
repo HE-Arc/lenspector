@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Customer;
-// use Illuminate\Support\Facades\DB;
 use App\Country;
 
 class CustomerController extends Controller
@@ -45,7 +44,37 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'company_name' => 'required',
+            'first_name' => 'string',
+            'last_name' => 'string',
+            'department' => 'string',
+            'phone_number' => 'required|numeric',
+            'fax_number' => 'numeric',
+            'email' => 'email',
+            'post_code' => 'numeric',
+            'street_name' => 'required|string',
+            'building_number' => 'required|numeric',
+            'city' => 'required|string',
+            'country_id' => 'required|exists:countries,id',
+            'vat' => 'string'
+        ]);
+
+        $customer = new Customer($request->only('first_name',
+            'last_name', 'company_name', 'department',
+            'street_name', 'building_number', 'post_code',
+            'city', 'country_id', 'phone_number',
+            'fax_number', 'email', 'vat')
+        );
+        // dd($customer);
+        // dd("toto");
+        $customer = $customer->save();
+        if ($customer == null) {
+            return redirect()->back()
+                ->withErrors('Customer could not be created.');
+        }
+        return redirect()->back()
+            ->with('status', 'Customer created successfully.');
     }
 
     /**
