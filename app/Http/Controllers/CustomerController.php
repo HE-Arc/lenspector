@@ -120,9 +120,42 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $customerSlug)
     {
-        //
+        $this->validate($request, [
+            'company_name' => 'required',
+            'first_name' => 'string',
+            'last_name' => 'string',
+            'department' => 'string',
+            'phone_number' => 'required|numeric',
+            'fax_number' => 'numeric',
+            'email' => 'email',
+            'post_code' => 'numeric',
+            'street_name' => 'required|string',
+            'building_number' => 'required|numeric',
+            'city' => 'required|string',
+            'country_id' => 'required|exists:countries,id',
+            'vat' => 'string'
+        ]);
+
+        $customer = Customer::where('slug', $customerSlug)
+            ->get()
+            ->first();
+
+        if ($customer == null) {
+            return redirect()->back()
+                ->withErrors('The specified customer does not exist');
+        }
+
+        $customer->update($request->only('first_name',
+            'last_name', 'company_name', 'department',
+            'street_name', 'building_number', 'post_code',
+            'city', 'country_id', 'phone_number',
+            'fax_number', 'email', 'vat')
+        );
+
+        return redirect()->back()
+            ->with('status', 'Customer updated successfully.');
     }
 
     /**
