@@ -2,7 +2,7 @@
 
 Web application allowing to manage products such as intraocular lenses. This web app is a fork from a previous project which was not using a PHP famework.
 
-![Master branch StyleCI status](https://styleci.io/repos/69327879/shield?style=flat&branch=master)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0) ![Master branch StyleCI status](https://styleci.io/repos/69327879/shield?style=flat&branch=master)
 
 ## Installation
 
