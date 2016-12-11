@@ -7,12 +7,15 @@
         <table class ="table table-striped" >
             <caption>
                 <h2>
-                    {{ type.name }} <span class="badge">
-                    {{ type.product_count }}</span>
+                    {{ type.name }}
+                    <span class="badge">
+                        {{ type.product_count }}
+                    </span>
                 </h2>
             </caption>
             <tr>
-                <th>Diopter</th> <th>Count</th>
+                <th scope=col>Diopter</th>
+                <th scope=col>Count</th>
             </tr>
             {% for p in t.products %}
                 <tr>
@@ -21,6 +24,4 @@
             {% endfor %}
         </table>
     {% endfor %}
-{{ products.links() | raw }}
-
 {% endblock %}
