@@ -5777,10 +5777,11 @@ button.close {
   margin-top: 65px; }
 
 /* Home view */
-.thumbnail, .thumbnail:hover {
+.thumbnail, .thumbnail:hover, .thumbnail:visited, .thumbnail:focus {
   text-align: center;
   -webkit-text-decoration-line: none;
   text-decoration-line: none;
+  text-decoration: none;
   color: #FFFFFF; }
 
 .thumbnail:hover {

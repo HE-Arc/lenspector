@@ -51,9 +51,10 @@ $btn-danger-bg: #D32F2F;
 }
 
 /* Home view */
-.thumbnail, .thumbnail:hover {
+.thumbnail, .thumbnail:hover, .thumbnail:visited, .thumbnail:focus {
     text-align: center;
     text-decoration-line: none;
+    text-decoration: none;
     color: $primary-color-text;
 }
 .thumbnail:hover {

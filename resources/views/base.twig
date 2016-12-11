@@ -12,6 +12,7 @@
         {% endif %}
         {% if errors.all %}
             <p class="alert alert-danger">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 {% for error in errors.all %}
                     {{ error }}
                 {% endfor %}
@@ -19,6 +20,7 @@
         {% endif %}
         {% if session('status') %}
             <p class="alert alert-success">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 {{ session('status') }}
             </p>
         {% endif %}
