@@ -1,0 +1,97 @@
+{% extends "base.twig" %}
+
+{% block body %}
+<h1>{{ customer.company_name }}</h1>
+<form class="form-horizontal">
+    <div class="row">
+        <label class="control-label col-xs-8 col-sm-2">
+            VAT number
+        </label>
+        <div class="col-xs-4 col-sm-2">
+            <p class="form-control-static">
+                {{ customer.vat }}
+            </p>
+        </div>
+    </div>
+    <fieldset>
+        <legend>Contact person</legend>
+        <div class="row">
+            <label class="control-label col-xs-8 col-sm-2">
+                Contact name
+            </label>
+            <div class="col-xs-4 col-sm-2">
+                <p class="form-control-static">
+                    {{ customer.last_name }} {{ customer.first_name }}
+                </p>
+            </div>
+            <label class="control-label col-xs-8 col-sm-2">
+                Department
+            </label>
+            <div class="col-xs-4 col-sm-2">
+                <p class="form-control-static">
+                    {{ customer.department }}
+                </p>
+            </div>
+            <label class="control-label col-sm-1 col-md-1">
+                Email
+            </label>
+            <div class="col-sm-2 col-md-2">
+                <p class="form-control-static">
+                    <a href="maitlto:{{ customer.email }}">
+                        {{ customer.email }}
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <label class="control-label col-xs-8 col-sm-2">
+                Phone number
+            </label>
+            <div class="col-xs-4 col-sm-2">
+                <p class="form-control-static">
+                    {{ customer.phone_number }}
+                </p>
+            </div>
+            <label class="control-label col-xs-8 col-sm-2">
+                Fax number
+            </label>
+            <div class="col-xs-4 col-sm-2">
+                <p class="form-control-static">
+                    {{ customer.fax_number }}
+                </p>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Adress</legend>
+        <div class="row">
+            <label class="control-label col-xs-8 col-sm-2">
+                Street
+            </label>
+            <div class="col-xs-4 col-sm-2">
+                <p class="form-control-static">
+                    {{ customer.street_name }} {{ customer.building_number }}
+                </p>
+            </div>
+            <label class="control-label col-xs-8 col-sm-2">
+                City
+            </label>
+            <div class="col-xs-4 col-sm-2">
+                <p class="form-control-static">
+                    {{ customer.city }}
+                </p>
+            </div>
+            <label class="control-label col-xs-8 col-sm-2">
+                Country
+            </label>
+            <div class="col-xs-4 col-sm-2">
+                <p class="form-control-static">
+                    {{ customer.country_name }}
+                </p>
+            </div>
+        </div>
+    </fieldset>
+    <a href="{{ route('customer.edit', {customer: customer.slug}) }}" class="btn btn-default">Edit</a>
+    {# <a href="{{ route('customer.destroy', {customer: customer.slug}) }}" class="btn btn-danger">Delete</a> #}
+</form>
+{% endblock %}

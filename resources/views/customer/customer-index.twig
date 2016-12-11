@@ -17,7 +17,9 @@
                 <th scope=col>Contact name</th>
             </tr>
             {% for c in customers %}
-                <tr>
+                <tr class="clickable-row"
+                    data-href="{{ route('customer.show', { customerSlug: c.slug }) }}"
+                >
                     <td>{{ c.id }}</td>
                     <td>{{ c.company_name }}</td>
                     <td>{{ c.last_name }} {{ c.first_name }}</td>

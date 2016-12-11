@@ -78,6 +78,13 @@ $btn-danger-bg: #D32F2F;
     font-size: 16px;
 }
 
+/* Clickable table rows */
+.clickable-row:hover {
+    cursor: pointer;
+    background-color: $gray-lighter;
+}
+
+
 /* For small screens */
 @media (min-width: 772px) {
     ul.nav li.dropdown:hover > ul.dropdown-menu {

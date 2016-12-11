@@ -51,9 +51,19 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($customerSlug)
     {
-        //
+        $customer = Customer::where('slug', $customerSlug)
+            ->leftJoin('countries', 'customers.country_id', '=', 'countries.id')
+            ->select('customers.*', 'countries.name as country_name')
+            ->get()
+            ->first();
+        if ($customer == null) {
+            return redirect()->back()
+                ->withErrors('The specified customer does not exist');
+        }
+
+        return view('customer/customer-show', compact('customer'));
     }
 
     /**

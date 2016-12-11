@@ -24,6 +24,9 @@ $( document ).ready(function () {
         fetchSerialNumber($( this ));
     });
     $("input[name='inventory_status']").first().attr('checked', true);
+    $('.clickable-row').on('click', function () {
+        window.location = $(this).data('href');
+    })
 });
 
 /**
