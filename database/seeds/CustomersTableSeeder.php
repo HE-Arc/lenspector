@@ -1,8 +1,8 @@
 <?php
 
 use App\Customer;
-use Illuminate\Database\Seeder;
 use Faker\Factory;
+use Illuminate\Database\Seeder;
 use Faker\Provider\fr_BE\Payment;
 
 class CustomersTableSeeder extends Seeder
