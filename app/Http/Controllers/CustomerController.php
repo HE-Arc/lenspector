@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Customer;
+// use Illuminate\Support\Facades\DB;
+use App\Country;
 
 class CustomerController extends Controller
 {
@@ -72,9 +74,13 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($customerSlug)
     {
-        //
+        $customer = Customer::where('slug', $customerSlug)
+            ->get()
+            ->first();
+        $countries = Country::all();
+        return view('customer/customer-create', compact('customer', 'countries'));
     }
 
     /**

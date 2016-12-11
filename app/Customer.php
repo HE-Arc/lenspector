@@ -50,4 +50,12 @@ class Customer extends Model
                 ],
         ];
     }
+
+    /*
+     * Get the country associated with the customer.
+     */
+    public function country()
+    {
+        return $this->hasOne('App\Country');
+    }
 }
