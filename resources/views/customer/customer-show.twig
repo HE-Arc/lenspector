@@ -63,7 +63,7 @@
         </div>
     </fieldset>
     <fieldset>
-        <legend>Adress</legend>
+        <legend>Address</legend>
         <div class="row">
             <label class="control-label col-xs-8 col-sm-2">
                 Street
@@ -93,6 +93,6 @@
     </fieldset>
     <a href="{{ route('customer.edit', [customer]) }}" class="btn btn-default">Edit</a>
     {# <a href="{{ route('customer.destroy', {customer: customer.slug}) }}" class="btn btn-danger">Delete</a> #}
-    <a href="{{ url_previous() }}" class="btn btn-default">Back</a>
+    <a href="{{ route('customer.index') }}" class="btn btn-default">Back</a>
 </form>
 {% endblock %}
