@@ -25,7 +25,7 @@ $( document ).ready(function () {
     });
     $("input[name='inventory_status']").first().attr('checked', true);
     $('.clickable-row').on('click', function () {
-        window.location = $(this).data('href');
+        window.location = $('a', this)[0].href;
     })
 });
 
