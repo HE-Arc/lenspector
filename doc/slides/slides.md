@@ -85,7 +85,31 @@ startup locale
 ### Musée des horreurs ou... partir du pire
 
 ```php
-echo 'Attention, danger!';
+$product_type = "";
+ foreach ($products as $product_row) {
+  if ($product_row['name'] != $product_type) {
+?>
+            </tbody>
+            </table>
+            <?php $product_type =  $product_row['name']; ?>
+            <h1><?php echo htmlEscape($product_type); ?></h1>
+            <p>
+                <b>Quantity: </b><?php echo htmlEscape($count_by_product_type[$product_type]); ?> unit(s)
+            </p>
+            <table class="table-bordered table table-striped">
+                <thead>
+                    <tr>
+                        <?php foreach (array_values($views['general']) as $table_header) { ?>
+                            <th>
+                                <?php  echo htmlEscape($table_header); ?>
+                            </th>
+                        <?php } ?>
+                    </tr>
+                </thead>
+            <tbody>
+<?php
+        }
+?>
 ```
 
 <div class="notes">
@@ -93,6 +117,36 @@ echo 'Attention, danger!';
     * On a tenté de limiter la casse en mettant la logique métier en-haut
     des scripts.
 </div>
+
+---
+
+### Suite
+
+```php
+<tr>
+    <td>
+        <?php echo htmlEscape($product_row['name']); ?>
+    </td>
+    <td>
+        <a href="<?php echo $base_url .
+            '&diopter=' .
+            urlencode($product_row['sphCorrected']) .
+            '&productId=' .
+            urlencode($product_row['name']); ?>">
+            <?php echo htmlEscape(format_float($product_row['sphCorrected'])); ?>
+        </a>
+    </td>
+    <td>
+        <?php  echo htmlEscape($product_row['count']); ?>
+    </td>
+</tr>
+<?php
+}
+?>
+</tbody>
+</table>
+```
+
 
 ---
 
@@ -132,3 +186,15 @@ echo "C'est quand qu'on arrive?";
 ---
 
 ## Questions?
+
+<style>
+.sourceCode {
+    font-size: 76%;
+    line-height: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+li p {
+    margin: 5px
+}
+</style>
