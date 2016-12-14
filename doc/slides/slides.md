@@ -21,11 +21,12 @@ date: 2016
 
 ### Lenspector
 
-* Application web de gestion de stock simple
-* Projet web de deuxième année (PHP)
 * Développé pour
 [Swiss Advanced Vision IntraOcular Lens](http://www.sav-iol.com/) (SAV-IOL), une
 startup locale
+* Aucune idée de l'état des stocks
+* Application web de gestion de stock simple (Projet web de deuxième année (PHP))
+
 
 <div class="notes">
     * SAV-IOL produit des lentilles intraoculaires soignant la cataracte.
@@ -35,7 +36,7 @@ startup locale
 
 ### Processus en bref
 
-* Production de la lentille.
+* Production de la lentille intraoculaires.
 * Entrée dans la base de données.
 * Entrée en stock (QR code scanner).
 * Ouverture d'une commande.
@@ -64,7 +65,7 @@ startup locale
 
 ### Fonctionnalités
 
-* Entréres/sorties des stocks (interne, consignation et ventes)
+* Entrées/sorties des stocks (interne, consignation et ventes)
 * Gestion des coordonnées des clients
 * Gestion des commandes (ouvertures, complétion, envoi)
 
@@ -76,13 +77,19 @@ startup locale
 
 ---
 
+### Démonstration
+
+* [Version de démonstration](lenspector.srvz-webapp.he-arc.ch)
+
+---
+
 ![](http://ljdchost.com/xIkajiS.gif)
 
 <!-- ![](http://ljdchost.com/18dVGUi.gif) -->
 
 ---
 
-### Musée des horreurs ou... partir du pire
+### Vues : Code spaghetti VS Twig
 
 ```php
 $product_type = "";
@@ -120,7 +127,7 @@ $product_type = "";
 
 ---
 
-### Suite
+### Vues : Code spaghetti VS Twig
 
 ```php
 <tr>
@@ -147,31 +154,94 @@ $product_type = "";
 </table>
 ```
 
+<div class="notes">
+    * détection de changement de produit
+    * htmlEscape = htmlspecialchar
+</div>
+
+---
+
+### Vues : Code spaghetti VS Twig
+
+```php
+{% extends "base.twig" %}
+{% block body %}
+    <h1>{{ inventoryStatus.name | capitalize }} inventory</h1>
+    {% for t in types %}
+        {% set type = t[0] %}
+        <h2>
+            {{ type.name }} <span class="badge">
+            {{ type.product_count }}</span>
+        </h2>
+        <table class ="table table-striped" >
+        <tr>
+            <th>Diopter</th> <th>Count</th>
+        </tr>
+        {% for p in t.products %}
+            <tr>
+                <td>{{ p.SphCorrected }}</td> <td>{{ p.total }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% endfor %}
+{{ products.links() | raw }}
+{% endblock %}
+```
+
+<div class="notes">
+    * Echappement automatique
+    * On va chercher les type de produits
+    * On affiche les produits qui leur sont rattachés.
+</div>
+
+---
+
+### Requêtes via PDO en SQL VS ORM
+
+#### PDO
+
+```sql
+"SELECT  product.name, sphCorrected,  count(*) AS count
+    FROM lense
+    LEFT JOIN product
+    ON lense.productId = product.id
+    WHERE lense.status IN (?, ?)
+    AND lense.exclude = 0
+    AND sphCorrected >= ? AND sphCorrected <= ?
+    GROUP BY product.name, SphCorrected"
+```
+
+#### ORM
+
+```php
+$products = Product::where('status', $inventoryStatus->id)
+    ->select(DB::raw('*, count(*) as total'))
+    ->groupBy('productId', 'sphCorrected')
+    ->orderBy('productId', 'sphCorrected')
+    ->get();
+```
+
+
+---
+
+### URL avec ? VS URL as UI & routes
+
+* [http://1516-appweb.localhost/show_inventory.php?stock=internal&diopter=5.00&productId=InFo](http://1516-appweb.localhost/show_inventory.php?stock=internal&diopter=5.00&productId=InFo)
+* [http://lenspector.localhost/product/on-hands](http://lenspector.localhost/product/on-hands)
 
 ---
 
 ![](http://ljdchost.com/Lyb8RZa.gif)
 
----
-
-### ... Pour aller vers le merveilleux
-
-```php
-echo "C'est quand qu'on arrive?";
-```
 
 ---
 
-### Démonstration
-
-* [Version de démonstration](lenspector.srvz-webapp.he-arc.ch)
-
----
-
-### Nouvelle version
+### Avantages d'un Framework
 
 * Code maintenable
 * Principe modèle-vue-contrôleur
+* Echappements
+* Migrations
 * URLs as UI (slugs)
 * Charte graphique personnalisée
 * Accessibilité améliorée
@@ -189,7 +259,7 @@ echo "C'est quand qu'on arrive?";
 
 <style>
 .sourceCode {
-    font-size: 76%;
+    font-size: 80%;
     line-height: 80%;
     margin: 0 auto;
     overflow: hidden;
