@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-class InventoryStatus extends Model
+class Customer extends Model
 {
     use Sluggable;
     /**
@@ -13,12 +13,27 @@ class InventoryStatus extends Model
      *
      * @var string
      */
-    protected $table = 'inventory_status';
+    protected $table = 'customers';
     /**
-     * Timestamps field activition.
-     * @var bool
+     * The attributes that are mass assignable.
+     *
+     * @var array
      */
-    public $timestamps = false;
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'company_name',
+        'department',
+        'street_name',
+        'building_number',
+        'post_code',
+        'city',
+        'country_id',
+        'phone_number',
+        'fax_number',
+        'email',
+        'vat',
+    ];
 
     /**
      * Return the sluggable configuration array for this model.
@@ -29,7 +44,7 @@ class InventoryStatus extends Model
     {
         return [
             'slug' => [
-                'source' => 'name',
+                'source' => 'company_name',
                 'unique' => true,
                 'onUpdate' => true,
                 ],
@@ -44,5 +59,13 @@ class InventoryStatus extends Model
     public function getRouteKey()
     {
         return $this->slug;
+    }
+
+    /*
+     * Get the country associated with the customer.
+     */
+    public function country()
+    {
+        return $this->hasOne('App\Country');
     }
 }

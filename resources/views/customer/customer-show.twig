@@ -1,0 +1,47 @@
+{% extends "base.twig" %}
+
+{% block body %}
+<h1>{{ customer.company_name }}</h1>
+<div class="container">
+    <div class="row">
+        <p class="col-xs-8 col-sm-8">
+            <b>VAT number</b> {{ customer.vat }}
+        </p>
+    </div>
+    <div class="row">
+        <h2>Contact person</h2>
+        <p class="col-xs-8 col-sm-3">
+            <b>Contact name</b> {{ customer.last_name }} {{ customer.first_name }}
+        </p>
+        <p class="col-xs-8 col-sm-3">
+            <b>Department</b> {{ customer.department }}
+        </p>
+        <p class="col-sm-8 col-md-5">
+            <b>Email</b> <a href="mailto:{{ customer.email }}">{{ customer.email }}</a>
+        </p>
+    </div>
+    <div class="row">
+        <p class="col-xs-8 col-sm-3">
+            <b>Phone number</b> {{ customer.phone_number }}
+        </p>
+        <p class="col-xs-8 col-sm-3">
+            <b>Fax number</b> {{ customer.fax_number }}
+        </p>
+    </div>
+    <div class="row">
+        <h2>Address</h2>
+        <p class="col-xs-8 col-sm-3">
+            <b>Street</b> {{ customer.street_name }} {{ customer.building_number }}
+        </p>
+        <p class="col-xs-8 col-sm-3">
+            <b>City</b> {{ customer.city }}
+        </p>
+        <p class="col-xs-8 col-sm-3">
+            <b>Country</b> {{ customer.country_name }}
+        </p>
+    </div>
+</div>
+<a href="{{ route('customer.edit', [customer]) }}" class="btn btn-default">Edit</a>
+{# <a href="{{ route('customer.destroy', {customer: customer.slug}) }}" class="btn btn-danger">Delete</a> #}
+<a href="{{ route('customer.index') }}" class="btn btn-default">Back</a>
+{% endblock %}

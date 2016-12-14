@@ -36,7 +36,7 @@ class HomeController extends Controller
             ],
             [
                 'title' => 'Customers',
-                'link' => '',
+                'link' => route('customer.index'),
                 'glyphicon' => 'glyphicon-user',
             ],
         ];

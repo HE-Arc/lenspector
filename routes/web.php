@@ -22,6 +22,8 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/inventory', 'HomeController@inventoryIndex')->name('inventory');
 
+Route::resource('customer', 'CustomerController');
+
 Route::get('product/{inventorySlug}/{productType}/{diopter}',
     'ProductController@show'
     )->name('product.show');
