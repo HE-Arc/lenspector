@@ -8,8 +8,9 @@
             <caption>
                 <h2>
                     {{ type.name }}
-                    <span class="badge">
+                    <span class="badge" aria-label="product quantity">
                         {{ type.product_count }}
+                         <i class=accessible_elem>products of type {{ type.name }}</i>
                     </span>
                 </h2>
             </caption>
@@ -18,8 +19,14 @@
                 <th scope=col>Count</th>
             </tr>
             {% for p in t.products %}
-                <tr>
-                    <td>{{ p.SphCorrected | number_format(1, '.', ',') }}</td> <td>{{ p.total }}</td>
+                <tr class="clickable-row"
+                    data-href="{{ route('product.show',{ inventorySlug: inventoryStatus.slug, type: p.productId, diopter: p.SphCorrected | number_format(1, '.', ',') }) }}">
+                    <td>
+                        <a href="{{ route('product.show',{ inventorySlug: inventoryStatus.slug, type: p.productId, diopter: p.SphCorrected | number_format(1, '.', ',') }) }}">
+                            {{ p.SphCorrected }}
+                        </a>
+                    </td>
+                    <td>{{ p.total }}</td>
                 </tr>
             {% endfor %}
         </table>

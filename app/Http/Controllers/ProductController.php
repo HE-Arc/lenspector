@@ -70,9 +70,35 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($inventorySlug, $productType, $diopter)
     {
-        //
+        $inventoryStatus = InventoryStatus::where('slug', $inventorySlug)
+            ->first();
+        if ($inventoryStatus == null) {
+            return redirect()
+                ->back()
+                ->withErrors('Please choose an existing inventory');
+        }
+        $type = ProductType::find($productType);
+        if ($type == null) {
+            return redirect()
+                ->back()
+                ->withErrors('Please choose an existing product type');
+        }
+        $products = Product::where('status', $inventoryStatus->id)
+            ->where('productId', $type->id)
+            ->where('SphCorrected', $diopter)
+            ->orderBy('dateExpiration')
+            ->paginate(15);
+            // ->get();
+        $total = Product::where('status', $inventoryStatus->id)
+            ->where('productId', $type->id)
+            ->where('SphCorrected', $diopter)
+            ->count();
+
+        return view('inventory/inventory-show',
+            compact('inventoryStatus', 'products', 'type', 'diopter', 'total')
+        );
     }
 
     /**
