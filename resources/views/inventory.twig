@@ -22,7 +22,7 @@
                     data-href="{{ route('product.show',{ inventorySlug: inventoryStatus.slug, type: p.productId, diopter: p.SphCorrected | number_format(1, '.', ',') }) }}">
                     <td>
                         <a href="{{ route('product.show',{ inventorySlug: inventoryStatus.slug, type: p.productId, diopter: p.SphCorrected | number_format(1, '.', ',') }) }}">
-                            {{ p.SphCorrected | number_format(1, '.', ',') }}
+                            {{ p.SphCorrected }}
                         </a>
                     </td>
                     <td>{{ p.total }}</td>

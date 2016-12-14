@@ -35,4 +35,14 @@ class Product extends Model
     {
         return $this->hasOne('App\InventoryStatus', 'status');
     }
+    /**
+     * Get the product's diopter formatted with one decimal.
+     *
+     * @param  string  $diopter
+     * @return string
+     */
+    public function getSphCorrectedAttribute($diopter)
+    {
+        return number_format($diopter, 1, '.', ',');
+    }
 }
