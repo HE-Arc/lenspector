@@ -35,6 +35,7 @@ class Product extends Model
     {
         return $this->hasOne('App\InventoryStatus', 'status');
     }
+
     /**
      * Get the product's diopter formatted with one decimal.
      *
