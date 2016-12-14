@@ -29,11 +29,11 @@ class HomeController extends Controller
                 'link' => route('inventory'),
                 'glyphicon' => 'glyphicon-inbox',
             ],
-            [
-                'title' => 'Orders',
-                'link' => '',
-                'glyphicon' => 'glyphicon-briefcase',
-            ],
+            // [
+            //     'title' => 'Orders',
+            //     'link' => '',
+            //     'glyphicon' => 'glyphicon-briefcase',
+            // ],
             [
                 'title' => 'Customers',
                 'link' => route('customer.index'),
