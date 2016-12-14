@@ -77,6 +77,15 @@ $btn-danger-bg: #D32F2F;
     height: 45px;
     font-size: 16px;
 }
+/* Accessibility */
+.accessible_elem {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
 
 /* For small screens */
 @media (min-width: 772px) {
