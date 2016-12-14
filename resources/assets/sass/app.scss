@@ -42,6 +42,8 @@ $thumbnail-bg: $primary-color;
 /* Buttons */
 $btn-danger-bg: #D32F2F;
 
+$font-size-base: 18px;
+
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
@@ -51,9 +53,10 @@ $btn-danger-bg: #D32F2F;
 }
 
 /* Home view */
-.thumbnail, .thumbnail:hover {
+.thumbnail, .thumbnail:hover, .thumbnail:visited, .thumbnail:focus {
     text-align: center;
     text-decoration-line: none;
+    text-decoration: none;
     color: $primary-color-text;
 }
 .thumbnail:hover {
@@ -76,6 +79,22 @@ $btn-danger-bg: #D32F2F;
     height: 45px;
     font-size: 16px;
 }
+/* Accessibility */
+.accessible_elem {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+/* Clickable table rows */
+.clickable-row:hover {
+    cursor: pointer;
+    background-color: $gray-lighter;
+}
+
 
 /* For small screens */
 @media (min-width: 772px) {

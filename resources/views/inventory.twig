@@ -4,21 +4,30 @@
     <h1>{{ inventoryStatus.name | capitalize }} inventory</h1>
     {% for t in types %}
         {% set type = t[0] %}
-        <h2>
-            {{ type.name }} <span class="badge">
-            {{ type.product_count }}</span>
-        </h2>
         <table class ="table table-striped" >
-        <tr>
-            <th>Diopter</th> <th>Count</th>
-        </tr>
-        {% for p in t.products %}
+            <caption>
+                <h2>
+                    {{ type.name }}
+                    <span class="badge">
+                        {{ type.product_count }} <i class=accessible_elem>products of type {{ type.name }}</i>
+                    </span>
+                </h2>
+            </caption>
             <tr>
-                <td>{{ p.SphCorrected }}</td> <td>{{ p.total }}</td>
+                <th scope=col>Diopter</th>
+                <th scope=col>Count</th>
             </tr>
-        {% endfor %}
+            {% for p in t.products %}
+                <tr class="clickable-row"
+                    data-href="{{ route('product.show',{ inventorySlug: inventoryStatus.slug, type: p.productId, diopter: p.SphCorrected | number_format(1, '.', ',') }) }}">
+                    <td>
+                        <a href="{{ route('product.show',{ inventorySlug: inventoryStatus.slug, type: p.productId, diopter: p.SphCorrected | number_format(1, '.', ',') }) }}">
+                            {{ p.SphCorrected }}
+                        </a>
+                    </td>
+                    <td>{{ p.total }}</td>
+                </tr>
+            {% endfor %}
         </table>
     {% endfor %}
-{{ products.links() | raw }}
-
 {% endblock %}

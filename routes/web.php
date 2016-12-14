@@ -20,7 +20,16 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/inventory', 'HomeController@inventoryIndex')->name('inventory');
 
-Route::get('product/{inventorySlug}', 'ProductController@index')->name('product.index');
-Route::get('inventory/update', 'ProductController@edit')->name('product.edit');
-Route::put('inventory/update', 'ProductController@update')->name('product.update');
+Route::resource('customer', 'CustomerController');
+
+Route::get('product/{inventorySlug}/{productType}/{diopter}',
+    'ProductController@show'
+    )->name('product.show');
+Route::get('product/{inventorySlug}', 'ProductController@index')
+    ->name('product.index');
+Route::get('inventory/{inventory}/update', 'ProductController@edit')
+    ->name('product.edit');
+Route::put('inventory/{inventory}/update', 'ProductController@update')
+    ->name('product.update');
