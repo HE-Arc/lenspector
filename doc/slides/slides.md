@@ -7,9 +7,9 @@ date: 2016
 ### Sommaire
 
 * Introduction
-* Première version
+* Transition "fait main" - MVC
 * Démonstration
-* Nouvelle version
+* Conclusion
 
 <div class="notes">
     * Entreprise cliente
@@ -74,13 +74,6 @@ startup locale
     * Demande de nouvelles fonctionnalités.
         * Compliqué car le code est compliqué à maintenir.
 </div>
-
----
-
-### Démonstration
-
-* [Version de démonstration](lenspector.srvz-webapp.he-arc.ch)
-
 ---
 
 ![](http://ljdchost.com/xIkajiS.gif)
@@ -221,20 +214,27 @@ $products = Product::where('status', $inventoryStatus->id)
     ->get();
 ```
 
-
 ---
 
 ### URL avec ? VS URL as UI & routes
 
 * [http://1516-appweb.localhost/show_inventory.php?stock=internal&diopter=5.00&productId=InFo](http://1516-appweb.localhost/show_inventory.php?stock=internal&diopter=5.00&productId=InFo)
-* [http://lenspector.localhost/product/on-hands](http://lenspector.localhost/product/on-hands)
+* [http://lenspector.localhost/product/on-hands/1/5.5](http://lenspector.localhost/product/on-hands/1/5.5)
+
+<div class="notes">
+    * Affichage d'un type de produit spécifique et d'une dioptrie dans un stock
+</div>
 
 ---
 
-![](http://ljdchost.com/Lyb8RZa.gif)
+### Démonstration
+
+* [Version de démonstration](lenspector.srvz-webapp.he-arc.ch)
 
 
 ---
+
+<!-- ![](http://ljdchost.com/Lyb8RZa.gif) -->
 
 ### Avantages d'un Framework
 
@@ -250,6 +250,7 @@ $products = Product::where('status', $inventoryStatus->id)
 <div class="notes">
     * Nouvelles fonctionnalités implémentables plus facilement.
     * Meilleure séparation des responsabilités.
+    * Avantages de migrations (avant: nombreux scripts numérotés)
     * Meilleures expérience utilisateur.
 </div>
 
