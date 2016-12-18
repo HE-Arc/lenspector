@@ -79,7 +79,7 @@ class ProductController extends Controller
                 ->back()
                 ->withErrors('Please choose an existing inventory');
         }
-        $type = ProductType::find($productType);
+        $type = ProductType::where('slug', $productType)->first();
         if ($type == null) {
             return redirect()
                 ->back()

@@ -19,9 +19,9 @@
             </tr>
             {% for p in t.products %}
                 <tr class="clickable-row"
-                    data-href="{{ route('product.show',{ inventorySlug: inventoryStatus.slug, type: p.productId, diopter: p.SphCorrected | number_format(1, '.', ',') }) }}">
+                    data-href="{{ route('product.show', [inventoryStatus, type, p.SphCorrected]) }}">
                     <td>
-                        <a href="{{ route('product.show',{ inventorySlug: inventoryStatus.slug, type: p.productId, diopter: p.SphCorrected | number_format(1, '.', ',') }) }}">
+                        <a href="{{ route('product.show', [inventoryStatus, type, p.SphCorrected]) }}">
                             {{ p.SphCorrected }}
                         </a>
                     </td>

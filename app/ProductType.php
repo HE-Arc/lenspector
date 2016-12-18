@@ -16,6 +16,16 @@ class ProductType extends Model
     protected $table = 'product';
 
     /**
+     * Get the value of the model's route key.
+     *
+     * @return mixed
+     */
+    public function getRouteKey()
+    {
+        return $this->slug;
+    }
+    
+    /**
      * Return the sluggable configuration array for this model.
      *
      * @return array
