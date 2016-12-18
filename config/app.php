@@ -181,6 +181,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Cviebrock\EloquentSluggable\ServiceProvider::class,
         Webpatser\Countries\CountriesServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
     ],
 
     /*

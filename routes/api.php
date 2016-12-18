@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Country;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
+Route::group(['middleware' => 'cors'], function() {
+    Route::get('countries', function (Request $request) {
+        $countries = Country::all();
+        return response()->json(compact('countries'));
+    });
+});

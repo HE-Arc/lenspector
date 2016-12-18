@@ -47,17 +47,14 @@
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-form-label col-xs-2" for="country_id">Country</label>
+        <label class="col-form-label col-xs-2" for="country_name">Country</label>
         <div class="col-xs-5 col-sm-4">
-            <select id="country_id" class="col-sm-7" name="country_id">
-                {% for country in countries %}
-                    {% if country.id == customer.country_id %}
-                        <option value="{{ country.id }}" selected>{{ country.name }}</option>
-                    {% else %}
-                        <option value="{{ country.id }}">{{ country.name }}</option>
-                    {% endif %}
-                {% endfor %}
-            </select>
+            {% if customer is defined %}
+                <input id="customerCountry" value="{{ customer.country.name }}" hidden>
+            {% endif %}
+            <input id="countriesInput" class="form-control" type="text" name="country_name"
+                value=""
+            >
         </div>
     </div>
     <legend>Contact person</legend>

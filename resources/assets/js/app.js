@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+var Bloodhound = require('typeahead.js');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -26,7 +27,45 @@ $( document ).ready(function () {
     $("input[name='inventory_status']").first().attr('checked', true);
     $('.clickable-row').on('click', function () {
         window.location = $('a', this)[0].href;
-    })
+    });
+
+    var bloodhoundSuggestions;
+    var countriesInput = $('#countriesInput');
+    var customerCountry = $('#customerCountry');
+    if (customerCountry.length) {
+        customerCountry = $('#customerCountry')[0].value;
+    }
+
+    $.ajax({
+        url: "http://lenspector.localhost/api/countries",
+        success: function(result){
+            bloodhoundSuggestions = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                sufficient: 3,
+                local: $.map(result.countries, function(c) {
+                    return { value: c.name };
+                })
+            });
+            countriesInput.typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+                },
+                {
+                name: 'suggestions',
+                displayKey: 'value',
+                source: bloodhoundSuggestions
+            });
+            if (customerCountry.length) {
+                countriesInput.typeahead('val', customerCountry);
+            }
+        }
+    });
+    $(".tt-dataset-suggestions").css("width", countriesInput.css('width'));
+    window.onresize = function(event) {
+        $(".tt-dataset-suggestions").css("width", countriesInput.css('width'));
+    };
 });
 
 /**

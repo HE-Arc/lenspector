@@ -56,9 +56,13 @@ class CustomerController extends Controller
             'street_name' => 'required|string',
             'building_number' => 'required|numeric',
             'city' => 'required|string',
-            'country_id' => 'required|exists:countries,id',
+            'country_name' => 'required|exists:countries,name',
             'vat' => 'string',
         ]);
+
+
+        $request['country_id'] = Country::where('name', $request->country_name)
+            ->first()->id;
 
         $customer = new Customer($request->only('first_name',
             'last_name', 'company_name', 'department',
@@ -122,9 +126,12 @@ class CustomerController extends Controller
             'street_name' => 'required|string',
             'building_number' => 'required|numeric',
             'city' => 'required|string',
-            'country_id' => 'required|exists:countries,id',
+            'country_name' => 'required|exists:countries,name',
             'vat' => 'string',
         ]);
+
+        $request['country_id'] = Country::where('name', $request->country_name)
+            ->first()->id;
 
         $customer->update($request->only('first_name',
             'last_name', 'company_name', 'department',
