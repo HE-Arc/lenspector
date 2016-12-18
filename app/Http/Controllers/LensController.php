@@ -130,7 +130,6 @@ class LensController extends Controller
                 ->firstOrFail();
             $request->inventory_status = $inventoryStatus->id;
         } elseif ($inventory === 'remote') {
-
             $func = function ($status) {
                 return $status['id'];
             };
