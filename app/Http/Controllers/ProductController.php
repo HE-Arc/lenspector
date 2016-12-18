@@ -40,7 +40,7 @@ class ProductController extends Controller
         }
         //dd($types);
 
-        return view('inventory', compact('types', 'inventoryStatus'));
+        return view('inventory/inventory-index', compact('types', 'inventoryStatus'));
     }
 
     /**
