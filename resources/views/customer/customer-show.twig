@@ -10,21 +10,23 @@
     </div>
     <div class="row">
         <h2>Contact person</h2>
-        <p class="col-xs-8 col-sm-3">
+        <p class="col-xs-8 col-sm-6">
             <b>Contact name</b> {{ customer.last_name }} {{ customer.first_name }}
         </p>
-        <p class="col-xs-8 col-sm-3">
+        <p class="col-xs-8 col-sm-6">
             <b>Department</b> {{ customer.department }}
         </p>
+    </div>
+    <div class="row">
         <p class="col-sm-8 col-md-5">
             <b>Email</b> <a href="mailto:{{ customer.email }}">{{ customer.email }}</a>
         </p>
     </div>
     <div class="row">
-        <p class="col-xs-8 col-sm-3">
+        <p class="col-xs-8 col-sm-6">
             <b>Phone number</b> {{ customer.phone_number }}
         </p>
-        <p class="col-xs-8 col-sm-3">
+        <p class="col-xs-8 col-sm-6">
             <b>Fax number</b> {{ customer.fax_number }}
         </p>
     </div>
@@ -32,6 +34,9 @@
         <h2>Address</h2>
         <p class="col-xs-8 col-sm-3">
             <b>Street</b> {{ customer.street_name }} {{ customer.building_number }}
+        </p>
+        <p class="col-xs-8 col-sm-3">
+            <b>Post code</b> {{ customer.post_code }}
         </p>
         <p class="col-xs-8 col-sm-3">
             <b>City</b> {{ customer.city }}
