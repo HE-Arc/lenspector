@@ -1,0 +1,10 @@
+{% extends "base.twig" %}
+
+{% block body %}
+    <h1>Oops! Something went wrong... Sorry!</h1>
+    <p>
+        The ressource you asked doesn't exist.
+        Please come back <a href="{{ route('home') }}">here</a> and choose
+        what to do.
+    </p>
+{% endblock %}

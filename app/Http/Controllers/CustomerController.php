@@ -66,9 +66,9 @@ class CustomerController extends Controller
             'city', 'country_id', 'phone_number',
             'fax_number', 'email', 'vat')
         );
-        // dd($customer);
-        // dd("toto");
+
         $customer = $customer->save();
+
         if ($customer == null) {
             return redirect()->back()
                 ->withErrors('Customer could not be created.');
@@ -81,37 +81,23 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show($customerSlug)
+    public function show(Customer $customer)
     {
-        $customer = Customer::where('slug', $customerSlug)
-            ->leftJoin('countries', 'customers.country_id', '=', 'countries.id')
-            ->select('customers.*', 'countries.name as country_name')
-            ->get()
-            ->first();
-        if ($customer == null) {
-            return redirect()->back()
-                ->withErrors('The specified customer does not exist');
-        }
-
         return view('customer/customer-show', compact('customer'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit($customerSlug)
+    public function edit(Customer $customer)
     {
-        $customer = Customer::where('slug', $customerSlug)
-            ->get()
-            ->first();
         $countries = Country::all();
-
         return view('customer/customer-create', compact('customer', 'countries'));
     }
 
@@ -119,10 +105,10 @@ class CustomerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $customerSlug)
+    public function update(Request $request, Customer $customer)
     {
         $this->validate($request, [
             'company_name' => 'required',
@@ -140,15 +126,6 @@ class CustomerController extends Controller
             'vat' => 'string',
         ]);
 
-        $customer = Customer::where('slug', $customerSlug)
-            ->get()
-            ->first();
-
-        if ($customer == null) {
-            return redirect()->back()
-                ->withErrors('The specified customer does not exist');
-        }
-
         $customer->update($request->only('first_name',
             'last_name', 'company_name', 'department',
             'street_name', 'building_number', 'post_code',
@@ -163,10 +140,10 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($customer)
     {
         //
     }
