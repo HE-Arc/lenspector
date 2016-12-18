@@ -60,7 +60,6 @@ class CustomerController extends Controller
             'vat' => 'string',
         ]);
 
-
         $request['country_id'] = Country::where('name', $request->country_name)
             ->first()->id;
 
@@ -102,6 +101,7 @@ class CustomerController extends Controller
     public function edit(Customer $customer)
     {
         $countries = Country::all();
+
         return view('customer/customer-create', compact('customer', 'countries'));
     }
 

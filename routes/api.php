@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use App\Country;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +14,10 @@ use App\Country;
 |
 */
 
-Route::group(['middleware' => 'cors'], function() {
+Route::group(['middleware' => 'cors'], function () {
     Route::get('countries', function (Request $request) {
         $countries = Country::all();
+
         return response()->json(compact('countries'));
     });
 });
