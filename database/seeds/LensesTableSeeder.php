@@ -1,11 +1,11 @@
 <?php
 
-use App\Product;
+use App\Lens;
 use App\ProductType;
 use App\InventoryStatus;
 use Illuminate\Database\Seeder;
 
-class ProductTableSeeder extends Seeder
+class LensesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,7 +17,7 @@ class ProductTableSeeder extends Seeder
         $statuses = InventoryStatus::select('id')->get();
         $productTypes = ProductType::select('id')->get();
         for ($i = 1; $i <= 100; $i++) {
-            Product::create([
+            Lens::create([
                 'sn' => 'F'.str_pad($i, 8, '0', STR_PAD_LEFT),
                 'dateExpiration' => '2018-06-21',
                 'exclude' => random_int(0, 1),

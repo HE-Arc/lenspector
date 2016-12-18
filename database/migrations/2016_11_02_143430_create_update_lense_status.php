@@ -13,7 +13,7 @@ class CreateUpdateLenseStatus extends Migration
      */
     public function up()
     {
-        Schema::create('inventory_status', function (Blueprint $table) {
+        Schema::create('inventory_statuses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('slug');
@@ -21,7 +21,7 @@ class CreateUpdateLenseStatus extends Migration
 
         Schema::table('lense', function ($table) {
             $table->integer('status')->unsigned()->nullable();
-            $table->foreign('status')->references('id')->on('inventory_status');
+            $table->foreign('status')->references('id')->on('inventory_statuses');
         });
     }
 
@@ -33,6 +33,6 @@ class CreateUpdateLenseStatus extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('inventory_status');
+        Schema::dropIfExists('inventory_statuses');
     }
 }

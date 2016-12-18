@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
+use App\Lens;
 use App\ProductType;
 use App\InventoryStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ProductController extends Controller
+class LensController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,7 +23,7 @@ class ProductController extends Controller
         }])
             ->get()
             ->groupBy('id');
-        $products = Product::where('status', $inventoryStatus->id)
+        $products = Lens::where('status', $inventoryStatus->id)
             ->select(DB::raw('*, count(*) as total'))
             ->groupBy('productId', 'sphCorrected')
             ->orderBy('productId', 'sphCorrected')
@@ -71,13 +71,13 @@ class ProductController extends Controller
                 ->back()
                 ->withErrors('Please choose an existing product type');
         }
-        $products = Product::where('status', $inventoryStatus->id)
+        $products = Lens::where('status', $inventoryStatus->id)
             ->where('productId', $type->id)
             ->where('SphCorrected', $diopter)
             ->orderBy('dateExpiration')
             ->paginate(15);
 
-        $total = Product::where('status', $inventoryStatus->id)
+        $total = Lens::where('status', $inventoryStatus->id)
             ->where('productId', $type->id)
             ->where('SphCorrected', $diopter)
             ->count();
@@ -130,18 +130,21 @@ class ProductController extends Controller
                 ->firstOrFail();
             $request->inventory_status = $inventoryStatus->id;
         } elseif ($inventory === 'remote') {
+
             $func = function ($status) {
                 return $status['id'];
             };
+
             $inventoryStatuses = InventoryStatus::whereIn('name', [
                 'consignment', 'sales',
             ])
             ->get();
+
             $legalStatuses = implode(',', array_map($func, $inventoryStatuses->toArray()));
             $this->validate($request, [
                 'inventory_status' => [
                     'required',
-                    'exists:inventory_status,id',
+                    'exists:inventory_statuses,id',
                     'in:'.$legalStatuses,
                 ],
                 'serial_number' => [
@@ -155,9 +158,10 @@ class ProductController extends Controller
                 ->withErrors('Please choose an existing inventory.');
         }
 
-        $lens = Product::where('sn', '=', $request->serial_number)
+        $lens = Lens::where('sn', '=', $request->serial_number)
             ->where('exclude', '=', 0)
             ->first();
+
         if ($lens == null) {
             return redirect()->back()
                 ->withErrors('The specified lens does not exist or is excluded.');

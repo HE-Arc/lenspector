@@ -3,7 +3,7 @@
 use App\InventoryStatus;
 use Illuminate\Database\Seeder;
 
-class InventoryStatusTableSeeder extends Seeder
+class InventoryStatusesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

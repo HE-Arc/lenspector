@@ -24,7 +24,7 @@ class ProductType extends Model
     {
         return $this->slug;
     }
-    
+
     /**
      * Return the sluggable configuration array for this model.
      *
@@ -46,6 +46,6 @@ class ProductType extends Model
      */
     public function product()
     {
-        return $this->hasMany('App\Product', 'productId');
+        return $this->hasMany('App\Lens', 'productId');
     }
 }
