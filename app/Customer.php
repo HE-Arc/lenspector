@@ -66,6 +66,6 @@ class Customer extends Model
      */
     public function country()
     {
-        return $this->hasOne('App\Country');
+        return $this->belongsTo('App\Country');
     }
 }
