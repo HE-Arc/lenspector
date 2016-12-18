@@ -15,8 +15,8 @@ class CreateUpdateLenseStatus extends Migration
     {
         Schema::create('inventory_statuses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('slug');
+            $table->string('name', 191);
+            $table->string('slug', 191);
         });
 
         Schema::table('lense', function ($table) {

@@ -15,8 +15,8 @@ class CreateProductsType extends Migration
     {
         Schema::create('product', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('slug')->unique();
-            $table->string('name');
+            $table->string('slug', 191)->unique();
+            $table->string('name', 191);
             $table->integer('monthValidity');
             $table->timestamps();
         });

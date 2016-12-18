@@ -15,7 +15,7 @@ class CreateLenseTable extends Migration
     {
         Schema::create('lense', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('sn');
+            $table->string('sn', 191);
             $table->date('dateExpiration');
             $table->tinyInteger('exclude')->default(0);
             $table->integer('productId')->unsigned()->nullable();
