@@ -22,10 +22,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('customer', 'CustomerController');
 
-    Route::get('product/{inventorySlug}/{productType}/{diopter}',
+    Route::get('product/{inventoryStatus}/{productType}/{diopter}',
         'ProductController@show'
         )->name('product.show');
-    Route::get('product/{inventorySlug}', 'ProductController@index')
+    Route::get('product/{inventoryStatus}', 'ProductController@index')
         ->name('product.index');
     Route::get('inventory/{inventory}/update', 'ProductController@edit')
         ->name('product.edit');

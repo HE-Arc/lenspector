@@ -13,17 +13,11 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\InventoryStatus  $inventoryStatus
      * @return \Illuminate\Http\Response
      */
-    public function index($inventorySlug)
+    public function index(InventoryStatus $inventoryStatus)
     {
-        $inventoryStatus = InventoryStatus::where('slug', $inventorySlug)
-            ->first();
-        if ($inventoryStatus == null) {
-            return redirect()
-                ->back()
-                ->withErrors('Please choose an existing inventory');
-        }
         $types = ProductType::withCount(['product' => function ($query) use ($inventoryStatus) {
             $query->where('status', $inventoryStatus->id);
         }])
@@ -38,7 +32,6 @@ class ProductController extends Controller
         foreach ($products as $product) {
             $types[$product->productId]->products[] = $product;
         }
-        //dd($types);
 
         return view('inventory/inventory-index', compact('types', 'inventoryStatus'));
     }
@@ -67,18 +60,11 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\InventoryStatus  $inventoryStatus
      * @return \Illuminate\Http\Response
      */
-    public function show($inventorySlug, $productType, $diopter)
+    public function show(InventoryStatus $inventoryStatus, $productType, $diopter)
     {
-        $inventoryStatus = InventoryStatus::where('slug', $inventorySlug)
-            ->first();
-        if ($inventoryStatus == null) {
-            return redirect()
-                ->back()
-                ->withErrors('Please choose an existing inventory');
-        }
         $type = ProductType::where('slug', $productType)->first();
         if ($type == null) {
             return redirect()
@@ -90,7 +76,7 @@ class ProductController extends Controller
             ->where('SphCorrected', $diopter)
             ->orderBy('dateExpiration')
             ->paginate(15);
-            // ->get();
+
         $total = Product::where('status', $inventoryStatus->id)
             ->where('productId', $type->id)
             ->where('SphCorrected', $diopter)
