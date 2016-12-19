@@ -37,7 +37,7 @@ startup locale
 
 ### Processus en bref
 
-* Production de la lentille intraoculaires.
+* Production de la lentille intraoculaire.
 * Entrée dans la base de données.
 * Entrée en stock (QR code scanner).
 * Ouverture d'une commande.
@@ -84,6 +84,15 @@ startup locale
 ---
 
 ![](http://ljdchost.com/L3tmkgm.gif)
+
+---
+
+## Vues : Code spaghetti VS Twig
+
+---
+
+![](images/inventory_view.png)
+
 
 ---
 
@@ -231,7 +240,7 @@ $products = Product::where('status', $inventoryStatus->id)
 ### URL avec ? VS URL as UI & routes
 
 * [http://1516-appweb.localhost/show_inventory.php?stock=internal&diopter=5.00&productId=InFo](http://1516-appweb.localhost/show_inventory.php?stock=internal&diopter=5.00&productId=InFo)
-* [http://lenspector.localhost/product/on-hands/info/5.5](http://lenspector.localhost/product/on-hands/1/5.5)
+* [http://lenspector.localhost/product/on-hands/info/6.5](http://lenspector.localhost/product/on-hands/info/6.5)
 
 <div class="notes">
     * Affichage d'un type de produit spécifique et d'une dioptrie dans un stock
