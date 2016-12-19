@@ -9,6 +9,7 @@ date: 2016
 * Introduction
 * Transition "fait main" - MVC
 * Démonstration
+* Dépendances, bibliothèques utilisées
 * Conclusion
 
 <div class="notes">
@@ -116,6 +117,7 @@ $product_type = "";
     * Mélange du code métier et de la vue.
     * On a tenté de limiter la casse en mettant la logique métier en-haut
     des scripts.
+    * Imaginez à quoi ressemble la validation avec des if à rallonge
 </div>
 
 ---
@@ -148,7 +150,7 @@ $product_type = "";
 ```
 
 <div class="notes">
-    * détection de changement de produit
+    * détection de changement de produit avec un if...
     * htmlEscape = htmlspecialchar
 </div>
 
@@ -214,12 +216,18 @@ $products = Product::where('status', $inventoryStatus->id)
     ->get();
 ```
 
+<div class="notes">
+    * Ici c'est juste la requête
+    * Try - catch nombreux dans la première version => réglé dans Laravel
+      avec l'explicit route model binding
+</div>
+
 ---
 
 ### URL avec ? VS URL as UI & routes
 
 * [http://1516-appweb.localhost/show_inventory.php?stock=internal&diopter=5.00&productId=InFo](http://1516-appweb.localhost/show_inventory.php?stock=internal&diopter=5.00&productId=InFo)
-* [http://lenspector.localhost/product/on-hands/1/5.5](http://lenspector.localhost/product/on-hands/1/5.5)
+* [http://lenspector.localhost/product/on-hands/info/5.5](http://lenspector.localhost/product/on-hands/1/5.5)
 
 <div class="notes">
     * Affichage d'un type de produit spécifique et d'une dioptrie dans un stock
@@ -231,6 +239,25 @@ $products = Product::where('status', $inventoryStatus->id)
 
 * [Version de démonstration](lenspector.srvz-webapp.he-arc.ch)
 
+---
+
+### Liste des dépendances
+
+* [rcrowe/twigbridge](https://github.com/rcrowe/TwigBridge)
+* [cviebrock/eloquent-sluggable](https://github.com/cviebrock/eloquent-sluggable)
+* [fzaninotto/faker](https://github.com/fzaninotto/Faker)
+* [webpatser/laravel-countries](https://github.com/webpatser/laravel-countries)
+* [barryvdh/laravel-cors](https://github.com/barryvdh/laravel-cors)
+* [typeahead.js et bloodhound-js](https://github.com/twitter/typeahead.js)
+
+<div class="notes">
+    * twig: templating, vues
+    * sluggable: rendre les modèles sluggable
+    * faker: génération des données de test
+    * countries: migration pour les pays avec nom ISO-xxx
+    * cors: résoudre les problèmes de Cross-Origin Resource Sharing
+    * typeahead et bloodhound: suggestions, autocomplétion
+</div>
 
 ---
 
@@ -248,9 +275,11 @@ $products = Product::where('status', $inventoryStatus->id)
 * ![Master branch StyleCI status](https://styleci.io/repos/69327879/shield?style=flat&branch=master)
 
 <div class="notes">
-    * Nouvelles fonctionnalités implémentables plus facilement.
+    * Nouvelles fonctionnalités implémentables plus facilement. grâce à l'explicit
+      route model binding, sluggable, getRouteKeyName
     * Meilleure séparation des responsabilités.
-    * Avantages de migrations (avant: nombreux scripts numérotés)
+    * Avantages de migrations (avant: nombreux scripts numérotés),
+        gestion de la DB facilitée
     * Meilleures expérience utilisateur.
 </div>
 
