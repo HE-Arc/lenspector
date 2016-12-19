@@ -83,6 +83,10 @@ startup locale
 
 ---
 
+![](http://ljdchost.com/L3tmkgm.gif)
+
+---
+
 ### Vues : Code spaghetti VS Twig
 
 ```php
