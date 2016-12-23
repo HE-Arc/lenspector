@@ -21,6 +21,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/inventory', 'HomeController@inventoryIndex')->name('inventory');
 
     Route::resource('customer', 'CustomerController');
+    Route::post('customer/search', 'CustomerController@search')
+        ->name('customer.search');
 
     Route::get('inventory/{inventoryStatus}/{productType}/{diopter}',
         'LensController@show'

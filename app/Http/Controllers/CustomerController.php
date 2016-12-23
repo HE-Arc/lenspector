@@ -154,4 +154,37 @@ class CustomerController extends Controller
     {
         //
     }
+
+    /**
+     * Search a matching resource from storage.
+     *
+     * @param  string  $term
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        if ($request->search_term == null) {
+            return redirect()->route('customer.index');
+        }
+        else {
+            $searchTerm = $request->search_term;
+        }
+
+        $customers = Customer::join('countries', 'customers.country_id', '=', 'countries.id')
+            ->select('customers.*', 'countries.name')
+            ->where('last_name', 'LIKE', "%$searchTerm%")
+            ->orwhere('first_name', 'LIKE', "%$searchTerm%")
+            ->orwhere('customers.id', 'LIKE', "%$searchTerm%")
+            ->orwhere('company_name', 'LIKE', "%$searchTerm%")
+            ->orwhere('countries.name', 'LIKE', "%$searchTerm%")
+            ->orwhere('city', 'LIKE', "%$searchTerm%")
+            ->orwhere('department', 'LIKE', "%$searchTerm%")
+            ->orderBy('company_name')
+            ->get();
+
+        $customersTotal = Customer::all()->count();
+
+        return view('customer/customer-index', compact('customers', 'customersTotal'));
+
+    }
 }

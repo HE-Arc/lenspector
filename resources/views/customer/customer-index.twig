@@ -1,6 +1,20 @@
 {% extends "base.twig" %}
 
 {% block body %}
+    <h2>Search</h2>
+    <form class="form-inline" action="{{ route('customer.search') }}" method="post">
+        {{ csrf_field() }}
+        <div class="form-group">
+            <label class="" for="search_term">Search term</label>
+                <input id="search_term" name="search_term" class="form-control"
+                    type="text" value="" placeholder="name, country, id, ..."
+                    autofocus
+                >
+        </div>
+        <button class="btn btn-default" type="submit" name="submit">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </button>
+    </form>
     {% if customers is defined and (customers|length > 0) %}
         <table class ="table table-striped" >
             <caption>
