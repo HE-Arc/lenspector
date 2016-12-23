@@ -15,7 +15,7 @@ class InventoryStatus extends Model
      */
     protected $table = 'inventory_statuses';
     /**
-     * Timestamps field activition.
+     * Timestamps field activation.
      * @var bool
      */
     public $timestamps = false;
