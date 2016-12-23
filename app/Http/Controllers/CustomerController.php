@@ -165,8 +165,7 @@ class CustomerController extends Controller
     {
         if ($request->search_term == null) {
             return redirect()->route('customer.index');
-        }
-        else {
+        } else {
             $searchTerm = $request->search_term;
         }
 
@@ -185,6 +184,5 @@ class CustomerController extends Controller
         $customersTotal = Customer::all()->count();
 
         return view('customer/customer-index', compact('customers', 'customersTotal'));
-
     }
 }
