@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\ProductType;
+
 class HomeController extends Controller
 {
     /**
@@ -43,36 +45,37 @@ class HomeController extends Controller
     {
         $title = 'Inventory';
         $jumbotronMessage = 'Please choose an action in the above menu.';
+        $productType = ProductType::all()->first();
         $links = [
            [
                 'title' => 'On hands inventory',
                 'link' => route('inventory.index', [
-                    'on-hands',
+                    'on-hands', $productType
                 ]),
                 'glyphicon' => 'glyphicon-inbox',
             ],
             [
                 'title' => 'Consignment inventory',
                 'link' => route('inventory.index', [
-                    'consignment',
+                    'consignment', $productType
                 ]),
                 'glyphicon' => 'glyphicon-inbox',
             ],
             [
                 'title' => 'Sales',
                 'link' => route('inventory.index', [
-                    'sales',
+                    'sales', $productType
                 ]),
                 'glyphicon' => 'glyphicon-inbox',
             ],
             [
                 'title' => 'Move to packship',
-                'link' => '',
+                'link' => route('inventory.edit', ['internal']),
                 'glyphicon' => 'glyphicon-inbox',
             ],
             [
                 'title' => 'Move to a remote inventory',
-                'link' => '',
+                'link' => route('inventory.edit', ['remote']),
                 'glyphicon' => 'glyphicon-inbox',
             ],
         ];
