@@ -24,15 +24,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('customer/search', 'CustomerController@search')
         ->name('customer.search');
 
+    Route::get('inventory/{inventory}/update', 'LensController@edit')
+        ->name('inventory.edit');
+    Route::put('inventory/{inventory}/update', 'LensController@update')
+        ->name('inventory.update');
+    
     Route::get('inventory/{inventoryStatus}/{productType}/{diopter}',
         'LensController@show'
         )->name('inventory.show');
     Route::get('inventory/{inventoryStatus}/{productType}', 'LensController@index')
         ->name('inventory.index');
-    Route::get('inventory/{inventory}/update', 'LensController@edit')
-        ->name('inventory.edit');
-    Route::put('inventory/{inventory}/update', 'LensController@update')
-        ->name('inventory.update');
 });
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
