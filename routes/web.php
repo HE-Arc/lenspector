@@ -25,9 +25,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('inventory/{inventoryStatus}/{productType}/{diopter}',
         'LensController@show'
         )->name('inventory.show');
-    // Route::get('inventory/{inventoryStatus}/{productType}', 'LensController@index')
-    //     ->name('inventory.index');
-    Route::get('inventory/{inventoryStatus}', 'LensController@index')
+    Route::get('inventory/{inventoryStatus}/{productType}', 'LensController@index')
         ->name('inventory.index');
     Route::get('inventory/{inventory}/update', 'LensController@edit')
         ->name('inventory.edit');

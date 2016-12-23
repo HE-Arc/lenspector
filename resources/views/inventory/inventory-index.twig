@@ -5,16 +5,19 @@
     <div class="col-xs-12 row">
         {% for t in typesCounts %}
             <p class="col-xs-2">
-                <b>{{ t.name }}</b>: {{ t.product_count }}
+                <b>{{ t.name }}</b>:
+                <a href="{{ route('inventory.index', [inventoryStatus, t]) }}">
+                    {{ t.product_count }}
+                </a>
             </p>
         {% endfor %}
     </div>
     <table class ="table table-striped" >
         <caption>
             <h2>
-                {{ type.name }}
+                {{ productType.name }}
                 <span class="badge">
-                    {{ type.product_count }} <i class=accessible_elem>products of type {{ type.name }}</i>
+                    {{ quantity }} <i class=accessible_elem>products of type {{ productType.name }}</i>
                 </span>
             </h2>
         </caption>
@@ -24,9 +27,9 @@
         </tr>
         {% for l in lenses %}
             <tr class="clickable-row"
-                data-href="{{ route('inventory.show', [inventoryStatus, type, l.SphCorrected]) }}">
+                data-href="{{ route('inventory.show', [inventoryStatus, productType, l.SphCorrected]) }}">
                 <td>
-                    <a href="{{ route('inventory.show', [inventoryStatus, type, l.SphCorrected]) }}">
+                    <a href="{{ route('inventory.show', [inventoryStatus, productType, l.SphCorrected]) }}">
                         {{ l.SphCorrected }}
                     </a>
                 </td>
@@ -34,7 +37,4 @@
             </tr>
         {% endfor %}
     </table>
-    <div class="text-center">
-        {{ paginationLinks | raw }}
-    </div>
 {% endblock %}

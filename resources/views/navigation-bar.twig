@@ -22,9 +22,9 @@
                             Inventory<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ route('inventory.index', ['on-hands']) }}">On Hands Inventory</a></li>
-                            <li><a href="{{ route('inventory.index', ['consignment']) }}">Consignment Inventory</a></li>
-                            <li><a href="{{ route('inventory.index', ['sales']) }}">Sales</a></li>
+                            <li><a href="{{ route('inventory.index', ['on-hands', 'info']) }}">On Hands Inventory</a></li>
+                            <li><a href="{{ route('inventory.index', ['consignment', 'info']) }}">Consignment Inventory</a></li>
+                            <li><a href="{{ route('inventory.index', ['sales', 'info']) }}">Sales</a></li>
                             <li><a href="{{ route('inventory.edit', ['internal']) }}">Move to Packship</a></li>
                             <li><a href="{{ route('inventory.edit', ['remote']) }}">Update a product's status</a></li>
                         </ul>

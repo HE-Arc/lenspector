@@ -16,25 +16,28 @@ class LensController extends Controller
      * @param  \App\InventoryStatus  $inventoryStatus
      * @return \Illuminate\Http\Response
      */
-    public function index(InventoryStatus $inventoryStatus)
+    public function index(InventoryStatus $inventoryStatus, ProductType $productType)
     {
-        $types = ProductType::withCount(['product' => function ($query) use ($inventoryStatus) {
+        $typesCounts = ProductType::withCount(['product' => function ($query) use ($inventoryStatus) {
                 $query->where('status', $inventoryStatus->id);
                 $query->where('exclude', 0);
-            }]);
-        $typesCounts = $types->get();
-        $paginationLinks = $types->paginate(1)->links();
-        $type = $types->paginate(1)->first();
+            }])->get();
 
         $lenses = Lens::where('status', $inventoryStatus->id)
             ->select(DB::raw('*, count(*) as total'))
             ->where('exclude', 0)
-            ->where('productId', $type->id)
+            ->where('productId', $productType->id)
             ->groupBy('productId', 'sphCorrected')
             ->orderBy('sphCorrected')
             ->get();
 
-        return view('inventory/inventory-index', compact('types', 'type', 'inventoryStatus', 'lenses', 'paginationLinks', 'typesCounts'));
+        $quantity = 0;
+
+        foreach ($lenses as $l) {
+            $quantity += $l->total;
+        }
+
+        return view('inventory/inventory-index', compact('inventoryStatus', 'productType', 'typesCounts', 'lenses', 'quantity'));
     }
 
     /**
@@ -66,13 +69,6 @@ class LensController extends Controller
      */
     public function show(InventoryStatus $inventoryStatus, ProductType $productType, $diopter)
     {
-        // $type = ProductType::where('slug', $productType)->first();
-        // if ($type == null) {
-        //     return redirect()
-        //         ->back()
-        //         ->withErrors('Please choose an existing product type');
-        // }
-        // dd($productType);
         $products = Lens::where('status', $inventoryStatus->id)
             ->where('exclude', 0)
             ->where('productId', $productType->id)
