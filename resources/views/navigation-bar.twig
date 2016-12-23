@@ -14,12 +14,9 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     {# <li><a href="{{ route('home') }}"><i class="glyphicon glyphicon-home"></i></a></li> #}
-                    <li role="presentation" class="dropdown">
-                        <a class="dropdown-toggle disabled" data-toggle="dropdown"
-                            href="{{ route('inventory') }}" role="button"
-                            aria-haspopup="true" aria-expanded="false"
-                        >
-                            Inventory<span class="caret"></span>
+                    <li class="dropdown">
+                        <a href=" {{ route('inventory') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Inventory <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ route('inventory.index', ['on-hands', 'info']) }}">On Hands Inventory</a></li>
@@ -29,12 +26,9 @@
                             <li><a href="{{ route('inventory.edit', ['remote']) }}">Update a product's status</a></li>
                         </ul>
                     </li>
-                    <li role="presentation" class="dropdown">
-                        <a class="dropdown-toggle disabled" data-toggle="dropdown"
-                            href="{{ route('customer.index') }}" role="button"
-                            aria-haspopup="true" aria-expanded="false"
-                        >
-                            Customers<span class="caret"></span>
+                    <li class="dropdown">
+                        <a href="{{ route('customer.index') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Customers <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ route('customer.index')}}">Show customers</a></li>

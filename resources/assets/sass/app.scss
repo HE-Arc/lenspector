@@ -26,11 +26,18 @@ $text-color: $secondary-text-color;
 $navbar-default-bg: $primary-color-dark;
 $navbar-default-link-color: $primary-color-text;
 $navbar-default-color: $primary-color-text;
+$navbar-default-link-active-bg: $primary-color-dark;
+$navbar-default-link-active-color: $primary-color-text;
+
+$navbar-default-toggle-hover-bg: $primary-color-dark;
+$navbar-default-toggle-icon-bar-bg: $primary-color-text;
 
 /* Dropdown */
 $dropdown-bg: $primary-color-dark;
 $dropdown-link-hover-bg: $primary-color;
 $dropdown-link-color: $primary-color-text;
+$dropdown-link-hover-color: $primary-color-text;
+$dropdown-link-active-bg: $primary-color-dark;
 
 /* Jukbotron */
 $jumbotron-bg: $primary-color;
@@ -115,7 +122,6 @@ $font-size-base: 18px;
 .tt-suggestion p {
     margin: 0;
 }
-
 
 /* For small screens */
 @media (min-width: 772px) {

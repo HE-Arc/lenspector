@@ -21,6 +21,9 @@ const app = new Vue({
 });
 
 $( document ).ready(function () {
+    if (window.innerWidth > 772) {
+        $('.dropdown-toggle').addClass('disabled');
+    }
     $('#serial_number').on('blur change input', function() {
         fetchSerialNumber($( this ));
     });
