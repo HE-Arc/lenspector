@@ -33,7 +33,7 @@ class Lens extends Model
      */
     public function status()
     {
-        return $this->hasOne('App\InventoryStatus', 'status');
+        return $this->belongsTo('App\InventoryStatus', 'status');
     }
 
     /**
