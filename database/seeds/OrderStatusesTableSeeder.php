@@ -15,6 +15,7 @@ class OrderStatusesTableSeeder extends Seeder
         $statusNames = [
             'opened',
             'shipped',
+            'delivered',
             'closed',
         ];
         foreach ($statusNames as $name) {
