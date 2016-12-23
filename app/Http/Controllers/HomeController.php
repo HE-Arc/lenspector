@@ -46,21 +46,21 @@ class HomeController extends Controller
         $links = [
            [
                 'title' => 'On hands inventory',
-                'link' => route('product.index', [
+                'link' => route('inventory.index', [
                     'on-hands',
                 ]),
                 'glyphicon' => 'glyphicon-inbox',
             ],
             [
                 'title' => 'Consignment inventory',
-                'link' => route('product.index', [
+                'link' => route('inventory.index', [
                     'consignment',
                 ]),
                 'glyphicon' => 'glyphicon-inbox',
             ],
             [
                 'title' => 'Sales',
-                'link' => route('product.index', [
+                'link' => route('inventory.index', [
                     'sales',
                 ]),
                 'glyphicon' => 'glyphicon-inbox',

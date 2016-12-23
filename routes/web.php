@@ -22,15 +22,15 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('customer', 'CustomerController');
 
-    Route::get('product/{inventoryStatus}/{productType}/{diopter}',
+    Route::get('inventory/{inventoryStatus}/{productType}/{diopter}',
         'LensController@show'
-        )->name('product.show');
-    Route::get('product/{inventoryStatus}', 'LensController@index')
-        ->name('product.index');
+        )->name('inventory.show');
+    Route::get('inventory/{inventoryStatus}', 'LensController@index')
+        ->name('inventory.index');
     Route::get('inventory/{inventory}/update', 'LensController@edit')
-        ->name('product.edit');
+        ->name('inventory.edit');
     Route::put('inventory/{inventory}/update', 'LensController@update')
-        ->name('product.update');
+        ->name('inventory.update');
 });
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

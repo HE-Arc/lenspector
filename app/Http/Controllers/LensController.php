@@ -24,6 +24,7 @@ class LensController extends Controller
             ->get()
             ->groupBy('id');
         $products = Lens::where('status', $inventoryStatus->id)
+            ->where('exclude', 0)
             ->select(DB::raw('*, count(*) as total'))
             ->groupBy('productId', 'sphCorrected')
             ->orderBy('productId', 'sphCorrected')
@@ -72,12 +73,14 @@ class LensController extends Controller
                 ->withErrors('Please choose an existing product type');
         }
         $products = Lens::where('status', $inventoryStatus->id)
+            ->where('exclude', 0)
             ->where('productId', $type->id)
             ->where('SphCorrected', $diopter)
             ->orderBy('dateExpiration')
             ->paginate(15);
 
         $total = Lens::where('status', $inventoryStatus->id)
+            ->where('exclude', 0)
             ->where('productId', $type->id)
             ->where('SphCorrected', $diopter)
             ->count();
@@ -158,7 +161,7 @@ class LensController extends Controller
         }
 
         $lens = Lens::where('sn', '=', $request->serial_number)
-            ->where('exclude', '=', 0)
+            ->where('exclude', 0)
             ->first();
 
         if ($lens == null) {
