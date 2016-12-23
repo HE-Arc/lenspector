@@ -50,21 +50,21 @@ class HomeController extends Controller
            [
                 'title' => 'On hands inventory',
                 'link' => route('inventory.index', [
-                    'on-hands', $productType
+                    'on-hands', $productType,
                 ]),
                 'glyphicon' => 'glyphicon-inbox',
             ],
             [
                 'title' => 'Consignment inventory',
                 'link' => route('inventory.index', [
-                    'consignment', $productType
+                    'consignment', $productType,
                 ]),
                 'glyphicon' => 'glyphicon-inbox',
             ],
             [
                 'title' => 'Sales',
                 'link' => route('inventory.index', [
-                    'sales', $productType
+                    'sales', $productType,
                 ]),
                 'glyphicon' => 'glyphicon-inbox',
             ],
