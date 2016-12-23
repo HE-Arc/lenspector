@@ -16,12 +16,6 @@ class OrderStatus extends Model
     protected $table = 'order_statuses';
 
     /**
-     * Timestamps field activation.
-     * @var bool
-     */
-    public $timestamps = false;
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array
