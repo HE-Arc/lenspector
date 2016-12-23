@@ -19,9 +19,9 @@ class LensController extends Controller
     public function index(InventoryStatus $inventoryStatus, ProductType $productType)
     {
         $typesCounts = ProductType::withCount(['product' => function ($query) use ($inventoryStatus) {
-                $query->where('status', $inventoryStatus->id);
-                $query->where('exclude', 0);
-            }])->get();
+            $query->where('status', $inventoryStatus->id);
+            $query->where('exclude', 0);
+        }])->get();
 
         $lenses = Lens::where('status', $inventoryStatus->id)
             ->select(DB::raw('*, count(*) as total'))
@@ -81,6 +81,7 @@ class LensController extends Controller
             ->where('productId', $productType->id)
             ->where('SphCorrected', $diopter)
             ->count();
+
         return view('inventory/inventory-show',
             compact('inventoryStatus', 'products', 'productType', 'diopter', 'total')
         );

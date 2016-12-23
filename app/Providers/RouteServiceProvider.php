@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use App\Customer;
-use App\InventoryStatus;
 use App\ProductType;
+use App\InventoryStatus;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
