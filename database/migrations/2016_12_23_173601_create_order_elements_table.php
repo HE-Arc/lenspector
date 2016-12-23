@@ -7,10 +7,10 @@ use Illuminate\Database\Migrations\Migration;
 class CreateOrderElementsTable extends Migration
 {
     /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+      * Run the migrations.
+      *
+      * @return void
+      */
      public function up()
      {
          Schema::create('order_elements', function (Blueprint $table) {
