@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\OrderStatus;
+use Illuminate\Database\Seeder;
 
 class OrderStatusesTableSeeder extends Seeder
 {
@@ -20,7 +20,7 @@ class OrderStatusesTableSeeder extends Seeder
         ];
         foreach ($statusNames as $name) {
             $orderStatus = new OrderStatus([
-                'name' => $name
+                'name' => $name,
             ]);
             $orderStatus->saveOrFail();
         }
