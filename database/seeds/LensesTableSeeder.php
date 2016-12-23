@@ -16,7 +16,7 @@ class LensesTableSeeder extends Seeder
     {
         $statuses = InventoryStatus::select('id')->get();
         $productTypes = ProductType::select('id')->get();
-        for ($i = 1; $i <= 2000; $i++) {
+        for ($i = 1; $i <= 1000; $i++) {
             Lens::create([
                 'sn' => 'F'.str_pad($i, 8, '0', STR_PAD_LEFT),
                 'dateExpiration' => '2018-06-21',
