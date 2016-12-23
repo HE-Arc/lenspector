@@ -8,7 +8,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 class OrderType extends Model
 {
     use Sluggable;
-    
+
     /**
      * The table associated with the model.
      *
