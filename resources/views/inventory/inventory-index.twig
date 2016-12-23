@@ -2,32 +2,39 @@
 
 {% block body %}
     <h1>{{ inventoryStatus.name | capitalize }} inventory</h1>
-    {% for t in types %}
-        {% set type = t[0] %}
-        <table class ="table table-striped" >
-            <caption>
-                <h2>
-                    {{ type.name }}
-                    <span class="badge">
-                        {{ type.product_count }} <i class=accessible_elem>products of type {{ type.name }}</i>
-                    </span>
-                </h2>
-            </caption>
-            <tr>
-                <th scope=col>Diopter</th>
-                <th scope=col>Count</th>
+    <div class="col-xs-12 row">
+        {% for t in typesCounts %}
+            <p class="col-xs-2">
+                <b>{{ t.name }}</b>: {{ t.product_count }}
+            </p>
+        {% endfor %}
+    </div>
+    <table class ="table table-striped" >
+        <caption>
+            <h2>
+                {{ type.name }}
+                <span class="badge">
+                    {{ type.product_count }} <i class=accessible_elem>products of type {{ type.name }}</i>
+                </span>
+            </h2>
+        </caption>
+        <tr>
+            <th scope=col>Diopter</th>
+            <th scope=col>Count</th>
+        </tr>
+        {% for l in lenses %}
+            <tr class="clickable-row"
+                data-href="{{ route('inventory.show', [inventoryStatus, type, l.SphCorrected]) }}">
+                <td>
+                    <a href="{{ route('inventory.show', [inventoryStatus, type, l.SphCorrected]) }}">
+                        {{ l.SphCorrected }}
+                    </a>
+                </td>
+                <td>{{ l.total }}</td>
             </tr>
-            {% for p in t.products %}
-                <tr class="clickable-row"
-                    data-href="{{ route('inventory.show', [inventoryStatus, type, p.SphCorrected]) }}">
-                    <td>
-                        <a href="{{ route('inventory.show', [inventoryStatus, type, p.SphCorrected]) }}">
-                            {{ p.SphCorrected }}
-                        </a>
-                    </td>
-                    <td>{{ p.total }}</td>
-                </tr>
-            {% endfor %}
-        </table>
-    {% endfor %}
+        {% endfor %}
+    </table>
+    <div class="text-center">
+        {{ paginationLinks | raw }}
+    </div>
 {% endblock %}

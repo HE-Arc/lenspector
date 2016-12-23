@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Customer;
 use App\InventoryStatus;
+use App\ProductType;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -34,6 +35,9 @@ class RouteServiceProvider extends ServiceProvider
         });
         Route::bind('inventoryStatus', function ($value) {
             return InventoryStatus::where('slug', $value)->first();
+        });
+        Route::bind('productType', function ($value) {
+            return ProductType::where('slug', $value)->first();
         });
     }
 
