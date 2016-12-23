@@ -6,6 +6,9 @@
  */
 
 require('./bootstrap');
+import OrderElementsList from './components/OrderElementsList';
+import OrderElement from './components/OrderElement';
+
 var Bloodhound = require('typeahead.js');
 
 /**
@@ -14,11 +17,11 @@ var Bloodhound = require('typeahead.js');
  * the application, or feel free to tweak this setup for your needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
-
-const app = new Vue({
-    el: 'body'
-});
+// Vue.component('example', require('./components/Example.vue'));
+//
+// const app = new Vue({
+//     el: 'body'
+// });
 
 $( document ).ready(function () {
     if (window.innerWidth > 772) {

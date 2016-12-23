@@ -36,6 +36,13 @@ class Customer extends Model
     ];
 
     /**
+     * The attributes that should be visible in arrays.
+     *
+     * @var array
+     */
+    protected $visible = ['first_name', 'last_name', 'company_name'];
+
+    /**
      * Return the sluggable configuration array for this model.
      *
      * @return array

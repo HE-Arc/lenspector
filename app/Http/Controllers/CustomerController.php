@@ -15,6 +15,10 @@ class CustomerController extends Controller
      */
     public function index()
     {
+        if (request()->ajax()) {
+            $customers = Customer::all();
+            return response()->json(compact('customers'));
+        }
         $customersTotal = Customer::count();
         $customers = Customer::orderBy('company_name')
             ->paginate(15);

@@ -11,6 +11,9 @@
 |
 */
 
+use App\Customer;
+use App\ProductType;
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', function () {
         return redirect()->route('home');
@@ -34,6 +37,20 @@ Route::group(['middleware' => 'auth'], function () {
         )->name('inventory.show');
     Route::get('inventory/{inventoryStatus}/{productType}', 'LensController@index')
         ->name('inventory.index');
+
+    Route::resource('order', 'OrderController', [
+        'except' => [
+            'index',
+            ]
+        ]);
+    Route::get('customers', function (Request $request) {
+        $customers = Customer::all();
+        return response()->json(compact('customers'));
+    });
+    Route::get('product-types', function (Request $request) {
+        $productTypes = ProductType::all();
+        return response()->json(compact('productTypes'));
+    });
 });
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

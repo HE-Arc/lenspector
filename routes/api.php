@@ -1,6 +1,7 @@
 <?php
 
 use App\Country;
+use App\Customer;
 use Illuminate\Http\Request;
 
 /*

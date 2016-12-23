@@ -1,0 +1,31 @@
+{% extends "base.twig" %}
+
+{% block body %}
+    <h1>New order</h1>
+    <form action="{{ route('order.store') }}" method="post">
+        {{ csrf_field() }}
+        <div class="form-group row">
+            <label class="col-form-label col-xs-2" for="customer_id">Customer</label>
+            <div class="col-xs-6">
+                <select name="customer_id" required>
+                    {% for c in customers %}
+                        <option value="{{ c.id }}">
+                            {{ c.last_name }} {{ c.first_name }} - {{ c.company_name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-xs-2" for="order_type_id">Order type</label>
+            <div class="col-xs-6">
+                <select name="order_type_id" required>
+                    {% for type in orderTypes %}
+                        <option value="{{ type.id }}">{{ type.name | capitalize }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div id="OrderElementsList"></div>
+    </form>
+{% endblock %}

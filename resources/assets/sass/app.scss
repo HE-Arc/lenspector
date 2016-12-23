@@ -123,6 +123,10 @@ $font-size-base: 18px;
     margin: 0;
 }
 
+.diopter-row {
+    margin-bottom: 15px;
+}
+
 /* For small screens */
 @media (min-width: 772px) {
     ul.nav li.dropdown:hover > ul.dropdown-menu {
