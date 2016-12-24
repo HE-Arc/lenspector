@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Order;
 use App\Customer;
 use App\OrderStatus;
+use App\OrderElement;
 use App\ProductType;
 use App\InventoryStatus;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +46,7 @@ class RouteServiceProvider extends ServiceProvider
             return OrderStatus::where('slug', $value)->first();
         });
         Route::model('order', Order::class);
+        Route::model('orderElement', OrderElement::class);
     }
 
     /**

@@ -7,6 +7,7 @@
         <a href="{{ route('order.edit', order) }}" class="btn btn-default">Edit</a>
         {% if order.orderStatus.name == 'opened' %}
         <a href="{{ route('order.shipping', order) }}" class="btn btn-default">Ship</a>
+        <a href="{{ route('order.complete', order) }}" class="btn btn-default">Complete</a>
         {% endif %}
     </div>
     <h2>Order elements</h2>

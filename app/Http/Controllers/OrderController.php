@@ -8,6 +8,8 @@ use App\OrderType;
 use App\OrderStatus;
 use App\ProductType;
 use App\OrderElement;
+use App\Lens;
+use App\InventoryStatus;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -196,5 +198,58 @@ class OrderController extends Controller
     public function ship(Order $order)
     {
         dd("Order shipping is not yet implemented!");
+    }
+
+    /**
+     * Show the form for completing the specified resource from storage.
+     *
+     * @param  \App\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function completeOrder(Order $order)
+    {
+        return view('order/complete', compact('order'));
+    }
+
+    /**
+     * Add a lens to the specified resource from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\OrderElemenent  $orderElement
+     * @return \Illuminate\Http\Response
+     */
+    public function addLens(Request $request, OrderElement $orderElement)
+    {
+        $this->validate($request, [
+            'serial_number' => 'required|exists:lense,sn',
+        ]);
+        $status = InventoryStatus::where('name', 'on hands')->first();
+        $lens = Lens::where('sn', $request->serial_number)
+            ->where('status', $status->id)
+            ->where('sphCorrected', $orderElement->requested_diopter)
+            ->where('productId', $orderElement->product_type_id)
+            ->first();
+
+        if ($lens == null) {
+            return redirect()->back()
+                ->withErrors('The specified lens does not exist or does not
+                    match the order requirement.
+                ');
+        }
+
+        $order = $orderElement->order()->first();
+
+        $newInventoryStatus = $order->orderType()->first()
+            ->inventoryStatus()->first()->id;
+
+        $lens->update([
+            'status' => $newInventoryStatus,
+        ]);
+
+        $orderElement->lens()->associate($lens);
+        $orderElement->save();
+
+        return view('order/complete', compact('order'))
+            ->with('status', 'Lens assigned to the specified element.');
     }
 }

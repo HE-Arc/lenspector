@@ -17,10 +17,15 @@ class CreateOrderTypesTable extends Migration
             $table->increments('id');
             $table->string('name', 191)->unique();
             $table->string('slug', 191)->unique();
+            $table->integer('inventory_status_id')->unsigned();
             $table->timestamps();
         });
         Schema::table('orders', function ($table) {
             $table->foreign('order_type_id')->references('id')->on('order_types');
+        });
+        Schema::table('order_types', function ($table) {
+            $table->foreign('inventory_status_id')->references('id')
+                ->on('inventory_statuses');
         });
     }
 

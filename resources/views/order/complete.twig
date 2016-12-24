@@ -1,0 +1,43 @@
+{% extends "base.twig" %}
+
+{% block body %}
+    <h1>
+        Complete {{ order.formattedId }}
+    </h1>
+    {% include "order/infos.twig" %}
+    <h2>Order elements</h2>
+    {% for item in order.orderElements %}
+        <form action="{{ route('order.add-lens', item) }}" method="post" id="order-element-{{ item.id }}" class="order-element-form">
+            {{ method_field('PUT') }}
+            {{ csrf_field() }}
+            <input class="order-element-id" type="number" name="order_element_id[{{ item.id }}]" value="{{ item.id}}" hidden>
+            <div class="form-group row">
+                {% if item.lens is null %}
+                    <label for="serial_number[{{ item.id }}]" class="col-xs-2 col-sm-2">Serial Number</label>
+                    <div class="col-xs-6 col-sm-2">
+                        <input class="form-control serial-number-input" type="text" value="" id="serial_number[{{ item.id }}]"
+                        name="serial_number" placeholder="F12345678" pattern="F[0-9]{8}" autofocus required>
+                    </div>
+                {% else %}
+                <p class="col-xs-2 col-sm-2">
+                    <b>Serial number</b>
+                </p>
+                <p class="col-xs-2 col-sm-2">
+                    {{ item.lens.sn }}
+                </p>
+                {% endif %}
+                <p class="col-xs-3 col-sm-2">
+                    <b>Type</b> {{ item.productType.name }}
+                </p>
+                <p class="col-xs-3 col-sm-2">
+                    <b>Diopter</b> {{ item.requested_diopter }}
+                </p>
+                {% if item.lens is null %}
+                    <button type="submit" class="btn btn-default">Add</button>
+                {% else %}
+                    <button type="submit" class="btn btn-danger">Remove</button>
+                {% endif %}
+            </div>
+        </form>
+    {% endfor %}
+{% endblock %}

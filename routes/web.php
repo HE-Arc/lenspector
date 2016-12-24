@@ -49,8 +49,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('order/{order}/shipping', 'OrderController@shipping')
         ->name('order.shipping');
-    Route::put('order/{order}/shipping', 'OrderController@ship')
-        ->name('order.ship');
+    // Route::put('order/{order}/shipping', 'OrderController@ship')
+    //     ->name('order.ship');
+    Route::get('order/{order}/complete', 'OrderController@completeOrder')
+        ->name('order.complete');
+    Route::put('order-element/{orderElement}/add', 'OrderController@addLens')
+        ->name('order.add-lens');
 
     /* AJAX */
     Route::get('product-types', 'LensController@availableTypes');

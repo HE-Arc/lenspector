@@ -29,7 +29,7 @@ $( document ).ready(function () {
         $('.dropdown-toggle').addClass('disabled');
     }
 
-    $('#serial_number').on('blur change input', function() {
+    $('.serial-number-input').on('blur change input', function() {
         fetchSerialNumber($( this ));
     });
 
@@ -38,6 +38,7 @@ $( document ).ready(function () {
         datePattern: ['d', 'm', 'Y'],
         delimiter: '-',
     });
+
     var awbCleave = new Cleave('.awb-input', {
         blocks: [4, 4, 4],
         delimiter: ' ',
@@ -102,4 +103,5 @@ function fetchSerialNumber(input_field) {
         if (serial_number != null) {
             input_field.val(serial_number);
         }
+        input_field.val(input_field.val().toUpperCase());
 }

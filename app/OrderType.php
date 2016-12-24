@@ -58,4 +58,12 @@ class OrderType extends Model
     {
         return $this->hasMany('App\Order');
     }
+
+    /*
+     * Get the status associated with the order type.
+     */
+    public function inventoryStatus()
+    {
+        return $this->belongsTo('App\InventoryStatus');
+    }
 }
