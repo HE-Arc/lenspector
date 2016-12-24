@@ -15,7 +15,7 @@ class OrderElementsList extends Component {
     }
     componentDidMount() {
         $.ajax({
-            url: "http://lenspector.localhost/product-types",
+            url: "/product-types",
             success: result => {
                 const productTypes = result.productTypes;
                 this.setState({

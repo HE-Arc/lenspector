@@ -43,7 +43,7 @@ $( document ).ready(function () {
     }
 
     $.ajax({
-        url: "http://lenspector.localhost/api/countries",
+        url: "/api/countries",
         success: function(result){
             bloodhoundSuggestions = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
