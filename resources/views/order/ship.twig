@@ -1,0 +1,43 @@
+{% extends "base.twig" %}
+
+{% block body %}
+    <h1>
+        Ship {{ order.formattedId }}
+    </h1>
+    <p>
+        The <strong>Delivered by</strong> field can be used if you ship the
+        order by your own mean. <strong>Airway Bill</strong> field can be let
+        empty then.
+    </p>
+    <form action="{{ route('order.ship', order) }}" method="post">
+        {{ method_field('PUT') }}
+        {{ csrf_field() }}
+        <div class="form-group row">
+            <label class="col-form-label col-xs-2" for="awb">Airway Bill</label>
+            <div class="col-xs-6">
+                <input class="awb-input" type="text" name="awb" value=""
+                    placeholder="eg: 1234 5678 9876" autofocus
+                >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-xs-2" for="delivered_by">Delivered by</label>
+            <div class="col-xs-6">
+                <input class="awb-input" type="text" name="delivered_by" value=""
+                    placeholder="eg: John Snow"
+                >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-xs-2" for="shipped_at">Shipping date</label>
+            <div class="col-xs-6">
+                <input class="date-input" type="text" name="shipped_at" value=""
+                    placeholder="eg: 24-12-2016" required
+                >
+            </div>
+        </div>
+        <button type="submit" name="submit" class="btn btn-primary">
+            Ship
+        </button>
+    </form>
+{% endblock %}

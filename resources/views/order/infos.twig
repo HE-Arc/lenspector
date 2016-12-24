@@ -1,0 +1,21 @@
+<div class="row">
+    <p class="col-xs-6 col-sm-6">
+        <b>Customer</b>
+        <a href="{{ route('customer.show', order.customer) }}">
+            {{ order.customer.company_name }}
+        </a>
+    </p>
+</div>
+<div class="row">
+    <p class="col-xs-3 col-sm-3">
+        <b>Type</b> {{ order.orderType.name }}
+    </p>
+    <p class="col-xs-3 col-sm-3">
+        <b>Status</b> {{ order.orderStatus.name }}
+    </p>
+    {% if order.requested_at is not null %}
+        <p class="col-xs-6 col-sm-6">
+            <b>Requested shipping date</b>{{ order.requested_at }}
+        </p>
+    {% endif %}
+</div>

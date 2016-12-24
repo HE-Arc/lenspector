@@ -160,11 +160,41 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Order $order)
     {
         //
+    }
+
+    /**
+     * Show the form to set the specified resource from storage as shipped.
+     *
+     * @param  \App\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function shipping(Order $order)
+    {
+        foreach ($order->orderElements as $element) {
+            if ($element->lensId == null) {
+                return redirect()->route('order.show', $order)
+                    ->withErrors('This order is not complete. Please assign
+                        a lens to each order element before trying to ship
+                        this order.
+                    ');
+            }
+        }
+        return view('order/ship', compact('order'));
+    }
+    /**
+     * Set the specified resource from storage as shipped.
+     *
+     * @param  \App\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function ship(Order $order)
+    {
+        dd("Order shipping is not yet implemented!");
     }
 }

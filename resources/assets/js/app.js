@@ -10,6 +10,7 @@ import OrderElementsList from './components/OrderElementsList';
 import OrderElement from './components/OrderElement';
 
 var Bloodhound = require('typeahead.js');
+var Cleave = require('cleave.js');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -27,10 +28,23 @@ $( document ).ready(function () {
     if (window.innerWidth > 772) {
         $('.dropdown-toggle').addClass('disabled');
     }
+
     $('#serial_number').on('blur change input', function() {
         fetchSerialNumber($( this ));
     });
+
+    var dateCleave = new Cleave('.date-input', {
+        date: true,
+        datePattern: ['d', 'm', 'Y'],
+        delimiter: '-',
+    });
+    var awbCleave = new Cleave('.awb-input', {
+        blocks: [4, 4, 4],
+        delimiter: ' ',
+    });
+
     $("input[name='inventory_status']").first().attr('checked', true);
+
     $('.clickable-row').on('click', function () {
         window.location = $('a', this)[0].href;
     });
@@ -68,7 +82,9 @@ $( document ).ready(function () {
             }
         }
     });
+
     $(".tt-dataset-suggestions").css("width", countriesInput.css('width'));
+
     window.onresize = function(event) {
         $(".tt-dataset-suggestions").css("width", countriesInput.css('width'));
     };

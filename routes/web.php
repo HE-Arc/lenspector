@@ -17,13 +17,16 @@ Route::group(['middleware' => 'auth'], function () {
     });
     Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
+    /* Homepages */
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/inventory', 'HomeController@inventoryIndex')->name('inventory');
 
+    /* Customers */
     Route::resource('customer', 'CustomerController');
     Route::post('customer/search', 'CustomerController@search')
         ->name('customer.search');
 
+    /* Inventory */
     Route::get('inventory/{inventory}/update', 'LensController@edit')
         ->name('inventory.edit');
     Route::put('inventory/{inventory}/update', 'LensController@update')
@@ -35,6 +38,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('inventory/{inventoryStatus}/{productType}', 'LensController@index')
         ->name('inventory.index');
 
+    /* Orders */
     Route::get('order/list/{orderStatus}', 'OrderController@index')
         ->name('order.index');
     Route::resource('order', 'OrderController', [
@@ -43,6 +47,12 @@ Route::group(['middleware' => 'auth'], function () {
             ],
     ]);
 
+    Route::get('order/{order}/shipping', 'OrderController@shipping')
+        ->name('order.shipping');
+    Route::put('order/{order}/shipping', 'OrderController@ship')
+        ->name('order.ship');
+
+    /* AJAX */
     Route::get('product-types', 'LensController@availableTypes');
 });
 

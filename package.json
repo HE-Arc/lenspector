@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "bloodhound-js": "^1.2.1",
+    "cleave.js": "^0.7.14",
     "typeahead.js": "^0.11.1"
   }
 }
