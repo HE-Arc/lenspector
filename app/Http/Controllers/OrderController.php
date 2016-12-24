@@ -251,7 +251,7 @@ class OrderController extends Controller
         $orderElement->lens()->associate($lens);
         $orderElement->save();
 
-        return view('order/complete', compact('order'))
+        return redirect()->route('order.complete', $order)
             ->with('status', 'Lens assigned to the specified element.');
     }
 }
