@@ -1,17 +1,30 @@
 {% extends "base.twig" %}
 
 {% block body %}
-    <h1>New order</h1>
+    <h1>
+        {{ order is defined ? "Update an order" : "New order" }}
+    </h1>
+    {% if order is defined %}
+    <form action="{{ route('order.update', order) }}" method="post">
+        {{ method_field('PUT') }}
+    {% else %}
     <form action="{{ route('order.store') }}" method="post">
+    {% endif %}
         {{ csrf_field() }}
         <div class="form-group row">
             <label class="col-form-label col-xs-2" for="customer_id">Customer</label>
             <div class="col-xs-6">
                 <select name="customer_id" required>
                     {% for c in customers %}
-                        <option value="{{ c.id }}">
-                            {{ c.last_name }} {{ c.first_name }} - {{ c.company_name }}
-                        </option>
+                        {% if order is defined and c.id == order.customer.id %}
+                            <option value="{{ c.id }}" selected>
+                                {{ c.last_name }} {{ c.first_name }} - {{ c.company_name }}
+                            </option>
+                        {% else %}
+                            <option value="{{ c.id }}">
+                                {{ c.last_name }} {{ c.first_name }} - {{ c.company_name }}
+                            </option>
+                        {% endif %}
                     {% endfor %}
                 </select>
             </div>
@@ -21,11 +34,24 @@
             <div class="col-xs-6">
                 <select name="order_type_id" required>
                     {% for type in orderTypes %}
-                        <option value="{{ type.id }}">{{ type.name | capitalize }}</option>
+                        {% if order is defined and type.id == order.orderType.id %}
+                            <option value="{{ type.id }}" selected>
+                                {{ type.name | capitalize }}
+                            </option>
+                        {% else %}
+                            <option value="{{ type.id }}">
+                                {{ type.name | capitalize }}
+                            </option>
+                        {% endif %}
                     {% endfor %}
                 </select>
             </div>
         </div>
-        <div id="OrderElementsList"></div>
+        {% if order is not defined %}
+            <div id="OrderElementsList"></div>
+        {% endif %}
+        <button type="submit" name="submit" class="btn btn-primary">
+            {{ order is defined ? "Update" : "Create" }}
+        </button>
     </form>
 {% endblock %}

@@ -46,7 +46,6 @@ class OrderElementsList extends Component {
                 {this.orderElements}
                 <div className="row">
                     <button id="add-diopter-btn" type="button" className="btn btn-default" onClick={this.addOrderElement}>Add element</button>
-                    <button type="submit" name="button" className="btn btn-primary">Create</button>
                 </div>
             </div>
         );

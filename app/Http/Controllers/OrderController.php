@@ -93,7 +93,7 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show($order)
+    public function show(Order $order)
     {
         $orderElements = [];
         foreach ($order->orderElements as $element) {
@@ -123,24 +123,38 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Order $order)
     {
-        //
+        $orderTypes = OrderType::all();
+        $productTypes = ProductType::all();
+        $customers = Customer::all();
+
+        return view('order/create', compact('order', 'orderTypes', 'productTypes', 'customers'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $order)
     {
-        //
+        $this->validate($request, [
+            'customer_id' => 'required|exists:customers,id',
+            'order_type_id' => 'required|exists:order_types,id',
+        ]);
+
+        $order->update($request->only([
+            'customer_id', 'order_type_id',
+        ]));
+
+        return redirect()->route('order.show', $order)
+            ->with('status', 'Order updated successfully');
     }
 
     /**
