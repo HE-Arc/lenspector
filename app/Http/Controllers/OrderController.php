@@ -25,7 +25,7 @@ class OrderController extends Controller
             ->with('customer', 'orderStatus')
             ->get();
 
-        return view('order/order-index', compact('orders', 'orderStatus', 'orderStatusesCounts'));
+        return view('order/index', compact('orders', 'orderStatus', 'orderStatusesCounts'));
     }
 
     /**
@@ -39,7 +39,7 @@ class OrderController extends Controller
         $productTypes = ProductType::all();
         $customers = Customer::all();
 
-        return view('order/order-create', compact('orderTypes', 'productTypes', 'customers'));
+        return view('order/create', compact('orderTypes', 'productTypes', 'customers'));
     }
 
     /**

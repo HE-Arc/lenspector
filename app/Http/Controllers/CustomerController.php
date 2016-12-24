@@ -24,7 +24,7 @@ class CustomerController extends Controller
         $customers = Customer::orderBy('company_name')
             ->paginate(15);
 
-        return view('customer/customer-index', compact(
+        return view('customer/index', compact(
             'customers', 'customersTotal')
         );
     }
@@ -38,7 +38,7 @@ class CustomerController extends Controller
     {
         $countries = Country::all();
 
-        return view('customer/customer-create', compact('countries'));
+        return view('customer/create', compact('countries'));
     }
 
     /**
@@ -94,7 +94,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        return view('customer/customer-show', compact('customer'));
+        return view('customer/show', compact('customer'));
     }
 
     /**
@@ -107,7 +107,7 @@ class CustomerController extends Controller
     {
         $countries = Country::all();
 
-        return view('customer/customer-create', compact('customer', 'countries'));
+        return view('customer/create', compact('customer', 'countries'));
     }
 
     /**
@@ -188,6 +188,6 @@ class CustomerController extends Controller
 
         $customersTotal = Customer::all()->count();
 
-        return view('customer/customer-index', compact('customers', 'customersTotal'));
+        return view('customer/index', compact('customers', 'customersTotal'));
     }
 }

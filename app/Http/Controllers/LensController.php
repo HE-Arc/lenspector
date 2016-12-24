@@ -37,7 +37,7 @@ class LensController extends Controller
             $quantity += $l->total;
         }
 
-        return view('inventory/inventory-index', compact('inventoryStatus', 'productType', 'typesCounts', 'lenses', 'quantity'));
+        return view('inventory/index', compact('inventoryStatus', 'productType', 'typesCounts', 'lenses', 'quantity'));
     }
 
     /**
@@ -82,7 +82,7 @@ class LensController extends Controller
             ->where('SphCorrected', $diopter)
             ->count();
 
-        return view('inventory/inventory-show',
+        return view('inventory/show',
             compact('inventoryStatus', 'products', 'productType', 'diopter', 'total')
         );
     }
@@ -107,7 +107,7 @@ class LensController extends Controller
                 ->withErrors('Please choose an existing inventory.');
         }
 
-        return View('inventory/inventory-update', compact('inventory', 'inventoryStatuses'));
+        return View('inventory/update', compact('inventory', 'inventoryStatuses'));
     }
 
     /**
