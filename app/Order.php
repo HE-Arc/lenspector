@@ -67,6 +67,6 @@ class Order extends Model
      */
     public function getFormattedIdAttribute()
     {
-        return "SVR_" . str_pad($this->id, 5, "0", STR_PAD_LEFT);
+        return 'SVR_'.str_pad($this->id, 5, '0', STR_PAD_LEFT);
     }
 }

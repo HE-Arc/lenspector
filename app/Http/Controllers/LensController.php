@@ -184,8 +184,10 @@ class LensController extends Controller
         //
     }
 
-    public function availableTypes() {
+    public function availableTypes()
+    {
         $productTypes = ProductType::all();
+
         return response()->json(compact('productTypes'));
     }
 }

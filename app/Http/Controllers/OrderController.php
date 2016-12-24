@@ -9,7 +9,6 @@ use App\OrderStatus;
 use App\ProductType;
 use App\OrderElement;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -62,7 +61,6 @@ class OrderController extends Controller
             'diopter.*' => 'required|in:'.implode(',', $diopters),
         ]);
 
-
         $order = new Order($request->only([
                 'customer_id',
                 'order_type_id',
@@ -105,21 +103,20 @@ class OrderController extends Controller
             if (array_key_exists($productName, $orderElements)) {
                 if (array_key_exists($diopter, $orderElements[$productName])) {
                     array_push($orderElements[$productName][$diopter], $element);
-                }
-                else {
+                } else {
                     $orderElements[$productName][$diopter] = [
-                        $element
+                        $element,
                     ];
                 }
-            }
-            else {
+            } else {
                 $orderElements[$productName] = [
                     $diopter => [
-                        $element
-                    ]
+                        $element,
+                    ],
                 ];
             }
         }
+
         return view('order/show', compact('order', 'orderElements'));
     }
 
