@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Lens;
 use App\Order;
 use App\Customer;
 use App\OrderType;
 use App\OrderStatus;
 use App\ProductType;
 use App\OrderElement;
-use App\Lens;
 use App\InventoryStatus;
 use Illuminate\Http\Request;
 
@@ -187,8 +187,10 @@ class OrderController extends Controller
                     ');
             }
         }
+
         return view('order/ship', compact('order'));
     }
+
     /**
      * Set the specified resource from storage as shipped.
      *
@@ -197,7 +199,7 @@ class OrderController extends Controller
      */
     public function ship(Order $order)
     {
-        dd("Order shipping is not yet implemented!");
+        dd('Order shipping is not yet implemented!');
     }
 
     /**

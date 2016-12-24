@@ -21,7 +21,7 @@ class OrderTypesTableSeeder extends Seeder
             [
                 'name' => 'consignment',
                 'inventoryStatus' => 'consignment',
-            ]
+            ],
         ];
 
         foreach ($types as $t) {
