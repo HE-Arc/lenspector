@@ -4,7 +4,7 @@
     <h1>{{ inventoryStatus.name | capitalize }} inventory</h1>
     <div class="col-xs-12 row">
         {% for t in typesCounts %}
-            <p class="col-xs-2">
+            <p class="col-xs-4">
                 <b>{{ t.name }}</b>:
                 <a href="{{ route('inventory.index', [inventoryStatus, t]) }}">
                     {{ t.product_count }}
