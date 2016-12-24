@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\Customer;
 use App\OrderType;
+use App\OrderStatus;
 use App\ProductType;
 use App\OrderElement;
 use Illuminate\Http\Request;
@@ -16,9 +17,15 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(OrderStatus $orderStatus)
     {
-        //
+        $orderStatusesCounts = OrderStatus::withCount('orders')->get();
+
+        $orders = Order::where('order_status_id', $orderStatus->id)
+            ->with('customer', 'orderStatus')
+            ->get();
+
+        return view('order/order-index', compact('orders', 'orderStatus', 'orderStatusesCounts'));
     }
 
     /**

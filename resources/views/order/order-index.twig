@@ -1,0 +1,42 @@
+{% extends "base.twig" %}
+
+{% block body %}
+    <h1>Orders</h1>
+    <div class="col-xs-12 row">
+        {% for status in orderStatusesCounts %}
+            <p class="col-xs-2">
+                <b>{{ status.name }}</b>:
+                <a href="{{ route('order.index', [status]) }}">
+                    {{ status.orders_count }}
+                </a>
+            </p>
+        {% endfor %}
+    </div>
+    <table class ="table table-striped" >
+        <caption>
+            <h2>
+                {{ orderStatus.name | capitalize }}
+                <span class="badge">
+                    {{ orders | length }} <i class=accessible_elem>{{ orderStatus.name }} orders</i>
+                </span>
+            </h2>
+        </caption>
+        <tr>
+            <th scope=col aria-label="Order id">#</th>
+            <th scope=col>Customer</th>
+            <th scope=col>Status</th>
+        </tr>
+        {% for o in orders %}
+            <tr class="clickable-row"
+                data-href="{{ route('order.show', [o]) }}">
+                <td>
+                    <a href="{{ route('order.show', [o]) }}">
+                        {{ o.id }}
+                    </a>
+                </td>
+                <td>{{ o.customer.company_name }}</td>
+                <td>{{ o.orderStatus.name }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

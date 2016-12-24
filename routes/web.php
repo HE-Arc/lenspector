@@ -38,11 +38,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('inventory/{inventoryStatus}/{productType}', 'LensController@index')
         ->name('inventory.index');
 
+    Route::get('order/list/{orderStatus}', 'OrderController@index')
+        ->name('order.index');
     Route::resource('order', 'OrderController', [
         'except' => [
-            'index',
+                'index',
             ],
-        ]);
+    ]);
+
     Route::get('customers', function (Request $request) {
         $customers = Customer::all();
 

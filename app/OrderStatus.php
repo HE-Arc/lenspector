@@ -40,6 +40,14 @@ class OrderStatus extends Model
         ];
     }
 
+    /*
+     * Get the orders associated with the order status.
+     */
+    public function orders()
+    {
+        return $this->hasMany('App\Order');
+    }
+
     /**
      * Get the value of the model's route key.
      *

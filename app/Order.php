@@ -58,4 +58,15 @@ class Order extends Model
     {
         return $this->belongsTo('App\Customer');
     }
+
+    /**
+     * Get the order's id formatted.
+     *
+     * @param  string  $diopter
+     * @return string
+     */
+    public function getIdAttribute($id)
+    {
+        return "SVR_" . str_pad($id, 5, "0", STR_PAD_LEFT);
+    }
 }
