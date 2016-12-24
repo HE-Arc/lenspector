@@ -53,7 +53,6 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         $diopters = range(5, 30, 0.5);
         $this->validate($request, [
             'customer_id' => 'required|exists:customers,id',
@@ -179,7 +178,7 @@ class OrderController extends Controller
     public function shipping(Order $order)
     {
         foreach ($order->orderElements as $element) {
-            if ($element->lensId == null) {
+            if ($element->lens_id == null) {
                 return redirect()->route('order.show', $order)
                     ->withErrors('This order is not complete. Please assign
                         a lens to each order element before trying to ship

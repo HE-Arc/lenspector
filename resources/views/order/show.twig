@@ -20,8 +20,8 @@
                     {% for item in elements %}
                         <p class="col-xs-6 col-sm-6">
                             <b>Assigned lens</b>
-                            {% if element.lens is not null %}
-                                {{ element.lens.sn }}
+                            {% if item.lens is not null %}
+                                {{ item.lens.sn }}
                             {% else %}
                                 No lens assigned yet
                             {% endif %}
