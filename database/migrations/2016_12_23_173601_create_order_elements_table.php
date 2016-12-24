@@ -18,7 +18,7 @@ class CreateOrderElementsTable extends Migration
              $table->integer('order_id')->unsigned();
              $table->integer('product_type_id')->unsigned();
              $table->double('requested_diopter')->unsigned();
-             $table->integer('lens_id')->unsigned();
+             $table->integer('lens_id')->unsigned()->nullable();
              $table->timestamps();
          });
 

@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Order;
 use App\OrderType;
+use App\OrderElement;
 use App\ProductType;
 use App\Customer;
 
@@ -43,7 +45,39 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        dd('Store');
+        $diopters = range(5, 30, 0.5);
+        $this->validate($request, [
+            'customer_id' => 'required|exists:customers,id',
+            'order_type_id' => 'required|exists:order_types,id',
+            'product_type_id.*' => 'required|exists:product,id',
+            'quantity.*' => 'required|numeric|min:1',
+            'diopter.*' => 'required|in:' . implode(',', $diopters),
+        ]);
+
+        $order = new Order($request->only([
+                'customer_id',
+                'order_type_id'
+            ])
+        );
+
+        $order->save();
+
+        $orderElements = [];
+        $quantity = $request->quantity;
+
+        /* TODO: Might beed an optimisation. */
+        for ($i=0; $i < count($quantity); $i++) {
+            for ($j=0; $j < $quantity[$i] ; $j++) {
+                $order->orderElements()->save(new OrderElement([
+                        'product_type_id' => $request->product_type_id[$i],
+                        'requested_diopter' => $request->diopter[$i],
+                    ])
+                );
+            }
+        }
+
+        return redirect()->back()
+            ->with('status', 'Order created');
     }
 
     /**
