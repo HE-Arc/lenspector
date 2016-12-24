@@ -33,16 +33,24 @@ $( document ).ready(function () {
         fetchSerialNumber($( this ));
     });
 
-    var dateCleave = new Cleave('.date-input', {
-        date: true,
-        datePattern: ['d', 'm', 'Y'],
-        delimiter: '-',
-    });
+    var dateCleave;
 
-    var awbCleave = new Cleave('.awb-input', {
-        blocks: [4, 4, 4],
-        delimiter: ' ',
-    });
+    if ($('.date-input').length > 0) {
+        dateCleave = new Cleave('.date-input', {
+            date: true,
+            datePattern: ['d', 'm', 'Y'],
+            delimiter: '-',
+        });
+    }
+
+    var awbCleave;
+
+    if ($('.awb-input').length > 0) {
+        awbCleave = new Cleave('.awb-input', {
+            blocks: [4, 4, 4],
+            delimiter: ' ',
+        });
+    }
 
     $("input[name='inventory_status']").first().attr('checked', true);
 

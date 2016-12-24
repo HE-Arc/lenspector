@@ -15,12 +15,16 @@ $primary-text-color:   #212121;
 $secondary-text-color: #757575;
 $divider-color:        #BDBDBD;
 
-//
-// Overrides
-// --------------------------------------------------
+/* Accessibility overrides */
+$secondary-text-color: #474747;
+$primary-color-light: #81c2f7;
+
+
+/* Boostrap variables overrides */
+
 /* Text */
-// $text-color: $primary-color-text;
 $text-color: $secondary-text-color;
+$text-muted: $secondary-text-color;
 
 /* Navbar */
 $navbar-default-bg: $primary-color-dark;
@@ -40,7 +44,7 @@ $dropdown-link-hover-color: $primary-color-text;
 $dropdown-link-active-bg: $primary-color-dark;
 
 /* Jukbotron */
-$jumbotron-bg: $primary-color;
+$jumbotron-color: $secondary-text-color;
 $jumbotron-bg: $primary-color-light;
 
 /* Tumbnail */

@@ -8,90 +8,114 @@
         {{ method_field('PUT') }}
     {% endif %}
     <div class="form-group row">
-        <label class="col-form-label col-xs-5 col-sm-2" for="company_name">Company name</label>
-        <div class="col-xs-6 col-sm-4">
+        <label class="col-form-label col-xs-12 col-sm-2" for="company_name">Company name</label>
+        <div class="col-xs-12 col-sm-4">
             <input id="company_name" name="company_name" class="form-control" type="text"
-            value ="{{ customer is defined ? customer.company_name : input_old('company_name') }}" required>
+                value ="{{ customer is defined ? customer.company_name : input_old('company_name') }}"
+                placeholder="eg: CHUV, Toner Ltd, ..." autofocus required
+            >
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-form-label col-xs-5 col-sm-2" for="vat">VAT number</label>
-        <div class="col-xs-6 col-sm-2">
+        <label class="col-form-label col-xs-12 col-sm-2" for="vat">VAT number</label>
+        <div class="col-xs-12 col-sm-3">
             <input id="vat" name="vat" class="form-control" type="text"
-            value ="{{ customer is defined ? customer.vat : input_old('vat') }}">
+                value ="{{ customer is defined ? customer.vat : input_old('vat') }}"
+                placeholder="eg: CHE-123.456.789 TVA"
+            >
         </div>
     </div>
     <legend>Adress</legend>
     <div class="form-group row">
-        <label class="col-form-label col-xs-2 col-sm-2" for="street_name">Street name</label>
-        <div class="col-xs-10 col-sm-3">
+        <label class="col-form-label col-xs-12 col-sm-2" for="street_name">Street name</label>
+        <div class="col-xs-12 col-sm-3">
             <input id="street_name" name="street_name" class="form-control" type="text"
-            value ="{{ customer is defined ? customer.street_name : input_old('street_name') }}">
+                value ="{{ customer is defined ? customer.street_name : input_old('street_name') }}"
+                placeholder="eg: Bacon Street"
+        >
         </div>
-        <label class="col-form-label col-xs-2 col-sm-2" for="building_number">Building number</label>
-        <div class="col-xs-10 col-sm-3">
+        <label class="col-form-label col-xs-12 col-sm-2 col-sm-offset-1" for="building_number">Building number</label>
+        <div class="col-xs-12 col-sm-3">
             <input id="building_number" name="building_number" class="form-control" type="number"
-            value ="{{ customer is defined ? customer.building_number : input_old('building_number') }}">
+                value ="{{ customer is defined ? customer.building_number : input_old('building_number') }}"
+                placeholder="eg: 12, 453, ..."
+            >
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-form-label col-xs-2" for="city">City</label>
-        <div class="col-xs-5 col-sm-3">
+        <label class="col-form-label col-xs-12 col-sm-2" for="city">City</label>
+        <div class="col-xs-12 col-sm-3">
             <input id="city" name="city" class="form-control" type="text"
-            value ="{{ customer is defined ? customer.city : input_old('city') }}">
+                value ="{{ customer is defined ? customer.city : input_old('city') }}"
+                placeholder="eg: Boston, Neuchâtel, ..."
+            >
         </div>
-        <label class="col-form-label col-xs-2" for="post_code">Post code</label>
-        <div class="col-xs-5 col-sm-3">
+        <label class="col-form-label col-xs-12 col-sm-offset-1 col-sm-2" for="post_code">Post code</label>
+        <div class="col-xs-12 col-sm-3">
             <input id="post_code" name="post_code" class="form-control" type="number"
-            value ="{{ customer is defined ? customer.post_code : input_old('post_code') }}">
+                value ="{{ customer is defined ? customer.post_code : input_old('post_code') }}"
+                placeholder="eg: 2000, 75056, ..."
+            >
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-form-label col-xs-2" for="country_name">Country</label>
-        <div class="col-xs-5 col-sm-4">
+        <label class="col-form-label col-xs-12 col-sm-2" for="country_name">Country</label>
+        <div class="col-xs-12 col-sm-4">
             {% if customer is defined %}
                 <input id="customerCountry" value="{{ customer.country.name }}" hidden>
             {% endif %}
             <input id="countriesInput" class="form-control" type="text" name="country_name"
-                value=""
+                value="" placeholder="eg: Switzerland, France, ..."
             >
         </div>
     </div>
     <legend>Contact person</legend>
     <div class="form-group row">
-        <label class="col-form-label col-xs-2" for="last_name">Last name</label>
-        <div class="col-xs-5 col-sm-3">
+        <label class="col-form-label col-xs-12 col-sm-2" for="last_name">Last name</label>
+        <div class="col-xs-12 col-sm-4">
             <input id="last_name" name="last_name" class="form-control" type="text"
-            value ="{{ customer is defined ? customer.last_name : input_old('last_name') }}">
+            value ="{{ customer is defined ? customer.last_name : input_old('last_name') }}"
+            placeholder="eg: Snow"
+        >
         </div>
-        <label class="col-form-label col-xs-2" for="first_name">First name</label>
-        <div class="col-xs-3">
+        <label class="col-form-label col-xs-12 col-sm-2" for="first_name">First name</label>
+        <div class="col-xs-12 col-sm-4">
             <input id="first_name" name="first_name" class="form-control" type="text"
-            value ="{{ customer is defined ? customer.first_name : input_old('first_name') }}">
+                value ="{{ customer is defined ? customer.first_name : input_old('first_name') }}"
+                placeholder="eg: Jon"
+            >
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-form-label col-xs-2" for="email">Email</label>
-        <div class="col-xs-5 col-sm-3">
+        <label class="col-form-label col-xs-12 col-sm-2" for="email">Email</label>
+        <div class="col-xs-12 col-sm-4">
             <input id="email" name="email" class="form-control" type="email"
-            value ="{{ customer is defined ? customer.email : input_old('email') }}">
+                value ="{{ customer is defined ? customer.email : input_old('email') }}"
+                placeholder="eg: jon.snow@the-black-watch.com"
+            >
         </div>
-        <label class="col-form-label col-xs-2" for="phone_number">Phone number</label>
-        <div class="col-xs-3">
+        <label class="col-form-label col-xs-12 col-sm-2" for="phone_number">Phone number</label>
+        <div class="col-xs-12 col-sm-4">
             <input id="phone_number" name="phone_number" class="form-control" type="tel"
-            value ="{{ customer is defined ? customer.phone_number : input_old('phone_number') }}" required>
+                value ="{{ customer is defined ? customer.phone_number : input_old('phone_number') }}"
+                placeholder="eg: +41 23 456 78 43" required
+            >
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-form-label col-xs-2" for="department">Department</label>
-        <div class="col-xs-3">
+        <label class="col-form-label col-xs-12 col-sm-2" for="department">Department</label>
+        <div class="col-xs-12 col-sm-4">
             <input id="department" name="department" class="form-control" type="text"
-            value ="{{ customer is defined ? customer.first_name : input_old('department') }}">
+                value ="{{ customer is defined ? customer.first_name : input_old('department') }}"
+                placeholder="eg: surgery, ophtalmology, ..."
+            >
         </div>
-        <label class="col-form-label col-xs-2" for="fax_number">Fax number</label>
-        <div class="col-xs-3">
+        <label class="col-form-label col-xs-12 col-sm-2" for="fax_number">Fax number</label>
+        <div class="col-xs-12 col-sm-4">
             <input id="fax_number" name="fax_number" class="form-control" type="tel"
-            value ="{{ customer is defined ? customer.fax_number : input_old('fax_number') }}">
+                value ="{{ customer is defined ? customer.fax_number : input_old('fax_number') }}"
+                placeholder="eg: +41 23 456 78 44"
+            >
         </div>
     </div>
     <div class="form-group row">
