@@ -41,14 +41,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('order', 'OrderController', [
         'except' => [
             'index',
-            ]
+            ],
         ]);
     Route::get('customers', function (Request $request) {
         $customers = Customer::all();
+
         return response()->json(compact('customers'));
     });
     Route::get('product-types', function (Request $request) {
         $productTypes = ProductType::all();
+
         return response()->json(compact('productTypes'));
     });
 });

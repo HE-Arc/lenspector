@@ -17,6 +17,7 @@ class CustomerController extends Controller
     {
         if (request()->ajax()) {
             $customers = Customer::all();
+
             return response()->json(compact('customers'));
         }
         $customersTotal = Customer::count();

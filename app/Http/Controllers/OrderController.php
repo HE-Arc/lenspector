@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-
 use App\Order;
-use App\OrderType;
-use App\OrderElement;
-use App\ProductType;
 use App\Customer;
+use App\OrderType;
+use App\ProductType;
+use App\OrderElement;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -34,6 +31,7 @@ class OrderController extends Controller
         $orderTypes = OrderType::all();
         $productTypes = ProductType::all();
         $customers = Customer::all();
+
         return view('order/order-create', compact('orderTypes', 'productTypes', 'customers'));
     }
 
@@ -51,12 +49,12 @@ class OrderController extends Controller
             'order_type_id' => 'required|exists:order_types,id',
             'product_type_id.*' => 'required|exists:product,id',
             'quantity.*' => 'required|numeric|min:1',
-            'diopter.*' => 'required|in:' . implode(',', $diopters),
+            'diopter.*' => 'required|in:'.implode(',', $diopters),
         ]);
 
         $order = new Order($request->only([
                 'customer_id',
-                'order_type_id'
+                'order_type_id',
             ])
         );
 
@@ -66,8 +64,8 @@ class OrderController extends Controller
         $quantity = $request->quantity;
 
         /* TODO: Might beed an optimisation. */
-        for ($i=0; $i < count($quantity); $i++) {
-            for ($j=0; $j < $quantity[$i] ; $j++) {
+        for ($i = 0; $i < count($quantity); $i++) {
+            for ($j = 0; $j < $quantity[$i]; $j++) {
                 $order->orderElements()->save(new OrderElement([
                         'product_type_id' => $request->product_type_id[$i],
                         'requested_diopter' => $request->diopter[$i],
