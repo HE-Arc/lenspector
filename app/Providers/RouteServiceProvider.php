@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
+use App\Order;
 use App\Customer;
+use App\OrderStatus;
 use App\ProductType;
 use App\InventoryStatus;
-use App\OrderStatus;
-use App\Order;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
