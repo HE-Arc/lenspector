@@ -15,21 +15,21 @@ class OrderElement extends Component {
         }
         return (
             <div className="diopter-row row">
-                <label className="col-form-label col-xs-6 col-md-2" htmlFor="product_type_id[]">Product type</label>
+                <label className="col-form-label col-xs-6 col-md-2" htmlFor={"product_type_id[" + this.props.elementId + "]"}>Product type</label>
                 <div className="col-xs-6 col-md-2">
-                    <select name="product_type_id[]" required>
+                    <select id={"product_type_id[" + this.props.elementId + "]"} name={"product_type_id[" + this.props.elementId + "]"} required>
                         {this.props.productTypes.map(type =>
                             <option key={type.id} value={type.id}>{type.name}</option>
                         )}
                     </select>
                 </div>
-                <label className="col-form-label col-xs-6 col-md-1" htmlFor="quantity[]">Quantity</label>
+                <label className="col-form-label col-xs-6 col-md-1" htmlFor={"quantity[" + this.props.elementId + "]"}>Quantity</label>
                 <div className="col-xs-6 col-md-2">
-                    <input className="form-control" type="number" name="quantity[]" min="1" required/>
+                    <input id={"quantity[" + this.props.elementId + "]"} className="form-control" type="number" name={"quantity[" + this.props.elementId + "]"} min="1" required/>
                 </div>
-                <label className="col-form-label col-xs-6 col-md-1" htmlFor="diopter[]">Diopter</label>
+                <label className="col-form-label col-xs-6 col-md-1" htmlFor={"diopter[" + this.props.elementId + "]"}>Diopter</label>
                 <div className="col-xs-6 col-md-2">
-                    <input className="form-control" type="number" name="diopter[]" min="5.0" max="30.0" step="0.5" required/>
+                    <input id={"diopter[" + this.props.elementId + "]"} className="form-control" type="number" name={"diopter[" + this.props.elementId + "]"} min="5.0" max="30.0" step="0.5" required/>
                 </div>
                 {this.button}
             </div>

@@ -11,7 +11,7 @@ class OrderElementsList extends Component {
         };
         this.addOrderElement = this.addOrderElement.bind(this);
         this.orderElements = [];
-        this.counter = 1;
+        this.counter = 0;
     }
     componentDidMount() {
         $.ajax({
@@ -42,7 +42,7 @@ class OrderElementsList extends Component {
     render() {
         return (
             <div className="form-group row">
-                <OrderElement elementId={1} key={1} productTypes={this.state.productTypes} parent={this} />
+                <OrderElement elementId={0} key={0} productTypes={this.state.productTypes} parent={this} />
                 {this.orderElements}
                 <div className="row">
                     <button id="add-diopter-btn" type="button" className="btn btn-default" onClick={this.addOrderElement}>Add element</button>

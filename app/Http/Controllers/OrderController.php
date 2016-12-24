@@ -9,12 +9,14 @@ use App\OrderStatus;
 use App\ProductType;
 use App\OrderElement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\OrderStatus  $orderStatus
      * @return \Illuminate\Http\Response
      */
     public function index(OrderStatus $orderStatus)
@@ -50,6 +52,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $diopters = range(5, 30, 0.5);
         $this->validate($request, [
             'customer_id' => 'required|exists:customers,id',
@@ -58,6 +61,7 @@ class OrderController extends Controller
             'quantity.*' => 'required|numeric|min:1',
             'diopter.*' => 'required|in:'.implode(',', $diopters),
         ]);
+
 
         $order = new Order($request->only([
                 'customer_id',
@@ -71,11 +75,11 @@ class OrderController extends Controller
         $quantity = $request->quantity;
 
         /* TODO: Might beed an optimisation. */
-        for ($i = 0; $i < count($quantity); $i++) {
-            for ($j = 0; $j < $quantity[$i]; $j++) {
+        foreach ($quantity as $key => $value) {
+            for ($j = 0; $j < $value; $j++) {
                 $order->orderElements()->save(new OrderElement([
-                        'product_type_id' => $request->product_type_id[$i],
-                        'requested_diopter' => $request->diopter[$i],
+                        'product_type_id' => $request->product_type_id[$key],
+                        'requested_diopter' => $request->diopter[$key],
                     ])
                 );
             }
@@ -88,12 +92,35 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($order)
     {
-        //
+        $orderElements = [];
+        foreach ($order->orderElements as $element) {
+            $productName = $element->productType()->get()->first()->name;
+            $diopter = (string) $element->requested_diopter;
+
+            if (array_key_exists($productName, $orderElements)) {
+                if (array_key_exists($diopter, $orderElements[$productName])) {
+                    array_push($orderElements[$productName][$diopter], $element);
+                }
+                else {
+                    $orderElements[$productName][$diopter] = [
+                        $element
+                    ];
+                }
+            }
+            else {
+                $orderElements[$productName] = [
+                    $diopter => [
+                        $element
+                    ]
+                ];
+            }
+        }
+        return view('order/show', compact('order', 'orderElements'));
     }
 
     /**

@@ -48,4 +48,15 @@ class OrderElement extends Model
     {
         return $this->belongsTo('App\Lens');
     }
+
+    /**
+     * Get the order element's diopter formatted with one decimal.
+     *
+     * @param  string  $diopter
+     * @return string
+     */
+    public function getRequestedDiopterAttribute($diopter)
+    {
+        return number_format($diopter, 1, '.', ',');
+    }
 }

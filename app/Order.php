@@ -65,8 +65,8 @@ class Order extends Model
      * @param  string  $diopter
      * @return string
      */
-    public function getIdAttribute($id)
+    public function getFormattedIdAttribute()
     {
-        return "SVR_" . str_pad($id, 5, "0", STR_PAD_LEFT);
+        return "SVR_" . str_pad($this->id, 5, "0", STR_PAD_LEFT);
     }
 }
