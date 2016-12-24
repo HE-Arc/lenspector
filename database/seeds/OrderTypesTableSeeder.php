@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
-
 use App\OrderType;
+use Illuminate\Database\Seeder;
 
 class OrderTypesTableSeeder extends Seeder
 {
